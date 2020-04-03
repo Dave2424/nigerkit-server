@@ -21,8 +21,8 @@ class CreateProductsTable extends Migration
             $table->string('brand')->nullable();
             $table->string('Sku');
             $table->string('content')->nullable();
-            $table->string('review_id');
             $table->string('category_id');
+            $table->string('files');
             $table->timestamps();
         });
     }

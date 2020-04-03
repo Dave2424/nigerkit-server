@@ -38,9 +38,6 @@ class ViewController extends Controller
     public function upgrade() {
         return view('pages.upgrade');
     }
-    public function product() {
-        return view('pages.products');
-    }
     public function addCategory() {
         return view ('pages.addCategory');
     }

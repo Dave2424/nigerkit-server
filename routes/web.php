@@ -19,7 +19,11 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 //Review Route//
+
 //product Route//
+Route::get('product', 'ProductController@index')->name('product');
+Route::post('add-product', 'ProductController@store')->name('add-product');
+
 
 //View Route//
 Route::get('/home', 'ViewController@index')->name('home');
@@ -30,7 +34,6 @@ Route::get('notifications', 'ViewController@notifications')->name('notifications
 Route::get('rtl-support', 'ViewController@support')->name('language');
 Route::get('upgrade', 'ViewController@upgrade')->name('upgrade');
 Route::get('review', 'ViewController@review')->name('review');
-Route::get('product', 'ViewController@product')->name('product');
 
 //Category Route//
 Route::get('category', 'CategoryController@index')->name('category');

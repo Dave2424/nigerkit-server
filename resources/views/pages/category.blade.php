@@ -111,3 +111,6 @@
         </div>
     </div>
 @endsection
+@push('category')
+<script src="{{ asset('material') }}/js/custom/category.js"></script>
+@endpush
