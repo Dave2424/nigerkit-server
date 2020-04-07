@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('Sku');
             $table->string('content')->nullable();
             $table->string('category_id');
-            $table->string('files');
+            $table->json('files');
             $table->timestamps();
         });
     }

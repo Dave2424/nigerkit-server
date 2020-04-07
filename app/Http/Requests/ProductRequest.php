@@ -24,32 +24,33 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_name' => ['required'],
+            'name' => ['required'],
             'description' => ['required'],
             'brand' => ['required'],
-            'category' => ['required'],
+            'price' => ['required','numeric'],
+            'category_id' => ['required'],
             'quantity' =>['required','numeric'],
-            'sku' => ['required','numeric'],
-            'product_file.*' => ['required','file','image','mimes:jpeg,png,gif,webp','max:5048'],
-            'product_file' =>['required']
+            'content' => ['nullable'],
+            'Sku' => ['required'],
+//            'files' => 'required|mimes:jpg,jpeg,png,bmp,gif|max:5048',
+            'files.*' => 'required|mimes:jpg,jpeg,png,bmp,gif|max:5048',
         ];
     }
     public function messages()
     {
         return [
-            'product_name.required' => 'Product name is required',
+            'name.required' => 'Product name is required',
             'description.required' => 'Product description is required',
             'brand.required' => 'Product brand is required',
-            'category.required' => 'Select a category product belongs to',
+            'price.required' => 'Product brand is required',
+            'price.numeric' => 'Product price must be value(number)',
+            'category_id.required' => 'Select a category product belongs to',
             'quantity.required' => 'Product quantity is required',
             'quantity.numeric' => 'Product quantity must be value(number)',
-            'sku.required' => 'Product Sku No is required',
-            'sku.numeric' => 'Product Sku No must be value(number)',
-            'product_file.*.required' => 'Product must have an image',
-            'product_file.required' => 'Product must have an image',
-            'product_file.*.max' => 'Image must be less than 5MB',
-            'product_file.*.mimes' => 'Image format must match with any of these(jpeg,png,gif,webp)',
-
+            'Sku.required' => 'Product Sku No is required',
+            'files.*.required' => 'Please upload an image',
+            'files.*.mimes' => 'Only jpeg,png,gif and bmp images are allowed',
+            'files.*.max' => 'Sorry! Maximum allowed size for an image is 5MB',
         ];
     }
 }

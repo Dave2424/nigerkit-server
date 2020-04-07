@@ -11,9 +11,13 @@ class Product extends Model
         'description',
         'quantity',
         'brand',
+        'price',
         'Sku',
         'content',
         'category_id',
         'files'
+    ];
+    protected $casts = [
+        'files' => 'array'
     ];
 }

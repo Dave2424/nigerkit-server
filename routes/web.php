@@ -23,7 +23,8 @@ Auth::routes();
 //product Route//
 Route::get('product', 'ProductController@index')->name('product');
 Route::post('add-product', 'ProductController@store')->name('add-product');
-
+Route::get('/get-product', 'ProductController@allProduct');
+Route::get('/delete-product/{id}', 'ProductController@destroy');
 
 //View Route//
 Route::get('/home', 'ViewController@index')->name('home');

@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-//use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 
 class HelperController extends Controller
 {
@@ -18,14 +18,14 @@ class HelperController extends Controller
 //        self::$base_url = url('/');
     }
 
-    public static function processImageUpload( $image, $name = 'user', $dir = 'user', $height = 350, $width = 1200 )
+    public static function processImageUpload( $image, $product_name , $dir = 'products', $height, $width )
     {
         if (!file_exists(storage_path('app/public/'.$dir))) {
             mkdir(storage_path('app/public/'.$dir), 0777, true);
         }
         //Process new image
-        $imageName = preg_replace('/\s+/', '', $name);
-        $user_image = '/'.$dir.'/header/' . uniqid(rand()) . $imageName . '.' . $image->getClientOriginalExtension();
+        $imageName = preg_replace('/\s+/', '', $product_name);
+        $user_image = '/'.$dir.'/' . uniqid(rand()) . $imageName . '.' . $image->getClientOriginalExtension();
 
         $imageR = Image::make($image);
         $imageR = $imageR->resize($width, $height); //width height
@@ -33,6 +33,20 @@ class HelperController extends Controller
         Storage::disk('public')->put($user_image, (string)$imageR->encode());
 
         return $user_image;
+    }
+
+    public static function processStoreImage( $image, $name = 'image', $dir = 'store')
+    {
+        if (!file_exists(storage_path('app/public/'.$dir))) {
+            mkdir(storage_path('app/public/'.$dir), 0777, true);
+        }
+        //Process new image
+        $imageName = preg_replace('/\s+/', '', $name);
+        $store_image = '/'.$dir.'/'. uniqid(rand()) . $imageName . '.' . $image->getClientOriginalExtension();
+
+        Storage::disk('public')->put($store_image, $image);
+
+        return $store_image;
     }
 
     public static function processProductsImage( $image, $name = 'image', $dir = 'store')
@@ -57,26 +71,6 @@ class HelperController extends Controller
             //remove
             Storage::disk('public')->delete($path);
         }
-    }
-
-
-    /**
-     * Build Mail Contents
-     * @param $content
-     * @param $title
-     * @return array
-     */
-    public static function buildMailer($content, $title)
-    {
-
-        $base_url = 'http://app.startev.africa';
-
-        $toSend = ['content' => $content['message'],  'subject' => $title,  'title' => $title, 'base_url' => $base_url];
-
-        if (isset($content['token'])) {
-            $toSend['token'] = $content['token'];
-        }
-        return  $toSend;
     }
 
     /**
