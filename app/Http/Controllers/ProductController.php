@@ -30,12 +30,13 @@ class ProductController extends Controller
         $product = Product::latest()->get();
         return DataTables::of($product)
             ->addColumn('files', function($data){
-                $button = '<button data="'.$data.'" type="button" rel="tooltip" style="margin-right: -10px" title="View picture" class="btn btn-success btn-link btn-sm">
-                                <i class="material-icons">attachment</i></button>';
+                $button = '<a id="'.$data->id.'" data-item="'.htmlspecialchars($data).'" type="button" rel="tooltip" 
+                                style="margin-right: -10px" title="View picture" class="p-file btn btn-success btn-link btn-sm">
+                                <i class="material-icons">attachment</i></a>';
                 return $button;
             })
             ->addColumn('action', function($data) {
-                $button = '<a id="'.$data->id.'" item="'.$data.'" type="button" rel="tooltip" title="Edit product" class="edit btn btn-info btn-link btn-sm">
+                $button = '<a id="'.$data->id.'" data-item="'.htmlspecialchars($data).'" type="button" rel="tooltip" title="Edit product" class="edit btn btn-info btn-link btn-sm">
                                   <i class="material-icons">edit</i></a>';
                 $button .= '<a id="'.$data->id.'" type="button" rel="tooltip" title="Remove" class="delete btn btn-danger btn-link btn-sm">
                                   <i class="material-icons">close</i></a>';

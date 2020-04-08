@@ -47,6 +47,13 @@ $(document).ready(function() {
             md.showSuccessMessage($msg);
         }
         //Feeding in the dataTable
+        $.fn.dataTable.render.ellipsis = function ( cutoff ) {
+            return function ( data, type, row ) {
+                return type === 'display' && data.length > cutoff ?
+                    data.substr( 0, cutoff ) +'…' :
+                    data;
+            }
+        };
         var table = $('#product_table').DataTable({
             processing: true,
             serverSide: true,
@@ -61,10 +68,12 @@ $(document).ready(function() {
                     name: 'name'
                 },{
                     data: 'description',
-                    name: 'description'
+                    name: 'description',
+                    orderable: false
                 },{
                     data:'quantity',
-                    name: 'quantity'
+                    name: 'quantity',
+                    orderable: false
                 },{
                     data:'brand',
                     name: 'brand',
@@ -91,24 +100,130 @@ $(document).ready(function() {
                     name: 'action',
                     orderable: false
                 }
+            ],
+            columnDefs: [ {
+                targets: 6,
+                render: $.fn.dataTable.render.ellipsis(20)
+            }, {
+                targets: 2,
+                render: $.fn.dataTable.render.ellipsis(39)
+            }
             ]
         });
         //Deleting a product details
         $('#product_table').on('click', '.delete', function () {
             $id = $(this).attr('id');
-            confirm('Are you sure You want to delete !');
+            $('#product_id').val($id);
+            $('#product_delete').modal();
+        });
+        $('#delete_product').click(function () {
+            $id = $('#product_id').val();
+            $('#product_delete').modal('hide');
             $.ajax({
                 type: 'GET',
                 url: '/delete-product/' + $id,
                 success: function(data) {
                     md.showSuccessMessage(data.status);
-                    console.log('success pn deletion of category');
-                    window.location.reload();
+                     table.draw();
                 },
                 error: function (error) {
                    console.log('delete_category', error.responseText);
                 }
             });
-        })
+        });
+        $('#product_table').on('click', '.p-file', function () {
+            $('#carousel_indactor').empty();
+            $('#carousel_img').empty();
+            $('.modal_text').empty();
+            $file_temp = $(this).attr('data-item');
+            $file = JSON.parse($file_temp);
+            $files_indicator_html = '';
+            $file_Html = '';
+            $n = 0;
+            $page = 'active';
+            $file.files.forEach(function (data) {
+                $files_indicator_html += "<li data-target=\"#productFiles\" data-slide-to=\""+$n+"\"></li>";
+                $file_Html += "<div class=\"carousel-item "+$page+"\"><img class=\"d-block w-80\" src=\""+data+"\"/></div>";
+                $n+=1;
+                if ($n > 1 || $n == 1)
+                    $page ='';
+
+            });
+            console.log($file.name);
+            $('.modal_text').append($file.name);
+            $('#carousel_indactor').append($files_indicator_html);
+            $('#carousel_img').append($file_Html);
+            $('#productFileModal').modal();
+        });
+        //editing the product table
+        $('#product_table').on('click', '.edit', function () {
+            $id = $(this).attr('id');
+            $data_temp = $(this).attr('data-item');
+            $data = JSON.parse($data_temp);
+            $('#editProductID').val($id);
+            $('#input-edit_name').val($data.name);
+            $('#input-edit_description').val($data.description);
+            $('#input-edit_brand').val($data.brand);
+            $('#input-edit_content').val($data.content);
+            $('#input-edit_category').prop('selectedIndex', $data.category_id);
+            $('#input-edit_price').val($data.price);
+            $('#input-edit_quantity').val($data.quantity);
+            $('#input-edit_sku').val($data.Sku);
+            $('#product_edit').modal({backdrop:false});
+
+        });
+        //Edit logic
+        $('#edit_product').click(function() {
+            $id = $('#editProductID').val();
+            $product_name = $('#input-edit_name').val();
+            $product_description = $('#input-edit_description').val();
+            $product_brand = $('#input-edit_brand').val();
+            $product_content = $('#input-edit_content').val();
+            $product_category = $('#input-edit_category').val();
+            $product_price = $('#input-edit_price').val();
+            $product_quantity = $('#input-edit_quantity').val();
+            $product_sku = $('#input-edit_sku').val();
+            //file
+            if ($product_name == '') {
+
+            } else if ($product_description =='') {
+
+            } else if ($product_brand == '') {
+
+            }else if ($product_category == '') {
+
+            } else if ($product_quantity == '') {
+
+            } else if ($product_sku == '') {
+
+            } else if ($product_price == '') {
+
+            } else {
+                var formData = new formData();
+                formData.append('name',$product_name);
+                formData.append('description', $product_description);
+                formData.append('brand', $product_brand);
+                formData.append('content',$product_content);
+                formData.append('category_id',$product_category);
+                formData.append('quantity', $product_quantity);
+                formData.append('price', $product_price);
+                formData.append('Sku', $product_sku);
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/your/url',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data : formData,
+                    success: function(data){
+                        console.log(data);
+                    },
+                    error: function(err){
+                        console.log(error.responseText);
+                    }
+                });
+            }
+        });
     });
 });

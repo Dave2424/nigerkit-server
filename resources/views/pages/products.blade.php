@@ -50,34 +50,11 @@
                                                     <th class="text-center">{{ __('Actions') }}</th>
                                                     </thead>
                                                     <tbody>
-                                                    {{--@foreach($products as $product)--}}
-                                                        {{--<tr><td class="text-center">{{$product->name}}</td>--}}
-                                                            {{--<td class="text-center">{{$product->description}}</td>--}}
-                                                            {{--<td class="text-center">{{$product->quantity}}</td>--}}
-                                                            {{--<td class="text-center">{{$product->brand}}</td>--}}
-                                                            {{--<td class="text-center">{{$product->Sku}}</td>--}}
-                                                            {{--<td class="text-center">{{$product->content}}</td>--}}
-                                                            {{--<td class="text-center">--}}
-                                                                {{--<button type="button" rel="tooltip" title="View picture" class="btn btn-success btn-link btn-sm">--}}
-                                                                    {{--<i class="material-icons">attachment</i>--}}
-                                                                {{--</button>--}}
-                                                            {{--</td>--}}
-                                                        {{--@foreach($product->files as $file)--}}
-                                                            {{--<img src="{{url($file)}}" />--}}
-                                                        {{--@endforeach--}}
-                                                            {{--<td class="td-actions text-center">--}}
-                                                                {{--<button type="button" rel="tooltip" title="Edit product" class="btn btn-info btn-link btn-sm">--}}
-                                                                    {{--<i class="material-icons">edit</i>--}}
-                                                                {{--</button>--}}
-                                                                {{--<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">--}}
-                                                                    {{--<i class="material-icons">close</i>--}}
-                                                                {{--</button>--}}
-                                                            {{--</td>--}}
-                                                    {{--@endforeach--}}
                                                     </tbody>
                                         </table>
                                     </div>
                                     </div>
+
                                     <div class="tab-pane" id="addProduct">
                                         <div class="container">
                                             <form method="post" action="{{ route('add-product') }}"
@@ -245,7 +222,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="tab-pane" id="setProduct">
                                         <table class="table">
                                             <tbody>
@@ -323,8 +299,195 @@
                 </div>
         </div>
     </div>
+    <!-- Modal delete product-->
+    <div class="modal fade" id="product_delete" tabindex="-1" role="dialog" aria-labelledby="product_deleteTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="product_delete">Notice</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete?
+                    <input type="text" id="product_id" hidden/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="delete_product">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Carousel for product files-->
+    <div class="modal product_Viewtable" id="productFileModal" tabindex="-1" role="dialog"
+         aria-labelledby="productFileModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal_text" id="productFileModal"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="productFiles" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators" id="carousel_indactor">
+                        </ol>
+                        <div class="carousel-inner" id="carousel_img">
+                        </div>
+                        <a class="carousel-control-prev" href="#productFiles" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#productFiles" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal editing product--->
+    <div class="modal fade" id="product_edit" tabindex="-1" role="dialog" aria-labelledby="product_edit" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="product_editH5">Edit product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <h6 style="color:red;letter-spacing: 1px"><small>Uploading image will replaced the previous image.</small></h6>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                            <input class="form-control" name="edit_name"
+                                                   id="input-edit_name" type="text" placeholder="{{ __('Product name') }}"
+                                                    required="true" aria-required="true"/>
+                                                <span id="edit_product-error" class="error text-danger" for="input-edit_name"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                                                <textarea id="input-edit_description" class="form-control"
+                                                                          rows="2" placeholder="describe the product" name="edit_description" required="true" aria-required="true"></textarea>
+                                                <span id="edit_description-error" class="error text-danger" for="input-edit_description"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                            <input class="form-control" name="edit_brand"
+                                                   id="input-edit_brand" type="text" placeholder="{{ __('Product Brand') }}"
+                                                   required="true" aria-required="true"/>
+                                                <span id="edit_brand-error" class="error text-danger" for="input-edit_brand"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                                                <textarea class="form-control" rows="2"
+                                                                          id="input-edit_content" required="true" aria-required="true"
+                                                                          placeholder="Content of product if available" name="edit_content"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                            <select class="form-control selectpicker"
+                                                    data-style="btn btn-link" name="edit_category_id" id="input-edit_category"
+                                                    required="true" aria-required="true" >
+                                                <option disabled selected>Select product category</option>
+                                                @if(count($categories) > 0)
+                                                    @foreach($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->category}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                                <span id="edit_content-error" class="error text-danger" for="input-edit_category"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                            <input class="form-control" name="edit_price"
+                                                   id="input-edit_price" type="text" placeholder="{{ __('Product price') }}"
+                                                    required="true" aria-required="true"/>
+                                                <span id="edit_price-error" class="error text-danger" for="input-edit_price"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                            <input class="form-control" name="edit_quantity"
+                                                   id="input-edit_quantity" type="text" placeholder="{{ __('Quantity') }}"
+                                                   required="true" aria-required="true"/>
+                                                <span id="edit_quantity-error" class="error text-danger" for="input-edit_quantity"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 ml-auto mr-auto">
+                                        <div class="form-group">
+                                            <input class="form-control" name="edit_Sku"
+                                                   id="input-edit_sku" type="text" placeholder="{{ __('Sku number') }}"
+                                                   required="true" aria-required="true"/>
+                                                <span id="edit_sku-error" class="error text-danger" for="input-edit_sku"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-file-upload
+                                                            form-file-multiple">
+                                    <input id="edit_input-file" type="file" multiple name="edit_files[]"
+                                           class="inputFileHidden" required="true" aria-required="true">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control inputFileVisible"
+                                               placeholder="Product image(s)">
+                                        <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-fab btn-round btn-info">
+                                                                    <i class="material-icons">attach_file</i>
+                                                                </button>
+                                                            </span>
+                                    </div>
+                                </div>
+                                    <span id="edit_p_file-error" style="margin-left: 10%" class="error text-danger"
+                                          for="input-edit_file"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" id="editProductID" hidden />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="edit_product" class="btn btn-info">
+                        <i class="fa fa-spinner fa-spin slow-spin" style="font-size: 22px"></i>
+                        loading</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @endsection
 @push('product')
 <script src="{{ asset('material') }}/js/custom/product.js"></script>
-<script src="{{ asset('material') }}/js/custom/mindmup-editabletable.js"></script>
+{{--<script src="{{ asset('material') }}/js/custom/mindmup-editabletable.js"></script>--}}
 @endpush
