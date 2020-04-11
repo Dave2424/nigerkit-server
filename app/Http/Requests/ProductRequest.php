@@ -33,7 +33,7 @@ class ProductRequest extends FormRequest
             'content' => ['nullable'],
             'Sku' => ['required'],
 //            'files' => 'required|mimes:jpg,jpeg,png,bmp,gif|max:5048',
-            'files.*' => 'required|mimes:jpg,jpeg,png,bmp,gif|max:5048',
+            'files.*' => 'required|mimes:jpg,jpeg,png,bmp,gif|max:5000000',
         ];
     }
     public function messages()

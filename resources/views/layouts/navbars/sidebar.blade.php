@@ -53,10 +53,16 @@
           <p>{{ __('Product') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('table') }}">
+      {{--<li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">--}}
+        {{--<a class="nav-link" href="{{ route('table') }}">--}}
+          {{--<i class="material-icons">content_paste</i>--}}
+            {{--<p>{{ __('Table List') }}</p>--}}
+        {{--</a>--}}
+      {{--</li>--}}
+      <li class="nav-item{{ $activePage == 'post' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('posts') }}">
           <i class="material-icons">content_paste</i>
-            <p>{{ __('Table List') }}</p>
+          <p>{{ __('Posts') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">

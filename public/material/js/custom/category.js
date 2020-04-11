@@ -116,11 +116,20 @@ $(document).ready(function() {
                 }
             });
         }
-
-        //deleting category
+        //Deleting a product details
         $('#category_table').on('click', '.delete', function () {
             $id = $(this).attr('id');
-            confirm('Are you sure You want to delete !');
+            $('#category_id').val($id);
+            $('#category_delete').modal();
+        });
+        $('#delete_category').click(function () {
+            $id = $('#category_id').val();
+            $('#category_delete').modal('hide');
+            delete_category($id);
+        });
+
+        //deleting category
+        function delete_category ($id) {
             $('.line').show();
             $.ajax({
                 type:'GET',
@@ -146,6 +155,6 @@ $(document).ready(function() {
                     console.log(data);
                 }
             });
-        });
+        }
     });
 });

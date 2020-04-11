@@ -10,12 +10,12 @@ use Intervention\Image\Facades\Image;
 
 class HelperController extends Controller
 {
-//    public static $base_url;
+    public static $base_url;
 
 
     public function __construct()
     {
-//        self::$base_url = url('/');
+        self::$base_url = url('/');
     }
 
     public static function processImageUpload( $image, $product_name , $dir = 'products', $height, $width )
@@ -26,6 +26,22 @@ class HelperController extends Controller
         //Process new image
         $imageName = preg_replace('/\s+/', '', $product_name);
         $user_image = '/'.$dir.'/' . uniqid(rand()) . $imageName . '.' . $image->getClientOriginalExtension();
+
+        $imageR = Image::make($image);
+        $imageR = $imageR->resize($width, $height); //width height
+
+        Storage::disk('public')->put($user_image, (string)$imageR->encode());
+
+        return $user_image;
+    }
+    public static function EditProcessImageUpload( $image, $ext, $product_name , $dir = 'products', $height, $width )
+    {
+        if (!file_exists(storage_path('app/public/'.$dir))) {
+            mkdir(storage_path('app/public/'.$dir), 0777, true);
+        }
+        //Process new image
+        $imageName = preg_replace('/\s+/', '', $product_name);
+        $user_image = '/'.$dir.'/' . uniqid(rand()) . $imageName . '.' . $ext;
 
         $imageR = Image::make($image);
         $imageR = $imageR->resize($width, $height); //width height
@@ -66,7 +82,6 @@ class HelperController extends Controller
     public static function removeImage($path)
     {
         $path = str_replace(self::$base_url."/storage", '', $path);
-
         if(Storage::disk('public')->exists($path)){
             //remove
             Storage::disk('public')->delete($path);

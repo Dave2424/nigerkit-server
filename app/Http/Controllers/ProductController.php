@@ -6,7 +6,10 @@ use App\Product;
 use App\Category;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Array_;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -71,10 +74,10 @@ class ProductController extends Controller
             $product = $request->validated();
             $product_name = $request->get('name');
             $product_image = array();
-            if (!is_null($product['files']) && count($product['files'])) {
+            if (!is_null($product['files']) && count($product['files']) > 0) {
                 foreach ($request->file('files') as $file) {
                     //upload image and add link to array
-                    $path = '/storage'.HelperController::processImageUpload($file,  $product_name,'products',600,600);
+                    $path = '/storage'.HelperController::processImageUpload($file,  $product_name,'products',700,700);
                     $product_image[] = $path;
                 }
                 $product['files'] = $product_image;
@@ -115,7 +118,66 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $id = $request->get('id');
+        $Data = [];
+        $product_name = $request->get('name');
+        $Data['name'] = $product_name;
+        $Data['description'] = $request->get('description');
+        $Data['quantity'] = $request->get('quantity');
+        $Data['brand'] = $request->get('brand');
+        $Data['price'] = $request->get('price');
+        $Data['Sku'] = $request->get('Sku');
+        $Data['content'] = $request->get('content');
+        $Data['category_id'] = $request->get('category_id');
+            $product_image = array();
+
+        if (!empty($_FILES['file'])) {
+                $Old_product_file = $product::find($id);
+                if (!is_null($Old_product_file->files) && count($Old_product_file->files) > 0) {
+                    foreach ($Old_product_file->files as $image) {
+                        HelperController::removeImage($image);
+                    }
+                }
+
+                $product_file = $this->reArrayFiles($_FILES['file']); //reArranging the image array
+                foreach ($product_file as $files) {
+                    $name = $files['name'];
+                    $temp_file = $files['tmp_name'];
+                    $temp_ext = explode('.',$name);
+                    $ext = end($temp_ext);
+                    //Process new image
+                    $imageName = preg_replace('/\s+/', '', $product_name);
+                    $user_image = '/products/' .uniqid(rand()) . $imageName . '.' . $ext;
+                    $path = '/storage' .$user_image;
+                    $product_image[] = $path;
+
+                    $imageR = Image::make($temp_file);
+                    $imageR = $imageR->resize(700, 700);
+                    Storage::disk('public')->put($user_image, (string)$imageR->encode());
+                }
+            $Data['files'] = $product_image;
+
+        }
+        $product::where('id', $id)
+            ->update($Data);
+        return response()->json(['status'=> 'Product edited successfully']);
+    }
+
+    /**
+    *Rearrange the files array
+     * @param Array
+     * @return array
+     */
+    public function reArrayFiles(&$array) {
+        $file_array = array();
+        $file_count = count($array['name']);
+        $file_keys = array_keys($array);
+        for($i = 0; $i < $file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_array[$i][$key] = $array[$key][$i];
+            }
+        }
+        return $file_array;
     }
 
     /**

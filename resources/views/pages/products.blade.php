@@ -117,7 +117,7 @@
                                                         <div class="col-sm-10 ml-auto mr-auto">
                                                             <div class="form-group">
                                                                 <textarea class="form-control" rows="2"
-                                                                          id="input-content" required="true" aria-required="true"
+                                                                          id="input-content"
                                                                           placeholder="Content of product if available" name="content"></textarea>
                                                             </div>
                                                         </div>
@@ -373,7 +373,7 @@
                                             <input class="form-control" name="edit_name"
                                                    id="input-edit_name" type="text" placeholder="{{ __('Product name') }}"
                                                     required="true" aria-required="true"/>
-                                                <span id="edit_product-error" class="error text-danger" for="input-edit_name"></span>
+                                                <span id="edit_product-error" class="error text-danger text-error" for="input-edit_name"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -382,7 +382,7 @@
                                         <div class="form-group">
                                                                 <textarea id="input-edit_description" class="form-control"
                                                                           rows="2" placeholder="describe the product" name="edit_description" required="true" aria-required="true"></textarea>
-                                                <span id="edit_description-error" class="error text-danger" for="input-edit_description"></span>
+                                                <span id="edit_description-error" class="error text-danger text-error" for="input-edit_description"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -392,7 +392,7 @@
                                             <input class="form-control" name="edit_brand"
                                                    id="input-edit_brand" type="text" placeholder="{{ __('Product Brand') }}"
                                                    required="true" aria-required="true"/>
-                                                <span id="edit_brand-error" class="error text-danger" for="input-edit_brand"></span>
+                                                <span id="edit_brand-error" class="error text-danger text-error" for="input-edit_brand"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -421,7 +421,7 @@
                                                     @endforeach
                                                 @endif
                                             </select>
-                                                <span id="edit_content-error" class="error text-danger" for="input-edit_category"></span>
+                                                <span id="edit_category-error" class="error text-danger text-error" for="input-edit_category"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -432,7 +432,7 @@
                                             <input class="form-control" name="edit_price"
                                                    id="input-edit_price" type="text" placeholder="{{ __('Product price') }}"
                                                     required="true" aria-required="true"/>
-                                                <span id="edit_price-error" class="error text-danger" for="input-edit_price"></span>
+                                                <span id="edit_price-error" class="error text-danger text-error" for="input-edit_price"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -442,7 +442,7 @@
                                             <input class="form-control" name="edit_quantity"
                                                    id="input-edit_quantity" type="text" placeholder="{{ __('Quantity') }}"
                                                    required="true" aria-required="true"/>
-                                                <span id="edit_quantity-error" class="error text-danger" for="input-edit_quantity"></span>
+                                                <span id="edit_quantity-error" class="error text-danger text-error" for="input-edit_quantity"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -452,13 +452,13 @@
                                             <input class="form-control" name="edit_Sku"
                                                    id="input-edit_sku" type="text" placeholder="{{ __('Sku number') }}"
                                                    required="true" aria-required="true"/>
-                                                <span id="edit_sku-error" class="error text-danger" for="input-edit_sku"></span>
+                                                <span id="edit_sku-error" class="error text-danger text-error" for="input-edit_sku"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group form-file-upload
                                                             form-file-multiple">
-                                    <input id="edit_input-file" type="file" multiple name="edit_files[]"
+                                    <input id="input-edit_file" type="file" multiple name="edit_files[]"
                                            class="inputFileHidden" required="true" aria-required="true">
                                     <div class="input-group">
                                         <input type="text" class="form-control inputFileVisible"
@@ -470,7 +470,7 @@
                                                             </span>
                                     </div>
                                 </div>
-                                    <span id="edit_p_file-error" style="margin-left: 10%" class="error text-danger"
+                                    <span id="edit_p_file-error" style="margin-left: 10%" class="error text-danger text-error"
                                           for="input-edit_file"></span>
                             </div>
                         </div>
@@ -478,10 +478,10 @@
                 </div>
                 <div class="modal-footer">
                     <input type="text" id="editProductID" hidden />
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="edit_closebtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" id="edit_product" class="btn btn-info">
-                        <i class="fa fa-spinner fa-spin slow-spin" style="font-size: 22px"></i>
-                        loading</button>
+                        Edit
+                        </button>
                 </div>
             </div>
         </div>
@@ -489,5 +489,4 @@
     @endsection
 @push('product')
 <script src="{{ asset('material') }}/js/custom/product.js"></script>
-{{--<script src="{{ asset('material') }}/js/custom/mindmup-editabletable.js"></script>--}}
 @endpush

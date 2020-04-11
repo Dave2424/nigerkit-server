@@ -153,5 +153,6 @@
         @stack('js')
         @stack('category')
         @stack('product')
+        @stack('post')
     </body>
 </html>

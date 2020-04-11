@@ -41,4 +41,7 @@ class ViewController extends Controller
     public function addCategory() {
         return view ('pages.addCategory');
     }
+    public function posts() {
+        return view ('pages.post');
+    }
 }

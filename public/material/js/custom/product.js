@@ -149,12 +149,20 @@ $(document).ready(function() {
                     $page ='';
 
             });
-            console.log($file.name);
+            // console.log($file.name);
             $('.modal_text').append($file.name);
             $('#carousel_indactor').append($files_indicator_html);
             $('#carousel_img').append($file_Html);
             $('#productFileModal').modal();
         });
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
         //editing the product table
         $('#product_table').on('click', '.edit', function () {
             $id = $(this).attr('id');
@@ -183,23 +191,53 @@ $(document).ready(function() {
             $product_price = $('#input-edit_price').val();
             $product_quantity = $('#input-edit_quantity').val();
             $product_sku = $('#input-edit_sku').val();
-            //file
+            $product_file = $('#input-edit_file').get(0).files;
             if ($product_name == '') {
-
+                $('#edit_product-error').empty();
+                $('#edit_product-error').append('Product name cannot be empty');
             } else if ($product_description =='') {
-
+                $('#edit_description-error').empty();
+                $('#edit_description-error').append('Description of a product cannot be empty');
             } else if ($product_brand == '') {
-
+                $('#edit_brand-error').empty();
+                $('#edit_brand-error').append('Specify the brand of the product');
             }else if ($product_category == '') {
-
-            } else if ($product_quantity == '') {
-
+                $('#edit_category-error').empty();
+                $('#edit_category-error').append('Select a category');
+            } else if ($product_quantity == '' && !$.isNumeric($product_quantity)) {
+                $('#edit_quantity-error').empty();
+                $('#edit_quantity-error').append('Invalid input for quantity');
             } else if ($product_sku == '') {
-
-            } else if ($product_price == '') {
-
+                $('#edit_sku-error').empty();
+                $('#edit_sku-error').append('Product Sku No is needed');
+            } else if ($product_price == '' && !$.isNumeric($product_price)) {
+                $('#edit_price-error').empty();
+                $('#edit_price-error').append('Product price cannot be empty');
             } else {
-                var formData = new formData();
+                for (var i = 0; i < $product_file.length; ++i) {
+                    var file=$product_file[i].name;
+                    if(file){
+                        var file_size=$product_file[i].size;
+                        if(file_size<5097152){
+                            var ext = file.split('.').pop().toLowerCase();
+                            if($.inArray(ext,['jpg','png','jpeg','gif','bmp'])===-1){
+                                $('#edit_p_file-error').empty();
+                                $('#edit_p_file-error').append('Selected file be jpg, jpeg, gif or bmp format');
+                            }
+                        }else{
+                            $('#edit_p_file-error').empty();
+                            $('#edit_p_file-error').append('Selected file be less than 5Mb');
+                        }
+                    }else{
+                        // $('#edit_p_file-error').append('')
+                    }
+                }
+                clearInput();
+                $('#edit_closebtn').hide();
+                $(this).empty();
+                $(this).append('<i class="fa fa-spinner fa-spin slow-spin" style="font-size: 22px"></i> Updating...').prop('disabled', true);
+                var formData = new FormData();
+                formData.append('id', $id);
                 formData.append('name',$product_name);
                 formData.append('description', $product_description);
                 formData.append('brand', $product_brand);
@@ -208,22 +246,44 @@ $(document).ready(function() {
                 formData.append('quantity', $product_quantity);
                 formData.append('price', $product_price);
                 formData.append('Sku', $product_sku);
+                for (var x = 0; x < $product_file.length; ++x) {
+                    formData.append('file[]', $product_file[x]);
+                }
+                if($product_file.length == 0){
+                    formData.append('file[]', null);
+                }
 
                 $.ajax({
-                    type: 'GET',
-                    url: '/your/url',
+                    type: 'POST',
+                    url: '/edit-product',
                     cache: false,
                     contentType: false,
                     processData: false,
                     data : formData,
                     success: function(data){
-                        console.log(data);
+                        $('#edit_closebtn').show();
+                        $('#edit_product').empty();
+                        $('#edit_product').append('Edit').prop('disabled', false);
+                        $('#product_edit').modal('hide');
+                        md.showSuccessMessage(data.status);
+                        table.draw();
                     },
-                    error: function(err){
+                    error: function(error){
                         console.log(error.responseText);
+                        md.showErrorMessage(error.responseText);
                     }
                 });
             }
         });
+        function clearInput(){
+            $('#edit_product-error').empty();
+            $('#edit_description-error').empty();
+            $('#edit_brand-error').empty();
+            $('#edit_category-error').empty();
+            $('#edit_quantity-error').empty();
+            $('#edit_sku-error').empty();
+            $('#edit_price-error').empty();
+            $('#edit_p_file-error').empty();
+        }
     });
 });
