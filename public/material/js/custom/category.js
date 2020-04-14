@@ -63,6 +63,8 @@ $(document).ready(function() {
             $('#updatecategory').hide();
         });
         $('#category_table').on('click', '.edit', function () {
+            if($('#category'))
+                $('#category').hide();
             $category_text = $(this).attr('data-cate');
             id = $(this).attr('id');
             $('#update-category').val($category_text);

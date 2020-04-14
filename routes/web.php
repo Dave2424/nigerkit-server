@@ -12,11 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 //Review Route//
 
@@ -29,7 +28,11 @@ Route::get('/delete-product/{id}', 'ProductController@destroy');
 
 //Post Route//
 Route::post('add-post','PostController@store')->name('add-post');
-
+Route::get('view-post','PostController@show')->name('viewPost');
+Route::get('/get-posts','PostController@allPosts');
+Route::get('/delete-post/{id}', 'PostController@destroy');
+Route::get('/edit-post/{id}','PostController@edit')->name('edit-post');
+Route::post('edit-post','PostController@update')->name('update-post');
 
 //View Route//
 Route::get('/home', 'ViewController@index')->name('home');

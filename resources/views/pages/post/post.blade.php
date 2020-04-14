@@ -18,6 +18,11 @@
                                     <p class="card-category">Create a post</p>
                                 </div>
                                 <div class="card-body">
+                                    <div class="text-right">
+                                        <a id="add_Category" href="{{route('viewPost')}}" class="btn btn-sm btn-success">
+                                            <i class="material-icons">list </i>
+                                            {{ __('View posts') }}</a>
+                                    </div>
                                         @if (session('status'))
                                             <div class="row" style="display: none">
                                                 <div class="col-sm-12">

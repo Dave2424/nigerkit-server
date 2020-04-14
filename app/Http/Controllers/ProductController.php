@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
 
         $category = Category::all();
-        return view('pages.products',['categories' => $category]);
+        return view('pages.product.products',['categories' => $category]);
     }
     public function allProduct(Request $request) {
         if($request->ajax()){
@@ -39,16 +39,17 @@ class ProductController extends Controller
                 return $button;
             })
             ->addColumn('action', function($data) {
-                $button = '<a id="'.$data->id.'" data-item="'.htmlspecialchars($data).'" type="button" rel="tooltip" title="Edit product" class="edit btn btn-info btn-link btn-sm">
+                $button = '<div class="text-center"><a id="'.$data->id.'" data-item="'.htmlspecialchars($data).'" type="button" rel="tooltip" 
+                                   title="Edit product" class="edit btn btn-info btn-link btn-sm">
                                   <i class="material-icons">edit</i></a>';
                 $button .= '<a id="'.$data->id.'" type="button" rel="tooltip" title="Remove" class="delete btn btn-danger btn-link btn-sm">
-                                  <i class="material-icons">close</i></a>';
+                                  <i class="material-icons">close</i></a></div>';
                 return $button;
             })
             ->rawColumns(['files','action'])
             ->make(true);
         }
-        return view('pages.products');
+        return view('pages.product.products');
 
     }
 

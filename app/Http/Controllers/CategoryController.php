@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
-        return view('pages.category', ['categories' => $category->paginate(5)]);
+        return view('pages.category.category', ['categories' => $category->paginate(5)]);
     }
 
     /**

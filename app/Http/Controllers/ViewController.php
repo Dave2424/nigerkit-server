@@ -27,7 +27,7 @@ class ViewController extends Controller
         return view('pages.notifications');
     }
     public function category() {
-        return view('pages.category');
+        return view('pages.category.category');
     }
     public function map() {
         return view('pages.map');
@@ -38,10 +38,10 @@ class ViewController extends Controller
     public function upgrade() {
         return view('pages.upgrade');
     }
-    public function addCategory() {
-        return view ('pages.addCategory');
-    }
+//    public function addCategory() {
+//        return view ('pages.addCategory');
+//    }
     public function posts() {
-        return view ('pages.post');
+        return view ('pages.post.post');
     }
 }
