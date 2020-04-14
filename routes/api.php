@@ -28,3 +28,9 @@ Route::group([
 //    Route::post('me', 'ApiAuthController@me');
 //    Route::post('remove-user-account', 'ApiAuthController@removeAccount');
 });
+Route::group([
+    'middleware' => ['api']
+], function () {
+    Route::get('get-product', 'Api\ApiController@getProduct');
+
+});
