@@ -2,524 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17fdbbd0-fa2f-4c35-a36b-a18eed251539" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/pages/post/edit_post.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/pages/post/view_post.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/pages/category.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/category/category.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/pages/post.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/post/post.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/pages/products.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/product/products.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/favicon.ico" afterPath="$PROJECT_DIR$/public/favicon.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/Macbook.png" afterPath="$PROJECT_DIR$/public/material/img/Macbook.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/angular.png" afterPath="$PROJECT_DIR$/public/material/img/angular.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/apple-icon.png" afterPath="$PROJECT_DIR$/public/material/img/apple-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/cover.jpg" afterPath="$PROJECT_DIR$/public/material/img/cover.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/ex1.png" afterPath="$PROJECT_DIR$/public/material/img/ex1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/ex2.png" afterPath="$PROJECT_DIR$/public/material/img/ex2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/ex3.png" afterPath="$PROJECT_DIR$/public/material/img/ex3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/faces/avatar.jpg" afterPath="$PROJECT_DIR$/public/material/img/faces/avatar.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/faces/card-profile1-square.jpg" afterPath="$PROJECT_DIR$/public/material/img/faces/card-profile1-square.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/faces/card-profile2-square.jpg" afterPath="$PROJECT_DIR$/public/material/img/faces/card-profile2-square.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/faces/marc.jpg" afterPath="$PROJECT_DIR$/public/material/img/faces/marc.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/favicon.png" afterPath="$PROJECT_DIR$/public/material/img/favicon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/html.png" afterPath="$PROJECT_DIR$/public/material/img/html.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/iPad2.png" afterPath="$PROJECT_DIR$/public/material/img/iPad2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/imac1.png" afterPath="$PROJECT_DIR$/public/material/img/imac1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/ipad.png" afterPath="$PROJECT_DIR$/public/material/img/ipad.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/iphonex.png" afterPath="$PROJECT_DIR$/public/material/img/iphonex.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/login.jpg" afterPath="$PROJECT_DIR$/public/material/img/login.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/logoFlag.png" afterPath="$PROJECT_DIR$/public/material/img/logoFlag.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/mask.png" afterPath="$PROJECT_DIR$/public/material/img/mask.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/new_logo.png" afterPath="$PROJECT_DIR$/public/material/img/new_logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/notification.png" afterPath="$PROJECT_DIR$/public/material/img/notification.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/react.png" afterPath="$PROJECT_DIR$/public/material/img/react.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/sidebar-1.jpg" afterPath="$PROJECT_DIR$/public/material/img/sidebar-1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/sidebar-2.jpg" afterPath="$PROJECT_DIR$/public/material/img/sidebar-2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/sidebar-3.jpg" afterPath="$PROJECT_DIR$/public/material/img/sidebar-3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/sidebar-4.jpg" afterPath="$PROJECT_DIR$/public/material/img/sidebar-4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/sort_asc.png" afterPath="$PROJECT_DIR$/public/material/img/sort_asc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/sort_desc.png" afterPath="$PROJECT_DIR$/public/material/img/sort_desc.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/table.png" afterPath="$PROJECT_DIR$/public/material/img/table.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/vue.png" afterPath="$PROJECT_DIR$/public/material/img/vue.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-cool.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-cry.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-embarassed.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-frown.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-innocent.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-kiss.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-laughing.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-sealed.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-smile.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-surprised.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-undecided.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-wink.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/img/smiley-yell.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/media/moxieplayer.swf" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/media/moxieplayer.swf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/anchor.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/anchor.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/loader.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/loader.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/object.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/object.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/trans.gif" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/img/trans.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.editorconfig" afterPath="$PROJECT_DIR$/.editorconfig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env.example" afterPath="$PROJECT_DIR$/.env.example" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitattributes" afterPath="$PROJECT_DIR$/.gitattributes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/blade.xml" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/wmgt.iml" afterPath="$PROJECT_DIR$/.idea/wmgt.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.styleci.yml" afterPath="$PROJECT_DIR$/.styleci.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Banners.php" afterPath="$PROJECT_DIR$/app/Banners.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Category.php" afterPath="$PROJECT_DIR$/app/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmPasswordController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmPasswordController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BannersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BannersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReviewController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReviewController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ViewController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ViewController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckForMaintenanceMode.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckForMaintenanceMode.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/EncryptCookies.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/EncryptCookies.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/TrimStrings.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/TrimStrings.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/TrustProxies.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/TrustProxies.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/PasswordRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/PasswordRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/PostRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/PostRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/ProductRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/ProductRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/ProfileRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/ProfileRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Post.php" afterPath="$PROJECT_DIR$/app/Model/Post.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Product.php" afterPath="$PROJECT_DIR$/app/Product.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Review.php" afterPath="$PROJECT_DIR$/app/Review.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Rules/CurrentPasswordCheckRule.php" afterPath="$PROJECT_DIR$/app/Rules/CurrentPasswordCheckRule.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/artisan" afterPath="$PROJECT_DIR$/artisan" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/app.php" afterPath="$PROJECT_DIR$/bootstrap/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/auth.php" afterPath="$PROJECT_DIR$/config/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/broadcasting.php" afterPath="$PROJECT_DIR$/config/broadcasting.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/cache.php" afterPath="$PROJECT_DIR$/config/cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.php" afterPath="$PROJECT_DIR$/config/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/datatables.php" afterPath="$PROJECT_DIR$/config/datatables.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/filesystems.php" afterPath="$PROJECT_DIR$/config/filesystems.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/hashing.php" afterPath="$PROJECT_DIR$/config/hashing.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/logging.php" afterPath="$PROJECT_DIR$/config/logging.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/mail.php" afterPath="$PROJECT_DIR$/config/mail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/queue.php" afterPath="$PROJECT_DIR$/config/queue.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/services.php" afterPath="$PROJECT_DIR$/config/services.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/session.php" afterPath="$PROJECT_DIR$/config/session.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/view.php" afterPath="$PROJECT_DIR$/config/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/.gitignore" afterPath="$PROJECT_DIR$/database/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_03_31_105900_create_products_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_03_31_105900_create_products_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_03_31_112111_create_reviews_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_03_31_112111_create_reviews_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_03_31_112131_create_categories_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_03_31_112131_create_categories_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_03_31_113017_create_banners_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_03_31_113017_create_banners_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_04_07_102206_add_price_column_to_products_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_04_07_102206_add_price_column_to_products_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_04_10_082949_create_posts_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_04_10_082949_create_posts_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_04_10_083018_create_comment_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_04_10_083018_create_comment_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_04_10_083053_create_forums_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_04_10_083053_create_forums_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_04_10_083121_create_learn_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_04_10_083121_create_learn_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2020_04_10_085122_create_replies_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_04_10_085122_create_replies_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpunit.xml" afterPath="$PROJECT_DIR$/phpunit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/.htaccess" afterPath="$PROJECT_DIR$/public/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.php" afterPath="$PROJECT_DIR$/public/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/css/boostrap-select.min.css" afterPath="$PROJECT_DIR$/public/material/css/boostrap-select.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/css/custom.css" afterPath="$PROJECT_DIR$/public/material/css/custom.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/css/jquery.dataTables.min.css" afterPath="$PROJECT_DIR$/public/material/css/jquery.dataTables.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/css/material-dashboard-rtl.css" afterPath="$PROJECT_DIR$/public/material/css/material-dashboard-rtl.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/css/material-dashboard.css" afterPath="$PROJECT_DIR$/public/material/css/material-dashboard.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/css/material-dashboard.css.map" afterPath="$PROJECT_DIR$/public/material/css/material-dashboard.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/css/material-dashboard.min.css" afterPath="$PROJECT_DIR$/public/material/css/material-dashboard.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/demo/demo.css" afterPath="$PROJECT_DIR$/public/material/demo/demo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/demo/demo.js" afterPath="$PROJECT_DIR$/public/material/demo/demo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/img/laravel.svg" afterPath="$PROJECT_DIR$/public/material/img/laravel.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/core/bootstrap-material-design.min.js" afterPath="$PROJECT_DIR$/public/material/js/core/bootstrap-material-design.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/core/jquery.min.js" afterPath="$PROJECT_DIR$/public/material/js/core/jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/core/popper.min.js" afterPath="$PROJECT_DIR$/public/material/js/core/popper.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/bootsrap-select.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/bootsrap-select.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/category.js" afterPath="$PROJECT_DIR$/public/material/js/custom/category.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/editor.init.js" afterPath="$PROJECT_DIR$/public/material/js/custom/editor.init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/post.js" afterPath="$PROJECT_DIR$/public/material/js/custom/post.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/product.js" afterPath="$PROJECT_DIR$/public/material/js/custom/product.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/jquery.tinymce.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/jquery.tinymce.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/langs/readme.md" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/langs/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/license.txt" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/license.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/advlist/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/advlist/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/anchor/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/anchor/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/autolink/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/autolink/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/autoresize/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/autoresize/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/autosave/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/autosave/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/bbcode/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/bbcode/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/charmap/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/charmap/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/code/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/code/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/codesample/css/prism.css" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/codesample/css/prism.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/codesample/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/codesample/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/colorpicker/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/colorpicker/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/contextmenu/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/contextmenu/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/directionality/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/directionality/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/emoticons/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/example/dialog.html" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/example/dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/example/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/example/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/example_dependency/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/example_dependency/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/fullpage/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/fullpage/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/fullscreen/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/fullscreen/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/hr/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/hr/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/image/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/image/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/imagetools/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/imagetools/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/importcss/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/importcss/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/insertdatetime/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/layer/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/layer/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/legacyoutput/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/link/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/link/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/lists/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/lists/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/media/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/media/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/nonbreaking/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/noneditable/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/noneditable/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/pagebreak/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/pagebreak/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/paste/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/paste/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/preview/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/preview/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/print/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/print/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/save/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/save/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/searchreplace/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/searchreplace/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/spellchecker/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/spellchecker/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/tabfocus/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/tabfocus/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/table/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/table/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/template/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/template/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/textcolor/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/textcolor/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/textpattern/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/textpattern/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/visualblocks/css/visualblocks.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/visualblocks/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/visualblocks/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/visualchars/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/visualchars/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/wordcount/plugin.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/plugins/wordcount/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/content.inline.min.css" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/content.inline.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/content.min.css" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/content.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce-small.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/fonts/tinymce.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/skin.ie7.min.css" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/skin.ie7.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/skin.min.css" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/skins/lightgray/skin.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/atomic.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/atomic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-atomic.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-atomic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-browser.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-browser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-demo.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-demo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-prod.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/bootstrap-prod.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/browser.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/browser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/demo.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/demo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/prod.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/bolt/prod.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/dent/depend.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/config/dent/depend.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/compile/bootstrap.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/compile/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/compile/theme.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/compile/theme.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/inline/theme.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/inline/theme.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/inline/theme.raw.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/scratch/inline/theme.raw.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/demo/css/demo.css" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/demo/css/demo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/demo/html/demo.html" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/demo/html/demo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/demo/js/tinymce/inlite/Demo.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/demo/js/tinymce/inlite/Demo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/Theme.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/Theme.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Arr.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Arr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Bookmark.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Bookmark.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Unlink.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Unlink.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Uuid.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/alien/Uuid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Actions.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Convert.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Convert.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/ElementMatcher.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/ElementMatcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Layout.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Layout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Matcher.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Matcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Measure.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/Measure.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/PredicateId.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/PredicateId.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/SelectionMatcher.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/SelectionMatcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/SkinLoader.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/SkinLoader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/UrlType.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/core/UrlType.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/file/Conversions.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/file/Conversions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/file/Picker.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/file/Picker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Buttons.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Buttons.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Forms.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Forms.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Panel.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Toolbar.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/main/js/tinymce/inlite/ui/Toolbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/.eslintrc" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/.eslintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/alien/ArrTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/alien/ArrTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/alien/UuidTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/alien/UuidTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/core/ConvertTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/core/ConvertTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/core/MatcherTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/core/MatcherTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/core/UrlTypeTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/atomic/core/UrlTypeTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/ThemeTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/ThemeTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/alien/BookmarkTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/alien/BookmarkTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/alien/UnlinkTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/alien/UnlinkTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/ActionsTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/ActionsTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/ElementMatcher.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/ElementMatcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/LayoutTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/LayoutTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/MeasureTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/MeasureTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/PredicateIdTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/PredicateIdTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/SelectionMatcherTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/core/SelectionMatcherTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/file/ConversionsTest.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/file/ConversionsTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/file/SelectionMatcher.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/src/test/js/browser/file/SelectionMatcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/theme.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/inlite/theme.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/modern/theme.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/themes/modern/theme.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/custom/tinymce/tinymce.min.js" afterPath="$PROJECT_DIR$/public/material/js/custom/tinymce/tinymce.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/material-dashboard.js" afterPath="$PROJECT_DIR$/public/material/js/material-dashboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/material-dashboard.js.map" afterPath="$PROJECT_DIR$/public/material/js/material-dashboard.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/material-dashboard.min.js" afterPath="$PROJECT_DIR$/public/material/js/material-dashboard.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/arrive.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/arrive.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-datetimepicker.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-datetimepicker.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-notify.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-notify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-selectpicker.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-selectpicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-tagsinput.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/bootstrap-tagsinput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/chartist.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/chartist.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/fullcalendar.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/fullcalendar.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/jasny-bootstrap.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/jasny-bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/jquery-jvectormap.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/jquery-jvectormap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/jquery.bootstrap-wizard.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/jquery.bootstrap-wizard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/jquery.dataTables.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/jquery.dataTables.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/jquery.tagsinput.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/jquery.tagsinput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/jquery.validate.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/jquery.validate.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/moment.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/moment.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/nouislider.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/nouislider.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/perfect-scrollbar.jquery.min.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/perfect-scrollbar.jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/plugins/sweetalert2.js" afterPath="$PROJECT_DIR$/public/material/js/plugins/sweetalert2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/js/settings.js" afterPath="$PROJECT_DIR$/public/material/js/settings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_alerts.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_alerts.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_buttons.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_buttons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_cards.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_cards.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_checkboxes.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_checkboxes.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_core-bootstrap.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_core-bootstrap.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_dropdown.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_dropdown.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_example-pages.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_example-pages.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_fixed-plugin.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_fixed-plugin.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_footers.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_footers.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_forms.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_forms.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_headers.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_headers.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_images.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_images.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_info-areas.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_info-areas.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_input-group.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_input-group.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_misc.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_misc.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_mixins.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_mixins.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_navbar.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_navbar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_popover.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_popover.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_popups.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_popups.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_radios.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_radios.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_responsive.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_responsive.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_ripples.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_ripples.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_sidebar-and-main-panel.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_sidebar-and-main-panel.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_social-buttons.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_social-buttons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_tables.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_tables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_tabs.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_tabs.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_togglebutton.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_togglebutton.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_tooltip.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_tooltip.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_type.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_type.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/_variables.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_alert.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_alert.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_badge.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_badge.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_breadcrumb.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_breadcrumb.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_button-group.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_button-group.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_buttons.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_buttons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_card.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_card.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_carousel.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_carousel.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_close.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_close.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_code.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_code.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_custom-forms.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_custom-forms.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_dropdown.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_dropdown.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_forms.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_forms.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_functions.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_functions.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_grid.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_grid.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_images.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_images.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_input-group.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_input-group.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_jumbotron.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_jumbotron.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_list-group.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_list-group.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_media.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_media.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_mixins.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_mixins.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_modal.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_modal.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_nav.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_nav.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_navbar.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_navbar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_pagination.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_pagination.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_popover.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_popover.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_print.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_print.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_progress.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_progress.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_reboot.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_reboot.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_root.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_root.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_tables.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_tables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_tooltip.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_tooltip.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_transitions.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_transitions.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_type.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_type.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_utilities.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_utilities.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_variables.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/bootstrap-grid.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/bootstrap-grid.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/bootstrap-reboot.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/bootstrap-reboot.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/bootstrap.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/bootstrap.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_alert.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_alert.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_background-variant.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_background-variant.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_badge.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_badge.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_border-radius.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_border-radius.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_box-shadow.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_box-shadow.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_breakpoints.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_breakpoints.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_buttons.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_buttons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_caret.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_caret.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_clearfix.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_clearfix.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_float.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_float.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_forms.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_forms.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_gradients.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_gradients.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_grid-framework.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_grid-framework.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_grid.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_grid.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_hover.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_hover.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_image.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_image.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_list-group.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_list-group.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_lists.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_lists.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_nav-divider.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_nav-divider.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_navbar-align.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_navbar-align.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_pagination.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_pagination.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_reset-text.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_reset-text.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_resize.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_resize.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_screen-reader.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_screen-reader.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_size.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_size.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_table-row.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_table-row.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_text-emphasis.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_text-emphasis.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_text-hide.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_text-hide.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_text-truncate.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_text-truncate.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_transition.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_transition.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_visibility.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/mixins/_visibility.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_align.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_align.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_background.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_background.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_borders.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_borders.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_clearfix.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_clearfix.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_display.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_display.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_embed.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_embed.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_flex.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_flex.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_float.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_float.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_position.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_position.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_screenreaders.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_screenreaders.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_sizing.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_sizing.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_spacing.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_spacing.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_text.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_text.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_visibility.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/bootstrap/scss/utilities/_visibility.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/cards/_card-plain.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/cards/_card-plain.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/cards/_card-profile.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/cards/_card-profile.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/cards/_card-stats.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/cards/_card-stats.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_alert.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_alert.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_animations.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_animations.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_breakpoints.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_breakpoints.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_buttons.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_buttons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_chartist.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_chartist.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_colored-shadows.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_colored-shadows.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_drawer.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_drawer.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_forms.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_forms.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_hover.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_hover.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_layout.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_layout.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_navbar-colors.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_navbar-colors.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_navs.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_navs.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_sidebar-color.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_sidebar-color.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_transparency.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_transparency.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_type.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_type.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_utilities.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_utilities.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_variables.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_vendor-prefixes.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/mixins/_vendor-prefixes.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/plugins/_animate.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/plugins/_animate.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/plugins/_chartist.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/plugins/_chartist.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/plugins/_perfect-scrollbar.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/plugins/_perfect-scrollbar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_body.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_body.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_bootstrap-material-design-base.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_bootstrap-material-design-base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_bootstrap-material-design.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_bootstrap-material-design.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_brand.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_brand.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_buttons.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_buttons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_card.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_card.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_code.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_code.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_colors-map.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_colors-map.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_colors.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_colors.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_custom-forms.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_custom-forms.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_drawer.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_drawer.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_dropdown.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_dropdown.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_forms.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_forms.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_layout.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_layout.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_list-group.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_list-group.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_menu.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_menu.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_modals.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_modals.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_nav.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_nav.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_pagination.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_pagination.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_shadow.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_shadow.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_snackbar.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_snackbar.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_spacing.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_spacing.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_state.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_state.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_tables.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_tables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_tooltip.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_tooltip.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_type.scss" afterPath="$PROJECT_DIR$/public/material/scss/material-dashboard/variables/_type.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/robots.txt" afterPath="$PROJECT_DIR$/public/robots.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/app.js" afterPath="$PROJECT_DIR$/resources/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/auth.php" afterPath="$PROJECT_DIR$/resources/lang/en/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/pagination.php" afterPath="$PROJECT_DIR$/resources/lang/en/pagination.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/passwords.php" afterPath="$PROJECT_DIR$/resources/lang/en/passwords.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/app.scss" afterPath="$PROJECT_DIR$/resources/sass/app.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/footers/auth.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/footers/auth.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/footers/guest.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/footers/guest.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/page_templates/auth.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/page_templates/auth.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/page_templates/guest.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/icons.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/icons.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/language.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/language.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/map.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/map.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/notifications.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/notifications.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/review.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/review.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/table_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/table_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/upgrade.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/upgrade.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/channels.php" afterPath="$PROJECT_DIR$/routes/channels.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/console.php" afterPath="$PROJECT_DIR$/routes/console.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.php" afterPath="$PROJECT_DIR$/server.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/CreatesApplication.php" afterPath="$PROJECT_DIR$/tests/CreatesApplication.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" afterPath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TestCase.php" afterPath="$PROJECT_DIR$/tests/TestCase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" afterPath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.mix.js" afterPath="$PROJECT_DIR$/webpack.mix.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -541,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelperController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HelperController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HelperController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="360">
+              <caret line="30" column="66" lean-forward="true" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
               <folding>
                 <element signature="e#3037#4894#0#PHP" expanded="false" />
               </folding>
@@ -553,46 +38,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1582816369762" expanded="true" signature="9:118" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+            <state relative-caret-position="-2723">
+              <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiAuthController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiAuthController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="46" column="11" lean-forward="false" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
-              <folding>
-                <element signature="e#44#80#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -646,9 +97,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2020_03_31_113017_create_banners_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/footers/auth.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/review.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/addCategory.blade.php" />
         <option value="$PROJECT_DIR$/public/material/js/settings.js" />
@@ -697,6 +145,9 @@
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ApiAuthController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/footers/guest.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" />
       </list>
     </option>
   </component>
@@ -802,11 +253,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="post" />
+              <option name="myItemId" value="layouts" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -829,6 +276,114 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page_templates" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="navbars" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="navbars" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="navs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="footers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wmgt" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -1071,12 +626,12 @@
       <workItem from="1586556814011" duration="10029000" />
       <workItem from="1586635876026" duration="22102000" />
       <workItem from="1586803996691" duration="4158000" />
-      <workItem from="1586859480386" duration="836000" />
+      <workItem from="1586859480386" duration="2133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257098000" />
+    <option name="totallyTimeSpent" value="258395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="705" extended-state="6" />
@@ -1113,42 +668,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_07_102206_add_price_column_to_products_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/material/js/custom/mindmup-editabletable.js" />
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1560">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/page_templates/auth.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="36" lean-forward="true" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/material/img/sort_asc.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1310,13 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/material/css/jquery.dataTables.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -1471,13 +983,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HelperController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/footers/auth.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-443">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/footers/guest.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/page_templates/auth.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="36" lean-forward="true" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264">
+          <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
-          <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding>
+            <element signature="e#1107#1130#0#HTML" expanded="true" />
+            <marker date="1586862599624" expanded="true" signature="9:119" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HelperController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="30" column="66" lean-forward="true" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
           <folding>
             <element signature="e#3037#4894#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2723">
+          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
