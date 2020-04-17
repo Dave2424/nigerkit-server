@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use App\Http\Requests\ProductRequest;
+use App\Sku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Array_;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
@@ -26,12 +28,28 @@ class ProductController extends Controller
     {
 
         $category = Category::all();
-        return view('pages.product.products',['categories' => $category]);
+        $sku = Sku::paginate(10);
+        $sku_num = Sku::all();
+        return view('pages.product.products',
+            ['categories' => $category, 'sku' => $sku,'Sku' => $sku_num]);
     }
+
     public function allProduct(Request $request) {
         if($request->ajax()){
         $product = Product::latest()->get();
         return DataTables::of($product)
+            ->addColumn('content', function($data){
+                if($data->content) {
+                    $button = $data->content;
+                } else {
+                    $button = 'No content';
+                }
+                return $button;
+            })
+            ->addColumn('Sku', function($data){
+                $div = $this->sku_no($data->Sku);
+                return $div;
+            })
             ->addColumn('files', function($data){
                 $button = '<a id="'.$data->id.'" data-item="'.htmlspecialchars($data).'" type="button" rel="tooltip" 
                                 style="margin-right: -10px" title="View picture" class="p-file btn btn-success btn-link btn-sm">
@@ -39,7 +57,7 @@ class ProductController extends Controller
                 return $button;
             })
             ->addColumn('action', function($data) {
-                $button = '<div class="text-center"><a id="'.$data->id.'" data-item="'.htmlspecialchars($data).'" type="button" rel="tooltip" 
+                $button = '<div class="text-center"><a id="'.$data->id.'" data-item="'.htmlspecialchars($data).'" data-sku="'.$data->Sku.'" type="button" rel="tooltip" 
                                    title="Edit product" class="edit btn btn-info btn-link btn-sm">
                                   <i class="material-icons">edit</i></a>';
                 $button .= '<a id="'.$data->id.'" type="button" rel="tooltip" title="Remove" class="delete btn btn-danger btn-link btn-sm">
@@ -63,6 +81,11 @@ class ProductController extends Controller
         //
     }
 
+    public function sku_no($id) {
+        $num = Sku::where('id', $id)->value('sku_no');;
+        return $num;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -84,8 +107,32 @@ class ProductController extends Controller
                 $product['files'] = $product_image;
             }
             Product::create($product);
+            //updating the Sku table
+            $id = $request->get('Sku');
+            DB::table('skus')
+                ->where('id', $id)
+                ->update(['isvalid' => false]);
         }
         return back()->withStatus(__('Product detail added successfully.'));
+    }
+
+    //generating a Sku records
+    function generateSkuNo($length = 7) {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    public function GenerateSku() {
+        $sku = new Sku();
+        for($n = 0; $n < 5; $n++) {
+           $sku->sku_no =  $this->generateSkuNo();
+           $sku->save();
+        }
+        return back()->withStatus(__('Sku generated successfully.'));
     }
 
     /**
@@ -110,6 +157,24 @@ class ProductController extends Controller
         //
     }
 
+    //editing the Sku records
+    public function handle_sku(Request $request ) {
+        $sk = $request->get('sku');
+        $old_value = $request->get('data-item');
+        $action = $request->get('action');
+        $response = '';
+        if ($action == 'edit') {
+            DB::table('skus')
+                ->where('sku_no', $old_value)
+                ->update(['sku_no' => $sk]);
+            $response = 'Sku no edited successfully';
+        } else {
+            DB::table('skus')->where('sku_no', $sk)->delete();
+            $response = 'Sku no deleted successfully';
+        }
+        return response()->json(['status'=> $response]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -122,6 +187,7 @@ class ProductController extends Controller
         $id = $request->get('id');
         $Data = [];
         $product_name = $request->get('name');
+        $old_sku_value = $request->get('Old_sku');
         $Data['name'] = $product_name;
         $Data['description'] = $request->get('description');
         $Data['quantity'] = $request->get('quantity');
@@ -159,8 +225,19 @@ class ProductController extends Controller
             $Data['files'] = $product_image;
 
         }
+        //updating the product details
         $product::where('id', $id)
             ->update($Data);
+
+        //updating the sku table.
+        DB::table('skus')
+            ->where('id', $Data['Sku'])
+            ->update(['isvalid' => false]);
+
+        //changing the old value to valid
+        DB::table('skus')
+            ->where('id', $old_sku_value)
+            ->update(['isvalid' => true]);
         return response()->json(['status'=> 'Product edited successfully']);
     }
 

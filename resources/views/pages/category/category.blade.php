@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover" id="q">
                                     <thead class=" text-secondary text-center">
                                     <th>{{ __('ID') }}</th>
                                     <th>{{ __('Category') }}</th>

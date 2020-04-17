@@ -154,3 +154,13 @@ table.dataTable thead .sorting_desc:after
 table.dataTable thead .sorting_asc_disabled:before,
 table.dataTable thead .sorting_desc_disabled:after
 {opacity:0}
+
+.btn-info:not(:disabled):not(.disabled).active, .show>.btn-info.dropdown-toggle {
+    color: #ffffff;
+    background-color: #b8d4d86b;
+    border-color: #b8d4d86b;
+}
+.btn-group{
+    position: relative;
+    margin: 0;
+}

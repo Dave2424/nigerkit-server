@@ -61,7 +61,7 @@
       {{--</li>--}}
       <li class="nav-item{{ $activePage == 'post' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('posts') }}">
-          <i class="material-icons">content_paste</i>
+          <i class="material-icons">post_add</i>
           <p>{{ __('Posts') }}</p>
         </a>
       </li>

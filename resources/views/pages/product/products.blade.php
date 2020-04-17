@@ -29,6 +29,12 @@
                                                     <div class="ripple-container"></div>
                                                 </a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#view_sku" data-toggle="tab">
+                                                    <i class="material-icons">tune</i> Sku No_
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -173,10 +179,22 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-10 ml-auto mr-auto">
-                                                            <div class="form-group{{ $errors->has('Sku') ? ' has-danger' : '' }}">
-                                                                <input class="form-control{{ $errors->has('Sku') ? ' is-invalid' : '' }}" name="Sku"
-                                                                       id="input-sku" type="text" placeholder="{{ __('Sku number') }}"
-                                                                       value="{{ old('Sku') }}" required="true" aria-required="true"/>
+                                                            <div class="form-group">
+                                                                <select class="form-control selectpicker {{ $errors->has('Sku') ? ' has-danger' : '' }}"
+                                                                        data-style="btn btn-link" name="Sku" id="input-sku"
+                                                                        required="true" aria-required="true" >
+                                                                    <option disabled selected>Select product Sku no</option>
+                                                                    @if(count($Sku) > 0)
+                                                                        @foreach($Sku as $sku_num)
+                                                                            @if($sku_num->isvalid == 1)
+                                                                                <option value="{{$sku_num->id}}">{{$sku_num->sku_no}}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                    @if ($errors->has('Sku'))
+                                                                        <option value="{{ old('Sku') }}"></option>
+                                                                    @endif
+                                                                </select>
                                                                 @if ($errors->has('Sku'))
                                                                     <span id="sku-error" class="error text-danger" for="input-sku">{{ $errors->first('Sku') }}</span>
                                                                 @endif
@@ -292,6 +310,30 @@
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    <div class="tab-pane" id="view_sku">
+
+                                        <div class="text-right mb-2">
+                                            <a href="{{route('generate')}}"  class="btn btn-sm btn-success">
+                                                <i class="material-icons">create</i>
+                                                {{ __('Generate sku') }}</a>
+                                        </div>
+                                        <table class="table table-hover" id="my-table">
+                                            <thead>
+                                            <tr>
+                                                <th>{{__('Sku No_')}}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($sku as $sku_single)
+                                                <tr>
+                                                    <td>{{$sku_single->sku_no}}</td>
+                                                </tr>
+                                                @endforeach
+                                            {{ $sku->links() }}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -299,6 +341,8 @@
                 </div>
         </div>
     </div>
+
+
     <!-- Modal delete product-->
     <div class="modal fade" id="product_delete" tabindex="-1" role="dialog" aria-labelledby="product_deleteTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -449,10 +493,27 @@
                                 <div class="row">
                                     <div class="col-sm-10 ml-auto mr-auto">
                                         <div class="form-group">
-                                            <input class="form-control" name="edit_Sku"
-                                                   id="input-edit_sku" type="text" placeholder="{{ __('Sku number') }}"
-                                                   required="true" aria-required="true"/>
-                                                <span id="edit_sku-error" class="error text-danger text-error" for="input-edit_sku"></span>
+                                            <select class="form-control selectpicker {{ $errors->has('Sku') ? ' has-danger' : '' }}"
+                                                    data-style="btn btn-link" name="edit_Sku" id="input-edit_sku"
+                                                    required="true" aria-required="true" >
+                                                <option disabled selected>Select product Sku no</option>
+                                                @if(count($Sku) > 0)
+                                                    @foreach($Sku as $sku_num)
+                                                        @if($sku_num->isvalid == 0)
+                                                            <option disabled value="{{$sku_num->id}}">{{$sku_num->sku_no}}</option>
+                                                        @else
+                                                            <option value="{{$sku_num->id}}">{{$sku_num->sku_no}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                                @if ($errors->has('Sku'))
+                                                    <option value="{{ old('Sku') }}"></option>
+                                                @endif
+                                                <input type="text" hidden id="old_sku_value"/>
+                                            </select>
+                                            @if ($errors->has('Sku'))
+                                                <span id="edit_sku-error" class="error text-danger" for="input-sku">{{ $errors->first('Sku') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -488,5 +549,6 @@
     </div>
     @endsection
 @push('product')
+<script src="{{ asset('material') }}/js/custom/jquery.tabledit.js"></script>
 <script src="{{ asset('material') }}/js/custom/product.js"></script>
 @endpush

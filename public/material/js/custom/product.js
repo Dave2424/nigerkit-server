@@ -1,5 +1,15 @@
 $(document).ready(function() {
     $().ready(function () {
+
+        // $('#my-table').editableTableWidget();
+
+        //editable Table
+        $('#my-table').Tabledit({
+            columns: {
+                identifier: [0, 'sku'],
+                editable: [[0, 'sku']]
+            }
+        });
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -101,10 +111,12 @@ $(document).ready(function() {
                     orderable: false
                 }
             ],
-            columnDefs: [ {
-                targets: 6,
-                render: $.fn.dataTable.render.ellipsis(20)
-            }, {
+            columnDefs: [
+                // {
+            //     targets: 6,
+            //     render: $.fn.dataTable.render.ellipsis(20)
+            // },
+                {
                 targets: 2,
                 render: $.fn.dataTable.render.ellipsis(39)
             }
@@ -137,6 +149,7 @@ $(document).ready(function() {
             $('.modal_text').empty();
             $file_temp = $(this).attr('data-item');
             $file = JSON.parse($file_temp);
+            console.log($file);
             $files_indicator_html = '';
             $file_Html = '';
             $n = 0;
@@ -167,6 +180,7 @@ $(document).ready(function() {
         $('#product_table').on('click', '.edit', function () {
             $id = $(this).attr('id');
             $data_temp = $(this).attr('data-item');
+            $data_sku = $(this).attr('data-sku');
             $data = JSON.parse($data_temp);
             $('#editProductID').val($id);
             $('#input-edit_name').val($data.name);
@@ -177,6 +191,7 @@ $(document).ready(function() {
             $('#input-edit_price').val($data.price);
             $('#input-edit_quantity').val($data.quantity);
             $('#input-edit_sku').val($data.Sku);
+            $('#old_sku_value').val($data_sku);
             $('#product_edit').modal({backdrop:false});
 
         });
@@ -191,6 +206,7 @@ $(document).ready(function() {
             $product_price = $('#input-edit_price').val();
             $product_quantity = $('#input-edit_quantity').val();
             $product_sku = $('#input-edit_sku').val();
+            $old_sku_value = $('#old_sku_value').val();
             $product_file = $('#input-edit_file').get(0).files;
             if ($product_name == '') {
                 $('#edit_product-error').empty();
@@ -246,6 +262,7 @@ $(document).ready(function() {
                 formData.append('quantity', $product_quantity);
                 formData.append('price', $product_price);
                 formData.append('Sku', $product_sku);
+                formData.append('Old_sku', $old_sku_value);
                 for (var x = 0; x < $product_file.length; ++x) {
                     formData.append('file[]', $product_file[x]);
                 }
@@ -285,5 +302,7 @@ $(document).ready(function() {
             $('#edit_price-error').empty();
             $('#edit_p_file-error').empty();
         }
+
+
     });
 });

@@ -20,17 +20,15 @@ Route::group([
     'middleware' => ['api']
 ], function () {
 
-//    Route::post('verify','ApiAuthController@verify');
+    Route::post('verify','ApiAuthController@verify');
     Route::post('register','ApiAuthController@register');
-//    Route::post('login', 'ApiAuthController@login');
-//    Route::post('logout', 'ApiAuthController@logout');
-//    Route::post('refresh', 'ApiAuthController@refresh');
-//    Route::post('me', 'ApiAuthController@me');
+    Route::post('login', 'ApiAuthController@login');
+    Route::post('logout', 'ApiAuthController@logout');
 //    Route::post('remove-user-account', 'ApiAuthController@removeAccount');
 });
 Route::group([
     'middleware' => ['api']
 ], function () {
-    Route::get('get-product', 'Api\ApiController@getProduct');
+    Route::get('get-product', 'Api\OpenApiController@getProduct');
 
 });

@@ -49,4 +49,20 @@ class ApiAuthController extends Controller
 
 //        return response()->json(['error' => "Your account cannot be created this time, Please contact support"], 401);
     }
+    //login
+    public function Login(){
+
+    }
+    public function AuthByGoogle() {
+
+    }
+    public function AuthByFB(){
+
+    }
+    public function verify() {
+
+    }
+    public function logout() {
+
+    }
 }

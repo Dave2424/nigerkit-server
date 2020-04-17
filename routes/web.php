@@ -25,6 +25,8 @@ Route::post('add-product', 'ProductController@store')->name('add-product');
 Route::get('/get-product', 'ProductController@allProduct');
 Route::post('/edit-product', 'ProductController@update');
 Route::get('/delete-product/{id}', 'ProductController@destroy');
+Route::get('generateSku', 'ProductController@GenerateSku')->name('generate');
+Route::post('/handle-sku','ProductController@handle_sku');
 
 //Post Route//
 Route::post('add-post','PostController@store')->name('add-post');
