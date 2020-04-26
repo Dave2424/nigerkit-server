@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Banners;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Model\Post;
@@ -51,6 +52,8 @@ class OpenApiController extends Controller
         return response()->json($Result);
     }
     public function Banners() {
+        $banner = Banners::all();
+        return response()->json(['banner'=> $banner]);
 
     }
     public function commentsOnProduct() {

@@ -46,6 +46,7 @@ Route::get('rtl-support', 'ViewController@support')->name('language');
 Route::get('upgrade', 'ViewController@upgrade')->name('upgrade');
 Route::get('review', 'ViewController@review')->name('review');
 Route::get('posts', 'ViewController@posts')->name('posts');
+Route::get('banners', 'ViewController@banner')->name('banner');
 
 //Category Route//
 Route::get('category', 'CategoryController@index')->name('category');
@@ -53,7 +54,8 @@ Route::post('/addCategory', 'CategoryController@store');
 Route::post('/updateCategory', 'CategoryController@update');
 Route::get('/deleteCategory/{id}', 'CategoryController@destroy');
 
-//User Route//
+//Banner Route//
+Route::post('banner', 'BannersController@store')->name('add-banner');
 
 
 Route::group(['middleware' => ['auth:admin']], function () {

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Banners;
+use App\Http\Requests\BannerRequest;
 use Illuminate\Http\Request;
 
 class BannersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +39,19 @@ class BannersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BannerRequest $request)
     {
-        //
+//        dd($request->file('files'));
+        if ($request->validated()) {
+            $banner = $request->validated();
+            if (!is_null($banner['files'])) {
+                    //upload image and add link to array
+                    $path = '/storage'.HelperController::processImageUpload($banner['files'],  'image','banners',840,395);
+                $banner['pictures'] = $path;
+            }
+            Banners::create($banner);
+        }
+        return back()->withStatus(__('Uploaded successfully.'));
     }
 
     /**
