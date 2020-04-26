@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiAuthController extends Controller
 {
@@ -49,10 +50,47 @@ class ApiAuthController extends Controller
 
 //        return response()->json(['error' => "Your account cannot be created this time, Please contact support"], 401);
     }
+
     //login
-    public function Login(){
+    public function Login(Request $request){
+        //Get login credentials from request
+        $credentials = [
+            'email' => $request->get('email'),
+            'password' => $request->get('password')
+        ];
+        if (! $token = auth()->attempt($credentials)) {
+            //return error message
+            return response()->json(['error' => 'Invalid email address or Password'], '401');
+        }
+//        if (! $token = $this->guard('api')->attempt($credentials)) {
+//            //return error message
+//            return response()->json(['error' => 'Invalid email address or Password'], '401');
+//        }
+
+//        if (is_null($user->email_verified_at)) {
+//            return response()->json(['error' => "Your email is not verified",'is_not_verified'=>$user->slug]);
+//        }
+        return $this->respondWithToken($token);
 
     }
+//    public function me() {
+//        return response()->Json($this->guard()->user());
+//    }
+
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'Access_token' => $token,
+            'token_type' => 'bearer',
+//            'expires_in' => $this->guard('api')->factory()->getTTL() * 60,
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user()
+        ]);
+    }
+    public function refresh() {
+        return $this->respondWithToken($this->guard()->refresh());
+    }
+
     public function AuthByGoogle() {
 
     }
@@ -63,6 +101,11 @@ class ApiAuthController extends Controller
 
     }
     public function logout() {
-
+//        auth()->logout();
+        $this->guard()->logout();
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+    public function guard() {
+        return Auth::guard();
     }
 }

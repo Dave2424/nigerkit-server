@@ -28,9 +28,6 @@ class OpenApiController extends Controller
         return response()->json(['category' => $data]);
 
     }
-    public function get_similar_product(){
-
-    }
     public function searchProduct( Request $request )
     {
         $type = $request->get('type');
@@ -48,7 +45,6 @@ class OpenApiController extends Controller
                 }
                 break;
             case'productByCategory':
-            case 'similarCategory':
 
         }
 
@@ -57,7 +53,7 @@ class OpenApiController extends Controller
     public function Banners() {
 
     }
-    public function commentsByProduct() {
+    public function commentsOnProduct() {
 
     }
     public function footerContent() {

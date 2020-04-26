@@ -149,7 +149,7 @@ $(document).ready(function() {
             $('.modal_text').empty();
             $file_temp = $(this).attr('data-item');
             $file = JSON.parse($file_temp);
-            console.log($file);
+            // console.log($file);
             $files_indicator_html = '';
             $file_Html = '';
             $n = 0;
