@@ -22,4 +22,13 @@ class Product extends Model
     protected $casts = [
         'files' => 'array'
     ];
+    public function Sku() {
+        return $this->belongsTo(Sku::class, 'Sku');
+    }
+    public function Reviews() {
+        return $this->hasMany(Review::class);
+    }
+    public function category() {
+        return $this->belongsTo(Category::class,'category_id');
+    }
 }
