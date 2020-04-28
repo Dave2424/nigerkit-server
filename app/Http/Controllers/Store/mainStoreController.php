@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\UserCart;
 use App\User;
+use App\Product;
 
 class mainStoreController extends Controller
 {
@@ -73,6 +74,13 @@ class mainStoreController extends Controller
 
         //return response
         return response()->json($cartItems);
+    }
+    public function getLocalProduct(Request $request)
+    {
+        $query = $request->all();
+        $product = Product::find($query['product_id']);
+        $result = ['product' => $product];
+        return response()->json($result);
     }
 
 //    public function placeOrder(Request $request)

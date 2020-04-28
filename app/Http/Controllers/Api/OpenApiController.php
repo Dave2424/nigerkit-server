@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Banner_sr;
 use App\Banners;
 use App\Category;
 use App\Http\Controllers\Controller;
@@ -54,7 +55,10 @@ class OpenApiController extends Controller
     public function Banners() {
         $banner = Banners::all();
         return response()->json(['banner'=> $banner]);
-
+    }
+    public function Banner_sr() {
+        $banner = Banner_sr::all()->random();
+        return response()->json(['banner_sr'=> $banner]);
     }
     public function commentsOnProduct() {
 

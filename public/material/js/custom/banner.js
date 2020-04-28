@@ -47,7 +47,10 @@ $(document).ready(function() {
         //show the success from the product Insertion
         if ($('#success_banner').val()) {
             $msg = $('#success_banner').val();
-            console.log($msg);
+            md.showSuccessMessage($msg);
+        }
+        if ($('#success_banner_sr').val()) {
+            $msg = $('#success_banner_sr').val();
             md.showSuccessMessage($msg);
         }
     });

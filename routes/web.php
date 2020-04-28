@@ -56,6 +56,7 @@ Route::get('/deleteCategory/{id}', 'CategoryController@destroy');
 
 //Banner Route//
 Route::post('banner', 'BannersController@store')->name('add-banner');
+Route::post('banner_sr', 'BannersController@store_other')->name('add-banner_sr');
 
 
 Route::group(['middleware' => ['auth:admin']], function () {

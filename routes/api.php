@@ -36,10 +36,13 @@ Route::group([
     Route::get('get-category', 'Api\OpenApiController@category');
     Route::post('searchProduct','Api\OpenApiController@searchProduct');
     Route::get('get-banner', 'Api\OpenApiController@Banners');
+    Route::get('get-banner_sr', 'Api\OpenApiController@Banner_sr');
 
 });
 
 Route::group(['prefix' => 'store'], function () {
+
+    Route::get('/get-local-product','Store\mainStoreController@getLocalProduct');
 
     /// Main Store routes starts
     Route::get('store-get-cart', 'Store\mainStoreController@getCart');

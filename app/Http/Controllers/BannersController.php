@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner_sr;
 use App\Banners;
 use App\Http\Requests\BannerRequest;
 use Illuminate\Http\Request;
@@ -39,14 +40,30 @@ class BannersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BannerRequest $request)
+    public function store_other(BannerRequest $request)
     {
 //        dd($request->file('files'));
         if ($request->validated()) {
             $banner = $request->validated();
             if (!is_null($banner['files'])) {
                     //upload image and add link to array
-                    $path = '/storage'.HelperController::processImageUpload($banner['files'],  'image','banners',840,395);
+                    $path = '/storage'.HelperController::processImageUpload($banner['files'],  'image','banners',170,1110);
+                $banner['pictures'] = $path;
+            }
+            Banner_sr::create($banner);
+        }
+        return back()->withStatus(__('Uploaded successfully.'));
+    }
+
+
+    public function store(BannerRequest $request)
+    {
+//        dd($request->file('files'));
+        if ($request->validated()) {
+            $banner = $request->validated();
+            if (!is_null($banner['files'])) {
+                //upload image and add link to array
+                $path = '/storage'.HelperController::processImageUpload($banner['files'],  'image','banners',395,840);
                 $banner['pictures'] = $path;
             }
             Banners::create($banner);
