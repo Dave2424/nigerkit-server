@@ -38,6 +38,9 @@ Route::group([
     Route::get('get-banner', 'Api\OpenApiController@Banners');
     Route::get('get-banner_sr', 'Api\OpenApiController@Banner_sr');
     Route::get('get-product-related-details/{id}', 'Api\OpenApiController@relateDetails');
+    Route::get('get-sku_No', 'Api\OpenApiController@sku_No');
+    Route::post('address-search-places','Api\OpenApiController@searchPlacesByAddress');
+    Route::post('store-calculate-delivery','Api\OpenApiController@store-calculate-delivery');
 
 });
 

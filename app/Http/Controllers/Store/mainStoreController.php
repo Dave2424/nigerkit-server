@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\UserCart;
 use App\User;
 use App\Product;
+use App\Repositories\PayStackVerifyTransaction;
 
 class mainStoreController extends Controller
 {
@@ -83,155 +84,156 @@ class mainStoreController extends Controller
         return response()->json($result);
     }
 
-//    public function placeOrder(Request $request)
-//    {
-//
-//        //Get other information are regards this order
-//        $data = $request->all();
-//        $batch = [];
-//        $invoice = [];
-//        $recipients = [];
-//        // Get order items
-//        $items = json_decode($request->get('items'));
-//        //use transaction reference to get payStack charge
-//        $payStackChargeVerify = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 1);
-//        if (!isset($payStackChargeVerify['status']) || $payStackChargeVerify['status'] == false)
-//            return response()->json(['Payment Was not successful']);
-//        $payStackCharge = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 0);
-//        //$payStackCharge = 0;
-//
-//
+    public function placeOrder(Request $request)
+    {
+
+        //Get other information are regards this order
+        $data = $request->all();
+        $batch = [];
+        $invoice = [];
+        $recipients = [];
+        // Get order items
+        $items = json_decode($request->get('items'));
+        //use transaction reference to get payStack charge
+        $payStackChargeVerify = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 1);
+        var_dump($payStackChargeVerify);
+        if (!isset($payStackChargeVerify['status']) || $payStackChargeVerify['status'] == false)
+            return response()->json(['Payment Was not successful']);
+        $payStackCharge = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 0);
+        //$payStackCharge = 0;
+
+
 //        $recipients['buyer'] = ['email' => $data['email'], 'name' => $data['name']];
-//
-//        //set a batch id
+
+        //set a batch id
 //        $data['batch_id'] = 'BA' . HelperController::generateIdentifier(14);
-//
-//        $payload = [
-//            'batch_id' => $data['batch_id'],
-//            'phone' => $data['phone'],
-//            'reference' => $data['transaction_ref'],
-//            'status' => $payStackChargeVerify['status'],
-//            'message' => $payStackChargeVerify['message'],
-//            'data' => $payStackChargeVerify['data'],
-//        ];
-//
-//        (new PaystackTransaction)->create($payload);
-//
-//
-//        $user = (New User)->where('email', '=', $data['email'])->first();
+
+        $payload = [
+            'batch_id' => $data['batch_id'],
+            'phone' => $data['phone'],
+            'reference' => $data['transaction_ref'],
+            'status' => $payStackChargeVerify['status'],
+            'message' => $payStackChargeVerify['message'],
+            'data' => $payStackChargeVerify['data'],
+        ];
+
+        (new PayStackVerifyTransaction)->create($payload);
+
+
+        $user = (New User)->where('email', '=', $data['email'])->first();
 //        if (is_null($user)) {
 //            $usrData = ['name' => $data['name'], 'slug' => $this->createSlug('all_users'), 'email' => $data['email'], 'password' => Hash::make('password'), 'phone' => $data['phone'], 'address' => $data['delivery_address']];
 //            $user = (new User)->create($usrData);
 //        }
-//        if (!is_null($user)) {
-//            $data['buyer_id'] = $user->id;
-//            $data['name'] = $user->name ? $user->name : null;
-//            $data['email'] = $user->email ? $user->email : null;
-//            $data['location'] = $data['delivery_address'];
-//            $user->update(['phone' => $data['phone'], 'address' => $data['delivery_address']]);
-//        }
-//        unset($data['user_id']);
-//
-//        //get buyer
-//        $data['buyer_id'] = $user->id;
-//
-//        //invoice holder
-//        $invoice['items'] = [];
-//        $invoice['buyer_id'] = $data['buyer_id'];
-//
-//        $batch['batch_id'] = $data['batch_id'];
-//        $batch['buyer_id'] = $data['buyer_id'];
-//        $batch['items_total'] = $data['items_total'];
-//        $batch['grant_total'] = $data['grand_total'];
-//        $batch['delivery_fee'] = $data['delivery_fee'];
-//
-//        /**
-//         * Items are bought from same store,
-//         * so, we can get the store is using
-//         * the first order in the items list
-//         */
-//
+        if (!is_null($user)) {
+            $data['buyer_id'] = $user->id;
+            $data['name'] = $user->name ? $user->name : null;
+            $data['email'] = $user->email ? $user->email : null;
+            $data['location'] = $data['delivery_address'];
+            $user->update(['phone' => $data['phone'], 'address' => $data['delivery_address']]);
+        }
+        unset($data['user_id']);
+
+        //get buyer
+        $data['buyer_id'] = $user->id;
+
+        //invoice holder
+        $invoice['items'] = [];
+        $invoice['buyer_id'] = $data['buyer_id'];
+
+        $batch['batch_id'] = $data['batch_id'];
+        $batch['buyer_id'] = $data['buyer_id'];
+        $batch['items_total'] = $data['items_total'];
+        $batch['grant_total'] = $data['grand_total'];
+        $batch['delivery_fee'] = $data['delivery_fee'];
+
+        /**
+         * Items are bought from same store,
+         * so, we can get the store is using
+         * the first order in the items list
+         */
+
 //        $finder = $items[0]->store_identifier;
 //        $store = UserStore::where('identifier', '=', $finder)->first();
 //        if (is_null($store))
 //            return response()->json(['store not found', $store]);
 //        $batch['store_id'] = $store->id;
-//
-//        //set store owner email on recipients to be sent notifications
+
+        //set store owner email on recipients to be sent notifications
 //        $storeOwner = $store->user;
 //        $recipients['store'] = ['email' => $storeOwner->email, 'store_name' => $store->store_name];
-//
-//
-//        //if there is no existing opening, create a new batch.
-////        $storeSettlementBatch=(new StoreSettlementBatch)->firstOrNew(['store_id'=>$store->id,'active'=> 1],$settlementBatch);
-//
-//        //Calculate total student's commission and save alongside with batch details
+
+
+        //if there is no existing opening, create a new batch.
+//        $storeSettlementBatch=(new StoreSettlementBatch)->firstOrNew(['store_id'=>$store->id,'active'=> 1],$settlementBatch);
+
+        //Calculate total student's commission and save alongside with batch details
 //        $batch['total_student_commission'] = $this->calculateStudentCommission($items);
-//        //fetch original product
-//        //first create batch entry
+        //fetch original product
+        //first create batch entry
 //        $newBatch = (new BatchOrder)->create($batch);
 //
 //        $recipients['ventures'] = [];
-//
+
 //        foreach ($items as $index => $item) {
 //            $mainProduct = UserBusinessProduct::find($item->original_product_id);
 //            $originalProduct = UserVentureProduct::find($item->product_id);
-//
-//            //Fetch the business who owns the product
+
+            //Fetch the business who owns the product
 //            $business = StoreHelperController::fetchBusinessId($mainProduct->venture_id);
 //            $recipients['ventures'][] = $mainProduct->venture_id;
-//
+
 //            $data['batch_id'] = $newBatch->batch_id;
-////            $data['identifier'] = 'OD' . HelperController::generateIdentifier(14); //unique order id
+//            $data['identifier'] = 'OD' . HelperController::generateIdentifier(14); //unique order id
 //            $data['product_id'] = $item->product_id;
 //            $data['business_id'] = $business;
 //            $data['store_id'] = $store->id;
 //            $data['quantity'] = $item->quantity;
 //            $data['amount'] = $item->amount;
 //            $data['product_sku'] = $item->product_sku;
-//            $data['status'] = 'processing';
-//            $data['forwarded'] = 1;
+            $data['status'] = 'processing';
+            $data['forwarded'] = 1;
 //            $data['commission'] = $mainProduct->product_commission;
 //            $data['venture_id'] = $mainProduct->venture_id;
-//            //insert original product id
+            //insert original product id
 //            $data['original_product_id'] = $item->original_product_id;
-//
-//            //Forward orders to business
+
+            //Forward orders to business
 //            $businessOrder = UserBusinessOrder::create($data);
-//
-//            //Forward orders to student from whose store this order is placed.
+
+            //Forward orders to student from whose store this order is placed.
 //            UserVentureOrder::create($data);
-//
-//            //set invoice data
-////            $invoice['order_id'] = $businessOrder->identifier;
-//            $invoice['order_id'] = $data['identifier'];
-//            $invoice['order_date'] = Carbon::now();
-//            $invoice['order_status'] = 'paid';
-//
-//            $invoice['items'][] = [
+
+            //set invoice data
+//            $invoice['order_id'] = $businessOrder->identifier;
+            $invoice['order_id'] = $data['identifier'];
+            $invoice['order_date'] = Carbon::now();
+            $invoice['order_status'] = 'paid';
+
+            $invoice['items'][] = [
 //                'product_name' => $originalProduct->product_name,
 //                'description' => $originalProduct->highlight,
 //                'quantity' => $item->quantity,
 //                'reference' => $data['transaction_ref'],
 //                'unit_cost' => $originalProduct->product_price,
 //                'total' => $item->amount,
-//            ];
-//
-//            //remove item from cart
+            ];
+
+            //remove item from cart
 //            if ($data['buyer_id'] > 0 && isset($item->id)) {
 //                $search = UserCart::find($item->id);
 //                if (!is_null($search)) {
 //                    $search->delete();
 //                }
 //            }
-//
-//
-//            //Attach total
-//            $invoice['sub_total'] = $data['items_total'];
-//            $invoice['total'] = $data['grand_total'];
-//            $invoice['remark'] = "Thank you for your purchase. <br/> Our Rep will be in touch with you shortly for your order delivery";
-//
-//            //generate invoice
+
+
+            //Attach total
+            $invoice['sub_total'] = $data['items_total'];
+            $invoice['total'] = $data['grand_total'];
+            $invoice['remark'] = "Thank you for your purchase. <br/> Our Rep will be in touch with you shortly for your order delivery";
+
+            //generate invoice
 //            UserInvoice::create($invoice);
 //
 //            if ($data['buyer_id'] > 0) {
@@ -239,39 +241,39 @@ class mainStoreController extends Controller
 //            } else {
 //                $cartItems = [];
 //            }
-//
-//
-//            /**
-//             * At this point, necessary recipients
-//             * ro receive order notifications are already collected
-//             * in recipients array with key referencing various entities.
-//             *
-//             * orders items is attached so we can send the buyer needed details
-//             * about the order.
-//             */
+
+
+            /**
+             * At this point, necessary recipients
+             * ro receive order notifications are already collected
+             * in recipients array with key referencing various entities.
+             *
+             * orders items is attached so we can send the buyer needed details
+             * about the order.
+             */
 //            $totals = ['items_total' => $data['grand_total'], 'grant_total' => $data['grand_total'], 'delivery_fee' => $data['delivery_fee']];
 //            $this->sendOrderMails($recipients, $totals, $items);
-//
-//            //send venture notifications
+
+            //send venture notifications
 //            $this->sendVentureMail($recipients);
-//
-//
-//            //send push notification to target user if offline
-////        $this->handleOfflineOrderNotification($recipients);
-//
-//            $invoice['itemList'] = $items; //showing the user the item bought
+
+
+            //send push notification to target user if offline
+//        $this->handleOfflineOrderNotification($recipients);
+
+            $invoice['itemList'] = $items; //showing the user the item bought
 //
 //            //changing the value of status in OrderList table
 //            Orderlist::where('identifier_id',$data['identifier'])
 //                ->update(['status'=>'paid']);
-//
-//            // return success response with invoice
-//            return response()->json([
-//                'invoice' => $invoice,
+
+            // return success response with invoice
+            return response()->json([
+                'invoice' => $invoice,
 //                'cartItems' => $cartItems,
-//                'message' => "Your order has been successfully place. You will be notified on your order status."
-//            ]);
-//        }
+                'message' => "Your order has been successfully place. You will be notified on your order status."
+            ]);
+        }
 //    }
 
 

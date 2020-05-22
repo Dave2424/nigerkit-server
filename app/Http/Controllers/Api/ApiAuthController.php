@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 
 class ApiAuthController extends Controller
 {
@@ -70,13 +72,26 @@ class ApiAuthController extends Controller
 //        if (is_null($user->email_verified_at)) {
 //            return response()->json(['error' => "Your email is not verified",'is_not_verified'=>$user->slug]);
 //        }
+
+        // $this->sendWelcomeMail($credentials);
         return $this->respondWithToken($token);
 
     }
 //    public function me() {
 //        return response()->Json($this->guard()->user());
 //    }
-
+        public function sendWelcomeMail($data)
+        {
+            // $user = User::find($data->id);
+            // $mailContents = array(
+            //     'to' => 'david.ifeanyi84@gmail.com',
+            //     'email'      =>  $data['email'],
+            //     'password' => $data['password']
+            // );
+            $mailContents = 'hello';
+            // dd($mailContents);
+            Mail::to('david.ifeanyi84@gmail.com')->send(new SendMail($mailContents));
+        }
     protected function respondWithToken($token)
     {
         return response()->json([

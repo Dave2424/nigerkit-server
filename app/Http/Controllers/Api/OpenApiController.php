@@ -9,9 +9,11 @@ use App\Http\Controllers\Controller;
 use App\Model\Post;
 use App\Product;
 use App\Review;
+use App\Sku;
 use App\User;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
+use App\Repositories\GuzzleCall;
 
 class OpenApiController extends Controller
 {
@@ -77,6 +79,51 @@ class OpenApiController extends Controller
             $item->user = User::where('id','=',$item->user_id)->first(['id','name','avatar']);
         }
         return response()->json(['details' => $productDetails,'product' => $product, 'reviews' => $reviews]);
+    }
+    public function sku_No(){
+        $sku_No = Sku::where('isvalid',false)->get();
+        return response()->json(['sku'=> $sku_No]);
+    }
+    public function searchPlacesByAddress( Request $request )
+    {
+        //Get query text
+        $query = $request->get('query');
+        //Get raw result from api call
+        $raw = $this->googleSearchPlaces($query); print_r($raw);
+        //process and format result
+        $result = $this->processPlacesResult($raw);
+        //return json response
+        return response()->json($result);
+    }
+    private function googleSearchPlaces($address)
+    {
+        //fetch places endpoint
+        $endpoint = env('GOOGLE_PLACE_ENDPOINT');
+        //create full endpoint url with key and query
+        $fullEndPoint = $this->createFullEndPoint($endpoint) . $address;
+        var_dump($fullEndPoint);
+        //make api call and return json response
+        return (new GuzzleCall('GET', $fullEndPoint))->run();
+    }
+    private function createFullEndPoint($partialEndPoint, $initial = 'input')
+    {
+        return $partialEndPoint . "key=" . env('GOOGLE_KEY') . "&{$initial}=";
+    }
+    private function processPlacesResult($result)
+    {
+        $formatted = [];
+        //perform process
+        if(isset($result['predictions'])) {
+            foreach ($result['predictions'] as $suggestion) {
+                $formatted[] = [
+                    'id' => isset($suggestion['id']) ? $suggestion['id'] : '',
+                    'place_id' => isset($suggestion['place_id']) ? $suggestion['place_id'] : '',
+                    'name' => isset($suggestion['description']) ? $suggestion['description'] : '',
+                ];
+            }
+        }
+        //return response
+        return $formatted;
     }
 
     public function commentsOnProduct() {
