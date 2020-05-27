@@ -31,6 +31,7 @@ class ProductRequest extends FormRequest
             'category_id' => ['required'],
             'quantity' =>['required','numeric'],
             'content' => ['nullable'],
+            'type' => '',
             'Sku' => ['required','unique:products'],
 //            'files' => 'required|mimes:jpg,jpeg,png,bmp,gif|max:5048',
             'files.*' => 'required|mimes:jpg,jpeg,png,bmp,gif|max:5000000',

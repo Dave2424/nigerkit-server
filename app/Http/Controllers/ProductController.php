@@ -8,7 +8,6 @@ use App\Http\Requests\ProductRequest;
 use App\Sku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Array_;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -90,7 +89,7 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
+    * @return \Illuminate\Http\Response
      */
     public function store(ProductRequest $request)
     {
@@ -106,6 +105,7 @@ class ProductController extends Controller
                 }
                 $product['files'] = $product_image;
             }
+
             Product::create($product);
             //updating the Sku table
             $id = $request->get('Sku');
@@ -129,8 +129,8 @@ class ProductController extends Controller
     public function GenerateSku() {
         $sku = new Sku();
         for($n = 0; $n < 5; $n++) {
-           $sku->sku_no =  $this->generateSkuNo();
-           $sku->save();
+        $sku->sku_no =  $this->generateSkuNo();
+        $sku->save();
         }
         return back()->withStatus(__('Sku generated successfully.'));
     }

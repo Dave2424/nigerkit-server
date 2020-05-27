@@ -68,7 +68,7 @@ Route::post('banner_sr', 'BannersController@store_other')->name('add-banner_sr')
 
 
 Route::group(['middleware' => ['auth:admin']], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
+	Route::resource('admin', 'AdminController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);

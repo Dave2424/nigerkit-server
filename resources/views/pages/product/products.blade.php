@@ -128,6 +128,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-10 ml-auto mr-auto mb-lg-2">
+                                                            <div class="form-group">
+                                                                <select name="type" class="form-control selectpicker" data-style="btn btn-link">
+                                                                    <option value="" selected>Select product type</option>
+                                                                    <option value="special">special</option>
+                                                                    <option value="bestSeller">Best Seller</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                                     <div class="row">
