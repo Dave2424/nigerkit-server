@@ -147,7 +147,6 @@
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td class="esd-block-text es-p20t es-p40b es-p30r es-p30l es-m-txt-l" align="left">
-                                                                                        <p>{{ auth()->user()->name }},</p>
                                                                                         <p></p>
                                                                                     </td>
                                                                                 </tr>

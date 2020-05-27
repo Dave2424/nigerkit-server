@@ -13,7 +13,7 @@ class CreateSkuTable extends Migration
      */
     public function up()
     {
-        Schema::create('sku', function (Blueprint $table) {
+        Schema::create('skus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('sku_no');
             $table->timestamps();

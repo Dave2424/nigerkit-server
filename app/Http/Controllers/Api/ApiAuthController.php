@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\NewClientHasRegisteredEvent;
 use App\Http\Controllers\Controller;
+use App\Model\client;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\SendMail;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
     protected $user;
+    protected $client;
 
     /**
      * AuthController constructor.
@@ -32,25 +34,17 @@ class ApiAuthController extends Controller
         $data = $request->all();
 
         //check if use with thesame email exists
-//        if ($this->user->where('email', '=', $data['email'])->exists()) {
-//            return response()->json(['error' => 'User with same email already exists. Go to login page and click forgot password'], '401');
-//        }
+       if ($this->user->where('email', '=', $data['email'])->exists()) {
+           return response()->json(['error' => 'User with same email already exists. Go to login page and click forgot password'], '401');
+       }
+       $user = new User();
+       $user->name = $data['fname']. ' '.$data['lname'];
+       $user->email = $data['email'];
+       $user->password = Hash::make($data['password']);
+       $user->save();
 
-//        unset($data['ref_code']);
-//        $data['slug'] = uniqid(rand(), true);
-
-//        $user = $this->user->create($data);
-
-//        $is_created = false;
-
-//        if($is_created){
-            //send Welcome Mail
-//            $this->sendVerificationMail($data);
-//            return response()->json(['slug' => $data['slug'], 'email' => $data['email']]);
-//        }
-        return response()->json(['data' => $data]);
-
-//        return response()->json(['error' => "Your account cannot be created this time, Please contact support"], 401);
+       event(new NewClientHasRegisteredEvent($user));
+        return response()->json(['message' => 'Account created successfully']);
     }
 
     //login
@@ -64,40 +58,22 @@ class ApiAuthController extends Controller
             //return error message
             return response()->json(['error' => 'Invalid email address or Password'], '401');
         }
-//        if (! $token = $this->guard('api')->attempt($credentials)) {
-//            //return error message
-//            return response()->json(['error' => 'Invalid email address or Password'], '401');
-//        }
 
-//        if (is_null($user->email_verified_at)) {
-//            return response()->json(['error' => "Your email is not verified",'is_not_verified'=>$user->slug]);
-//        }
+    //    if (is_null($user->email_verified_at)) {
+    //        return response()->json(['error' => "Your email is not verified",'is_not_verified'=>$user->slug]);
+    //    }
 
-        // $this->sendWelcomeMail($credentials);
         return $this->respondWithToken($token);
 
     }
-//    public function me() {
-//        return response()->Json($this->guard()->user());
-//    }
-        public function sendWelcomeMail($data)
-        {
-            // $user = User::find($data->id);
-            // $mailContents = array(
-            //     'to' => 'david.ifeanyi84@gmail.com',
-            //     'email'      =>  $data['email'],
-            //     'password' => $data['password']
-            // );
-            $mailContents = 'hello';
-            // dd($mailContents);
-            Mail::to('david.ifeanyi84@gmail.com')->send(new SendMail($mailContents));
-        }
+   public function me() {
+       return response()->Json($this->guard()->user());
+   }
     protected function respondWithToken($token)
     {
         return response()->json([
             'Access_token' => $token,
             'token_type' => 'bearer',
-//            'expires_in' => $this->guard('api')->factory()->getTTL() * 60,
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);
@@ -105,18 +81,10 @@ class ApiAuthController extends Controller
     public function refresh() {
         return $this->respondWithToken($this->guard()->refresh());
     }
-
-    public function AuthByGoogle() {
-
-    }
-    public function AuthByFB(){
-
-    }
     public function verify() {
 
     }
     public function logout() {
-//        auth()->logout();
         $this->guard()->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }

@@ -18,9 +18,9 @@ class SendMail extends Mailable
      */
     public $data;
 
-    public function __construct($data)
+    public function __construct()
     {
-        $this->$data = $data;
+        
     }
 
     /**
@@ -31,7 +31,7 @@ class SendMail extends Mailable
     public function build()
     {
         // return $this->view('view.name');
-        return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.welcomemail')->with('data', $this->data);
+        return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.welcomemail');
 
     }
 }
