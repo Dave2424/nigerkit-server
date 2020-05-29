@@ -40,7 +40,6 @@ Route::group([
     Route::get('get-product-related-details/{id}', 'Api\OpenApiController@relateDetails');
     Route::get('get-sku_No', 'Api\OpenApiController@sku_No');
     Route::post('address-search-places','Api\OpenApiController@searchPlacesByAddress');
-    Route::post('store-calculate-delivery','Api\OpenApiController@store-calculate-delivery');
 
 });
 
@@ -52,5 +51,6 @@ Route::group(['prefix' => 'store'], function () {
     Route::post('store-add-to-cart', 'Store\mainStoreController@addToCart');
     Route::post('store-place-order', 'Store\mainStoreController@placeOrder');
     Route::get('store-remove-from-cart/{item_id}', 'Store\mainStoreController@removeFromCart');
+    Route::post('store-calculate-delivery','Store\mainStoreController@storeCalculateDelivery');
 //    Route::post('place-new-order', 'Store\FrontController@newMainStorePlaceOrder');
 });

@@ -6,7 +6,10 @@ use App\Banner_sr;
 use App\Banners;
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HelperController;
+use App\Info;
 use App\Model\Post;
+use App\Orderlist;
 use App\Product;
 use App\Review;
 use App\Sku;
@@ -14,6 +17,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
 use App\Repositories\GuzzleCall;
+use Carbon\Carbon;
 
 class OpenApiController extends Controller
 {
@@ -89,9 +93,10 @@ class OpenApiController extends Controller
         //Get query text
         $query = $request->get('query');
         //Get raw result from api call
-        $raw = $this->googleSearchPlaces($query); print_r($raw);
+        $raw = $this->googleSearchPlaces($query);
         //process and format result
         $result = $this->processPlacesResult($raw);
+        // dd($result);
         //return json response
         return response()->json($result);
     }
@@ -101,7 +106,7 @@ class OpenApiController extends Controller
         $endpoint = env('GOOGLE_PLACE_ENDPOINT');
         //create full endpoint url with key and query
         $fullEndPoint = $this->createFullEndPoint($endpoint) . $address;
-        var_dump($fullEndPoint);
+        // var_dump($fullEndPoint);
         //make api call and return json response
         return (new GuzzleCall('GET', $fullEndPoint))->run();
     }

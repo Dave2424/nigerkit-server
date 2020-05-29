@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HelperController;
+use App\Info;
+use App\Model\client;
 use Illuminate\Http\Request;
 use App\Model\UserCart;
+use App\Orderlist;
+use App\PaystackTransaction;
 use App\User;
 use App\Product;
 use App\Repositories\PayStackVerifyTransaction;
+use App\UserInvoice;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class mainStoreController extends Controller
 {
@@ -84,32 +92,76 @@ class mainStoreController extends Controller
         return response()->json($result);
     }
 
+
+
+    /**
+     * calculating the distance and product in the cart
+     *
+     * @param  \App\Http\Requests\Request  $request
+     * @return Array
+     */
+    public function storeCalculateDelivery(Request $request)
+    {
+
+        $items = $request->all();
+        $percentage = Info::where('key', 'percentage')->first()->value;
+        $cart_items = json_decode($request->get('cart_item'));
+        $total = 0;
+        $cart_ids = '';
+        foreach ($cart_items as $cart_item) {
+            $total += $cart_item->quantity * $cart_item->product->price;
+            if(isset($cart_item->id)) {
+                $cart_ids .= ($cart_item->id) . '-';
+
+            } else {
+                $cart_ids .=  0 . '-';
+            }
+        }
+        $cart_ids = substr($cart_ids, 0, -1); //removing the last (-)
+        $deliveryFee = 1000;
+        $salePercentage = (($total * $percentage) / 100);
+        $grandTotal = $total + $deliveryFee + $salePercentage;
+        $grandTotal = round($grandTotal);
+        $identifier = 'OD' . HelperController::generateIdentifier(14); //unique order id
+        $amount = [
+            'deliveryFee' => $deliveryFee,
+            'percentage' => $salePercentage,
+            'grandTotal' => $grandTotal,
+            'total' => $total,
+            'order_time' => Carbon::now(),
+            'identifier' => $identifier
+        ];
+        Orderlist::create([
+            'identifier_id' => $identifier,
+            'cart_id' => $cart_ids,
+            'buyer_email' => $items['email'],
+            'buyer_name' => $items['name'],
+            'buyer_address' => $items['delivery_address'],
+            'buyer_phone' => $items['phone'],
+            'status' => 'Not paid',
+            'amount' => $grandTotal
+        ]);
+
+        return response()->json(['amount' => $amount]);
+    }
+
     public function placeOrder(Request $request)
     {
 
         //Get other information are regards this order
         $data = $request->all();
-        $batch = [];
         $invoice = [];
         $recipients = [];
         // Get order items
         $items = json_decode($request->get('items'));
         //use transaction reference to get payStack charge
         $payStackChargeVerify = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 1);
-        var_dump($payStackChargeVerify);
         if (!isset($payStackChargeVerify['status']) || $payStackChargeVerify['status'] == false)
             return response()->json(['Payment Was not successful']);
         $payStackCharge = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 0);
-        //$payStackCharge = 0;
 
-
-//        $recipients['buyer'] = ['email' => $data['email'], 'name' => $data['name']];
-
-        //set a batch id
-//        $data['batch_id'] = 'BA' . HelperController::generateIdentifier(14);
-
+        $recipients['buyer'] = ['email' => $data['email'], 'name' => $data['name']];
         $payload = [
-            'batch_id' => $data['batch_id'],
             'phone' => $data['phone'],
             'reference' => $data['transaction_ref'],
             'status' => $payStackChargeVerify['status'],
@@ -117,14 +169,14 @@ class mainStoreController extends Controller
             'data' => $payStackChargeVerify['data'],
         ];
 
-        (new PayStackVerifyTransaction)->create($payload);
+        (new PaystackTransaction)->create($payload);
 
 
-        $user = (New User)->where('email', '=', $data['email'])->first();
-//        if (is_null($user)) {
-//            $usrData = ['name' => $data['name'], 'slug' => $this->createSlug('all_users'), 'email' => $data['email'], 'password' => Hash::make('password'), 'phone' => $data['phone'], 'address' => $data['delivery_address']];
-//            $user = (new User)->create($usrData);
-//        }
+        $user = (New client)->where('email', '=', $data['email'])->first();
+       if (is_null($user)) {
+           $usrData = ['name' => $data['name'], 'email' => $data['email'], 'password' => Hash::make('password'), 'phone' => $data['phone'], 'address' => $data['delivery_address']];
+           $user = (new User)->create($usrData);
+       }
         if (!is_null($user)) {
             $data['buyer_id'] = $user->id;
             $data['name'] = $user->name ? $user->name : null;
@@ -141,121 +193,43 @@ class mainStoreController extends Controller
         $invoice['items'] = [];
         $invoice['buyer_id'] = $data['buyer_id'];
 
-        $batch['batch_id'] = $data['batch_id'];
-        $batch['buyer_id'] = $data['buyer_id'];
-        $batch['items_total'] = $data['items_total'];
-        $batch['grant_total'] = $data['grand_total'];
-        $batch['delivery_fee'] = $data['delivery_fee'];
+    foreach ($items as $index => $item) {
 
-        /**
-         * Items are bought from same store,
-         * so, we can get the store is using
-         * the first order in the items list
-         */
+        //set invoice data
+        $invoice['order_id'] = $data['identifier'];
+        $invoice['order_date'] = Carbon::now();
+        $invoice['order_status'] = 'paid';
 
-//        $finder = $items[0]->store_identifier;
-//        $store = UserStore::where('identifier', '=', $finder)->first();
-//        if (is_null($store))
-//            return response()->json(['store not found', $store]);
-//        $batch['store_id'] = $store->id;
-
-        //set store owner email on recipients to be sent notifications
-//        $storeOwner = $store->user;
-//        $recipients['store'] = ['email' => $storeOwner->email, 'store_name' => $store->store_name];
-
-
-        //if there is no existing opening, create a new batch.
-//        $storeSettlementBatch=(new StoreSettlementBatch)->firstOrNew(['store_id'=>$store->id,'active'=> 1],$settlementBatch);
-
-        //Calculate total student's commission and save alongside with batch details
-//        $batch['total_student_commission'] = $this->calculateStudentCommission($items);
-        //fetch original product
-        //first create batch entry
-//        $newBatch = (new BatchOrder)->create($batch);
-//
-//        $recipients['ventures'] = [];
-
-//        foreach ($items as $index => $item) {
-//            $mainProduct = UserBusinessProduct::find($item->original_product_id);
-//            $originalProduct = UserVentureProduct::find($item->product_id);
-
-            //Fetch the business who owns the product
-//            $business = StoreHelperController::fetchBusinessId($mainProduct->venture_id);
-//            $recipients['ventures'][] = $mainProduct->venture_id;
-
-//            $data['batch_id'] = $newBatch->batch_id;
-//            $data['identifier'] = 'OD' . HelperController::generateIdentifier(14); //unique order id
-//            $data['product_id'] = $item->product_id;
-//            $data['business_id'] = $business;
-//            $data['store_id'] = $store->id;
-//            $data['quantity'] = $item->quantity;
-//            $data['amount'] = $item->amount;
-//            $data['product_sku'] = $item->product_sku;
-            $data['status'] = 'processing';
-            $data['forwarded'] = 1;
-//            $data['commission'] = $mainProduct->product_commission;
-//            $data['venture_id'] = $mainProduct->venture_id;
-            //insert original product id
-//            $data['original_product_id'] = $item->original_product_id;
-
-            //Forward orders to business
-//            $businessOrder = UserBusinessOrder::create($data);
-
-            //Forward orders to student from whose store this order is placed.
-//            UserVentureOrder::create($data);
-
-            //set invoice data
-//            $invoice['order_id'] = $businessOrder->identifier;
-            $invoice['order_id'] = $data['identifier'];
-            $invoice['order_date'] = Carbon::now();
-            $invoice['order_status'] = 'paid';
-
-            $invoice['items'][] = [
-//                'product_name' => $originalProduct->product_name,
-//                'description' => $originalProduct->highlight,
-//                'quantity' => $item->quantity,
-//                'reference' => $data['transaction_ref'],
-//                'unit_cost' => $originalProduct->product_price,
-//                'total' => $item->amount,
-            ];
+        $invoice['items'][] = [
+            'product_name' => $item->product->name,
+            'description' => $item->product->description,
+            'quantity' => $item->quantity,
+            'reference' => $data['transaction_ref'],
+            'unit_cost' => $item->product->price,
+            'total' => $item->amount
+        ];
 
             //remove item from cart
-//            if ($data['buyer_id'] > 0 && isset($item->id)) {
-//                $search = UserCart::find($item->id);
-//                if (!is_null($search)) {
-//                    $search->delete();
-//                }
-//            }
+        if ($data['buyer_id'] > 0 && isset($item->id)) {
+            $search = UserCart::find($item->id);
+            if (!is_null($search)) {
+                $search->delete();
+            }
+        }
+            $invoice['remark'] = "Thank you for your purchase. Our Rep will be in touch with you shortly for your order delivery";
 
 
             //Attach total
             $invoice['sub_total'] = $data['items_total'];
             $invoice['total'] = $data['grand_total'];
-            $invoice['remark'] = "Thank you for your purchase. <br/> Our Rep will be in touch with you shortly for your order delivery";
-
             //generate invoice
-//            UserInvoice::create($invoice);
+        UserInvoice::create($invoice);
 //
-//            if ($data['buyer_id'] > 0) {
-//                $cartItems = StoreHelperController::getCartItems();
-//            } else {
-//                $cartItems = [];
-//            }
-
-
-            /**
-             * At this point, necessary recipients
-             * ro receive order notifications are already collected
-             * in recipients array with key referencing various entities.
-             *
-             * orders items is attached so we can send the buyer needed details
-             * about the order.
-             */
-//            $totals = ['items_total' => $data['grand_total'], 'grant_total' => $data['grand_total'], 'delivery_fee' => $data['delivery_fee']];
-//            $this->sendOrderMails($recipients, $totals, $items);
-
-            //send venture notifications
-//            $this->sendVentureMail($recipients);
+        if ($data['buyer_id'] > 0) {
+            $cartItems = StoreHelperController::getCartItems();
+        } else {
+            $cartItems = [];
+        }
 
 
             //send push notification to target user if offline
@@ -264,17 +238,17 @@ class mainStoreController extends Controller
             $invoice['itemList'] = $items; //showing the user the item bought
 //
 //            //changing the value of status in OrderList table
-//            Orderlist::where('identifier_id',$data['identifier'])
-//                ->update(['status'=>'paid']);
+        Orderlist::where('identifier_id',$data['identifier'])
+            ->update(['status'=>'paid']);
 
             // return success response with invoice
             return response()->json([
                 'invoice' => $invoice,
-//                'cartItems' => $cartItems,
+               'cartItems' => $cartItems,
                 'message' => "Your order has been successfully place. You will be notified on your order status."
             ]);
         }
-//    }
+   }
 
 
 //    private function sendOrderMails($recipients, $totals = [], $items = [])
