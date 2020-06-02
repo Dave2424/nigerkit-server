@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\NewClientHasRegisteredEvent;
+use App\Events\NewOrderPlaceEvent;
+use App\Listeners\NewOrderPlacedListener;
 use App\Listeners\WelcomeNewClientListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewClientHasRegisteredEvent::class => [
             WelcomeNewClientListener::class,
+        ],
+        NewOrderPlaceEvent::class => [
+            NewOrderPlacedListener::class
         ]
     ];
 

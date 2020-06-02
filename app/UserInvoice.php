@@ -11,4 +11,8 @@ class UserInvoice extends Model
     protected $casts = [
         'items' => 'array'
     ];
+
+    public function orderlist() {
+        return $this->hasOne(Orderlist::class,'order_id');
+    }
 }

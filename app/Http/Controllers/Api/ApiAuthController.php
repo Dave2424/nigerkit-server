@@ -19,7 +19,7 @@ class ApiAuthController extends Controller
      * AuthController constructor.
      * @param User $userModel
      */
-    public function __construct(User $userModel)
+    public function __construct(client $userModel)
     {
         $this->user = $userModel;
         $this->middleware('auth:api', ['except' => ['login','register','verify']]);
@@ -37,7 +37,7 @@ class ApiAuthController extends Controller
        if ($this->user->where('email', '=', $data['email'])->exists()) {
            return response()->json(['error' => 'User with same email already exists. Go to login page and click forgot password'], '401');
        }
-       $user = new User();
+       $user = new client();
        $user->name = $data['fname']. ' '.$data['lname'];
        $user->email = $data['email'];
        $user->password = Hash::make($data['password']);

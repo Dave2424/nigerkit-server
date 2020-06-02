@@ -16,6 +16,7 @@ class CreateOrderlistsTable extends Migration
         Schema::create('orderlists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('identifier_id');
+            $table->string('client_id');
             $table->string('cart_id');
             $table->string('buyer_email');
             $table->string('buyer_name');
@@ -23,6 +24,7 @@ class CreateOrderlistsTable extends Migration
             $table->string('buyer_phone');
             $table->string('status');
             $table->string('amount');
+            $table->integer('flag')->default(0);
             $table->timestamps();
 
             

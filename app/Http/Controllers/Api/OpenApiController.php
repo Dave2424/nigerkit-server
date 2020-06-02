@@ -8,6 +8,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperController;
 use App\Info;
+use App\Model\client;
 use App\Model\Post;
 use App\Orderlist;
 use App\Product;

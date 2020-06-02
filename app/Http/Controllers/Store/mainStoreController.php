@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Events\NewOrderPlaceEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperController;
 use App\Info;
@@ -91,9 +92,6 @@ class mainStoreController extends Controller
         $result = ['product' => $product];
         return response()->json($result);
     }
-
-
-
     /**
      * calculating the distance and product in the cart
      *
@@ -134,6 +132,7 @@ class mainStoreController extends Controller
         Orderlist::create([
             'identifier_id' => $identifier,
             'cart_id' => $cart_ids,
+            'client_id' => $items['user_id'],
             'buyer_email' => $items['email'],
             'buyer_name' => $items['name'],
             'buyer_address' => $items['delivery_address'],
@@ -175,7 +174,7 @@ class mainStoreController extends Controller
         $user = (New client)->where('email', '=', $data['email'])->first();
        if (is_null($user)) {
            $usrData = ['name' => $data['name'], 'email' => $data['email'], 'password' => Hash::make('password'), 'phone' => $data['phone'], 'address' => $data['delivery_address']];
-           $user = (new User)->create($usrData);
+           $user = (new client)->create($usrData);
        }
         if (!is_null($user)) {
             $data['buyer_id'] = $user->id;
@@ -231,11 +230,10 @@ class mainStoreController extends Controller
             $cartItems = [];
         }
 
-
             //send push notification to target user if offline
 //        $this->handleOfflineOrderNotification($recipients);
 
-            $invoice['itemList'] = $items; //showing the user the item bought
+        $invoice['itemList'] = $items; //showing the user the item bought
 //
 //            //changing the value of status in OrderList table
         Orderlist::where('identifier_id',$data['identifier'])
@@ -251,43 +249,41 @@ class mainStoreController extends Controller
    }
 
 
-//    private function sendOrderMails($recipients, $totals = [], $items = [])
-//    {
-//        //First mail the buyer with items
-//        $mailContent = [
-//            'email' => $recipients['buyer']['email'],
-//            'name' => $recipients['buyer']['name'],
-//            'subject' => "Your order details!",
-//            'items' => $items,
-//            'total' => $totals,
-//            'role' => 'buyer'
-//        ];
-//
-//        //send to student
-//        dispatch(new SendOrderNotification($mailContent));
-//
-//        //Prepare store contents
-//        $mailContent['email'] = $recipients['store']['email'];
-//        $mailContent['name'] = $recipients['store']['store_name'];
-//        $mailContent['buyer'] = $recipients['buyer']['name'];
-//        $mailContent['subject'] = "New Order Alert :: Startev Africa";
-//        $mailContent['role'] = 'store';
-//        $mailContent['total'] = $totals;
-//        //send to student
-//        dispatch(new SendOrderNotification($mailContent));
-//
-//        //What of the Store administrators
-//        $mailContent['email'] = "info@startev.africa";
-//        $mailContent['name'] = "Mfon";
-//        dispatch(new SendOrderNotification($mailContent));
-//        Admin::all()
-//            ->mapToGroups(function ($admin) use (&$mailContent, $recipients) {
-//                $mailContent['email'] = $admin->email;
-//                $mailContent['name'] = $admin->name;
-//                dispatch(new SendOrderNotification($mailContent));
-//                return [];
-//            });
-//        //All mail sent. Anyway don't bother about the memory consumption. Job things!
-//
-//    }
+   private function sendOrderMails($recipients, $totals = [], $items = [])
+   {
+       //First mail the buyer with items
+       $mailContent = [
+           'email' => $recipients['buyer']['email'],
+           'name' => $recipients['buyer']['name'],
+           'subject' => "Your order details!",
+           'items' => $items,
+           'total' => $totals,
+           'role' => 'buyer'
+       ];
+
+        //send to buyer
+        event(new NewOrderPlaceEvent($mailContent));
+       //All mail sent. Anyway don't bother about the memory consumption. Job things!
+   }
+
+   //Orderlist per user
+   public function orderList($client_id) {
+       $orderList = orderList::where('client_id', $client_id)->where('status', 'paid')->paginate(5);
+       return response()->json(['orderlist' => $orderList]);
+   }
+
+   //Orderlist of recent of 3days
+   public function orderListRecent($client_id) {
+       $recent = orderList::where('client_id', $client_id)
+            ->whereDate('created_at', '>', Carbon::now()->subDays(3))
+            ->limit(5)->get();
+       return response()->json(['recent_order' => $recent]);
+   }
+
+   //details of a orderlist.
+   public function orderListDetails($identifier_id) {
+       $orderdetails = orderList::with('userInvoice')->where('identifier_id',$identifier_id)->first();
+        $Vatfee = Info::where('key', 'percentage')->pluck('value');
+       return response()->json(['details' => $orderdetails, 'vatFee' => $Vatfee]);
+   }
 }
