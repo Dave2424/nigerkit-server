@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Mail;
 // 		$message->to('david.ifeanyi84@gmail.com');
 // 	});
 // });
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+// Route::get('/', function () {
+//     return redirect()->route('home');
+// });
 Auth::routes();
 
 
@@ -46,6 +46,7 @@ Route::post('edit-post','PostController@update')->name('update-post');
 
 //View Route//
 Route::get('/home', 'ViewController@index')->name('home');
+Route::get('/', 'ViewController@index')->name('home');
 Route::get('table-list', 'ViewController@tablelist')->name('table');
 Route::get('icons', 'ViewController@allIcons')->name('icons');
 Route::get('map', 'ViewController@map')->name('map');
