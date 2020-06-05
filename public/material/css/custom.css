@@ -164,3 +164,6 @@ table.dataTable thead .sorting_desc_disabled:after
     position: relative;
     margin: 0;
 }
+.form-check .form-check-input:checked+.form-check-sign .check {
+    background: #f59530 !important;
+}

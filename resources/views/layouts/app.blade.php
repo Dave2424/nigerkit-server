@@ -19,8 +19,9 @@
     {{--<link href="{{ asset('material') }}/css/jquery.dataTables.min.css" rel="stylesheet" />--}}
         <!-- CSS Just for demo purpose, don't include it in your project -->
     {{--<link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />--}}
+        <script src="{{ asset('material') }}/js/plugins/angular.min.js"></script>
     </head>
-    <body class="{{ $class ?? '' }}">
+    <body class="{{ $class ?? '' }}" ng-app="mainApp">
         @auth()
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -109,6 +110,10 @@
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
         <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
         <script src="{{ asset('material') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!-- global AngularJS App to tap to -->
+        <script src="{{ asset('material')}}/js/custom/main.js"></script>
+        <script src="{{ asset('material')}}/js/custom/services/appservice.js"></script>
+
         <!-- Plugin for the momentJs  -->
         <script src="{{ asset('material') }}/js/plugins/moment.min.js"></script>
         <!--  Plugin for Sweet Alert -->

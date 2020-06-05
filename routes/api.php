@@ -54,6 +54,8 @@ Route::group([
 Route::group(['prefix' => 'post'], function () {
     // Blog
     Route::get('get-all-post', 'Post\ApiPostController@allPost');
+    Route::get('get-post-details/{post_id}', 'Post\ApiPostController@postDetails');
+    Route::post('send-comment', 'Post\ApiPostController@addComment');
 });
 
 Route::group(['prefix' => 'store'], function () {
