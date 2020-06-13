@@ -34,16 +34,19 @@ class ApiAuthController extends Controller
         $data = $request->all();
 
         //check if use with thesame email exists
-       if ($this->user->where('email', '=', $data['email'])->exists()) {
-           return response()->json(['error' => 'User with same email already exists. Go to login page and click forgot password'], '401');
-       }
-       $user = new client();
-       $user->name = $data['fname']. ' '.$data['lname'];
-       $user->email = $data['email'];
-       $user->password = Hash::make($data['password']);
-       $user->save();
+        if ($this->user->where('email', '=', $data['email'])->exists()) {
+            return response()->json(['error' => 'User with same email already exists. Go to login page and click forgot password'], '401');
+        }
+        $user = new client();
+        $user->fname = $data['fname'];
+        $user->lname = $data['lname'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'];
+        $user->address = $data['address'];
+        $user->password = Hash::make($data['password']);
+        $user->save();
 
-       event(new NewClientHasRegisteredEvent($user));
+        event(new NewClientHasRegisteredEvent($user));
         return response()->json(['message' => 'Account created successfully']);
     }
 

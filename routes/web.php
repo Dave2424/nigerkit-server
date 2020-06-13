@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Mail;
 // Route::get('/', function () {
 //     return redirect()->route('home');
 // });
+// Route::get('product-image', function () {
+// 	symlink('/home/nigerkit/public_html/admin/storage/app/public', '/home/nigerkit/public_html/admin/public/storage');
+// });
 Auth::routes();
 
 
