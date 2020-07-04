@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <form method="post" action="{{ route('add-post') }}"
-                          enctype="multipart/form-data"
-                          autocomplete="off" class="form-horizontal">
+                        enctype="multipart/form-data"
+                        autocomplete="off" class="form-horizontal">
                         @csrf
                         @method('post')
                             <div class="card">
@@ -18,10 +18,30 @@
                                     <p class="card-category">Create a post</p>
                                 </div>
                                 <div class="card-body">
-                                    <div class="text-right">
-                                        <a id="add_Category" href="{{route('viewPost')}}" class="btn btn-sm btn-success">
-                                            <i class="material-icons">list </i>
-                                            {{ __('View posts') }}</a>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4">
+                                            <div class="form-group form-file-upload
+                                                    form-file-multiple {{ ($errors->has('files') || $errors->has('files.*')) ? ' has-error' : '' }}">
+                                                <input id="input-file" type="file" name="files"
+                                                    class="inputFileHidden" required="true" aria-required="true">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control inputFileVisible"
+                                                        placeholder="Post caption">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-fab btn-success btn-round btn-info">
+                                                            <i class="material-icons">attach_file</i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-8">
+                                            <div class="text-right">
+                                                <a id="add_Category" href="{{route('viewPost')}}" class="btn btn-sm btn-success">
+                                                    <i class="material-icons">list </i>
+                                                    {{ __('View posts') }}</a>
+                                            </div>
+                                        </div>
                                     </div>
                                         @if (session('status'))
                                             <div class="row" style="display: none">
@@ -43,8 +63,8 @@
                                                 <div class="col-sm-11">
                                                     <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
                                                         <input class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title"
-                                                               id="input-title" type="text" placeholder="{{ __('Post title') }}"
-                                                               value="{{ old('title') }}" required="true" aria-required="true"/>
+                                                            id="input-title" type="text" placeholder="{{ __('Post title') }}"
+                                                            value="{{ old('title') }}" required="true" aria-required="true"/>
                                                         @if ($errors->has('title'))
                                                             <span id="title-error" class="error text-danger" for="input-name">{{ $errors->first('title') }}</span>
                                                         @endif
@@ -57,7 +77,7 @@
                                         <div class="col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group {{ $errors->has('body') ? ' is-invalid' : '' }}">
                                             <textarea id="post" class="form-control mr-auto ml-auto {{ $errors->has('body') ? ' is-invalid' : '' }}"
-                                                      name="body"></textarea>
+                                                    name="body"></textarea>
                                             </div>
                                         </div>
                                         @if ($errors->has('body'))

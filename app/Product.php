@@ -16,6 +16,7 @@ class Product extends Model
         'price',
         'Sku',
         'content',
+        'slug',
         'type',
         'category_id',
         'files'

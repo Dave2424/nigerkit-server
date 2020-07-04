@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('content')->nullable();
             $table->string('category_id');
             $table->string('type')->nullable();
+            $table->string('slug')->nullable();
             $table->json('files');
             $table->timestamps();
         });

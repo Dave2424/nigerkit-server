@@ -16,10 +16,11 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('hasLiked')->default(0);
-            $table->bigIncrements('categories_id');
+            $table->bigIncrements('categories_id')->nullable();
             $table->bigInteger('views')->default(0);
             $table->string('title');
             $table->longText('body');
+            $table->string('slug')->nullable();
             $table->string('image')->nullable();
             $table->json('images')->nullable();
             $table->string('video')->nullable();

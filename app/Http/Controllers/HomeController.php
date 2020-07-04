@@ -53,6 +53,10 @@ class HomeController extends Controller
         'sub_admin' => $sub_admin
 
         ]);
+    }
 
+    public function getOrderlist() {
+        $orderlist = Orderlist::with('client')->paginate(1);
+        return response()->json(['success' => true,'orderlist'=> $orderlist]);
     }
 }

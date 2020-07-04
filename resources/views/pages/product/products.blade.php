@@ -9,7 +9,7 @@
                             <div class="card-header card-header-tabs card-header-success">
                                 <div class="nav-tabs-navigation">
                                     <div class="nav-tabs-wrapper">
-                                        <span class="nav-tabs-title">Tasks:</span>
+                                        <span class="nav-tabs-title">Activities:</span>
                                         <ul class="nav nav-tabs" data-tabs="tabs">
                                             <li class="nav-item">
                                                 <a class="nav-link active" href="#viewProduct" data-toggle="tab">
@@ -20,12 +20,6 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#addProduct" data-toggle="tab">
                                                     <i class="material-icons">playlist_add</i> Add product
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#setProduct" data-toggle="tab">
-                                                    <i class="material-icons">settings</i> Set product
                                                     <div class="ripple-container"></div>
                                                 </a>
                                             </li>
@@ -123,8 +117,8 @@
                                                         <div class="col-sm-10 ml-auto mr-auto">
                                                             <div class="form-group">
                                                                 <textarea class="form-control" rows="2"
-                                                                          id="input-content"
-                                                                          placeholder="Content of product if available" name="content"></textarea>
+                                                                        id="input-content"
+                                                                        placeholder="Content of product if available" name="content"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -249,77 +243,6 @@
                                             </div>
                                             </form>
                                         </div>
-                                    </div>
-
-                                    <div class="tab-pane" id="setProduct">
-                                        <table class="table">
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value="">
-                                                            <span class="form-check-sign">
-                                            <span class="check"></span>
-                                          </span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value="" checked>
-                                                            <span class="form-check-sign">
-                                            <span class="check"></span>
-                                          </span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                </td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value="" checked>
-                                                            <span class="form-check-sign">
-                                            <span class="check"></span>
-                                          </span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
 
                                     <div class="tab-pane" id="view_sku">

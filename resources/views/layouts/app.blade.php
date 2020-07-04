@@ -157,5 +157,6 @@
         @stack('product')
         @stack('post')
         @stack('banner')
+        @stack('orderlist')
     </body>
 </html>

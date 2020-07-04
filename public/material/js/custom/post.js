@@ -9,7 +9,7 @@ $(document).ready(function() {
         if ($('#success_post').val()) {
             $msg = $('#success_post').val();
             md.showSuccessMessage($msg);
-            $('#success_post').val('')
+            $('#success_post').val('');
         }
         //Feeding in the dataTable
         $.fn.dataTable.render.ellipsis = function ( cutoff ) {
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 return type === 'display' && data.length > cutoff ?
                     data.substr( 0, cutoff ) +'…' :
                     data;
-            }
+            };
         };
         //Datatable for post
         var table = $('#post_table').DataTable({
@@ -93,17 +93,54 @@ $(document).ready(function() {
                 },
                 error: function (error) {
                     console.log('delete_post', error.responseText);
+                    
                 }
             });
         });
 
+        // $('#product_table').editableTableWidget();
+        // FileInput
+        $('.form-file-simple .inputFileVisible').click(function () {
+            $(this).siblings('.inputFileHidden').trigger('click');
+        });
+
+        $('.form-file-simple .inputFileHidden').change(function () {
+            var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+            $(this).siblings('.inputFileVisible').val(filename);
+        });
+
+        $('.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn').click(function () {
+            $(this).parent().parent().find('.inputFileHidden').trigger('click');
+            $(this).parent().parent().addClass('is-focused');
+        });
+
+        $('.form-file-multiple .inputFileHidden').change(function () {
+            var names = '';
+            for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                if (i < $(this).get(0).files.length - 1) {
+                    names += $(this).get(0).files.item(i).name + ',';
+                } else {
+                    names += $(this).get(0).files.item(i).name;
+                }
+            }
+            $(this).siblings('.input-group').find('.inputFileVisible').val(names);
+        });
+
+        $('.form-file-multiple .btn').on('focus', function () {
+            $(this).parent().siblings().trigger('focus');
+        });
+
+        $('.form-file-multiple .btn').on('focusout', function () {
+            $(this).parent().siblings().trigger('focusout');
+        });
+
         //getting the data for editing
-        $item = $('#data').attr('data-item');
-        $data = JSON.parse($item);
-        $('#edit_input-title').val($data[0].title);
-        $body = $data[0].body;
-        console.log($data[0].body);
-        $('#edit_post').val($data[0].body);
+        // $item = $('#data').attr('data-item');
+        // $data = JSON.parse($item);
+        // $('#edit_input-title').val($data[0].title);
+        // $body = $data[0].body;
+        // console.log($data[0].body);
+        // $('#edit_post').val($data[0].body);
         // var c = isElementinViewport('edit_post');
         // console.log(c);
         // function isElementinViewport(el) {

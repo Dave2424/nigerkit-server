@@ -25,8 +25,17 @@ class OpenApiController extends Controller
 
     //getting all product
     public function getProduct() {
-        $data = Product::all();
+        $data = Product::with('Sku','Reviews')->get();
         return response()->json(['products' => $data]);
+    }
+    public function allProduct() {
+        $data = Product::with('Sku', 'Reviews')->get();
+        return response()->json(['product' => $data]);
+    }
+    public function productCategory($id) {
+        $product = Product::with('Sku', 'Reviews')->where('id', $id)->first();
+        $productCategeory = Category::with('product')->where('id',$product->categories_id)->first();
+        return response()->json(['productCategory' => $productCategeory]);
     }
     //getting blog
     public function getBlog() {
@@ -131,6 +140,7 @@ class OpenApiController extends Controller
         //return response
         return $formatted;
     }
+
 
     public function commentsOnProduct() {
 

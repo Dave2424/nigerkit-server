@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ Route::post('edit-post','PostController@update')->name('update-post');
 Route::get('/home', 'ViewController@index')->name('home');
 Route::get('/', 'ViewController@index')->name('home');
 Route::get('table-list', 'ViewController@tablelist')->name('table');
-Route::get('icons', 'ViewController@allIcons')->name('icons');
+Route::get('orders', 'ViewController@orders')->name('orders');
 Route::get('map', 'ViewController@map')->name('map');
 Route::get('notifications', 'ViewController@notifications')->name('notifications');
 Route::get('rtl-support', 'ViewController@support')->name('language');
@@ -72,6 +72,7 @@ Route::post('banner_sr', 'BannersController@store_other')->name('add-banner_sr')
 
 // Get details
 Route::get('dashboard-details', 'HomeController@getDetails');
+Route::get('get-orderlist','HomeController@getOrderlist');
 
 
 Route::group(['middleware' => ['auth:admin']], function () {

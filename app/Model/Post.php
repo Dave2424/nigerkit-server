@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Category;
+use App\Sku;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -13,12 +14,14 @@ class Post extends Model
         'image',
         'images',
         'video',
+        'slug',
         'link',
         'time'
     ];
     protected $casts = [
-        'images'
+        'images'=> 'array',
     ];
+
     public function comment()
     {
         return $this->morphMany(Comment::class, 'commentable');

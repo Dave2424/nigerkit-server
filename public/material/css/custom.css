@@ -167,3 +167,9 @@ table.dataTable thead .sorting_desc_disabled:after
 .form-check .form-check-input:checked+.form-check-sign .check {
     background: #f59530 !important;
 }
+.page-link:hover {
+    color: #000;
+    text-decoration: none;
+    background-color: #b3eab4;
+    border-color: #b3eab4;
+}

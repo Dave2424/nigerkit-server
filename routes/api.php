@@ -35,27 +35,31 @@ Route::group([
     // Profile
     Route::post('update', 'Api\ApiAccountController@update');
     // End profile
+
     Route::get('get-product', 'Api\OpenApiController@getProduct');
-    Route::get('get-post', 'Api\OpenApiController@getBlog');
     Route::get('get-category', 'Api\OpenApiController@category');
     Route::post('searchProduct','Api\OpenApiController@searchProduct');
     Route::get('get-banner', 'Api\OpenApiController@Banners');
     Route::get('get-banner_sr', 'Api\OpenApiController@Banner_sr');
-    Route::get('get-product-related-details/{id}', 'Api\OpenApiController@relateDetails');
+    Route::get('get-product-related-details/{slug}', 'Api\OpenApiController@relateDetails');
     Route::get('get-sku_No', 'Api\OpenApiController@sku_No');
     Route::post('address-search-places','Api\OpenApiController@searchPlacesByAddress');
     Route::post('vatfee', 'Api\ApiAccountController@vatFee');
     Route::post('update-password-data/{id}', 'Api\ApiAccountController@updatePasswordData');
 
-    
+    Route::get('all-product', 'Api\OpenApiController@allProduct');
+    Route::get('product-by-category/{id}', 'Api\OpenApiController@productCategory');
+    Route::post('similair-product', 'Api\OpenApiController@similairProduct');
 
 });
 
 Route::group(['prefix' => 'post'], function () {
-    // Blog
+
     Route::get('get-all-post', 'Post\ApiPostController@allPost');
-    Route::get('get-post-details/{post_id}', 'Post\ApiPostController@postDetails');
+    Route::get('get-post-details/{post_slug}', 'Post\ApiPostController@postDetails');
     Route::post('send-comment', 'Post\ApiPostController@addComment');
+    // Route::get('get-post', 'Api\OpenApiController@getBlog');
+    Route::get('like-post/{slug}', 'Post\ApiPostController@likePost');
 });
 
 Route::group(['prefix' => 'store'], function () {

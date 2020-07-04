@@ -15,7 +15,7 @@ class ApiPostController extends Controller
         return response()->json(['post' => $post]);
     }
     public function postDetails($id) {
-        $postDetails = Post::with('comment.user','category')->where('id', $id)->first();
+        $postDetails = Post::with('comment.user','category')->where('slug', $id)->first();
         $relatedPost = Post::where('categories_id', $postDetails->categories_id)->orderBy('created_at')->get()->random(3);
         return response()->json(['post_details' => $postDetails, 'relate'=> $relatedPost]);
     }
@@ -37,5 +37,12 @@ class ApiPostController extends Controller
         ]);
         $comment->save();
         return true;
+    }
+
+    function likePost($slug) {
+        $post = Post::where('slug',$slug)->firs();
+        $post->hasLiked += 1;
+        $post->save();
+        return response()->json(['post' => $post]);
     }
 }

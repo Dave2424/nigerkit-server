@@ -7,6 +7,7 @@ use App\Model\Post;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -45,6 +46,13 @@ class PostController extends Controller
     {
         if ($request->validated()) {
             $post = $request->validated();
+            $post['slug'] = Str::slug($post['title'], '-');
+            if (!is_null($post['files'])) {
+                $file = $request->file('files');
+                $image = '/storage' . HelperController::processImageUpload($file,  $post['title'], 'posts', 730, 490);
+            }
+            $post['image'] = $image;
+            $post['categories_id'] = 0;
             $post['time'] = Carbon::now();
             Post::create($post);
         }
@@ -55,7 +63,7 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Model\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responss
      */
     public function show(Post $post)
     {
@@ -160,6 +168,7 @@ class PostController extends Controller
             $id =  $request->get('id');
             $data['body'] =  $request->get('body');
             $data['title'] =  $request->get('title');
+            $data['slug'] = Str::slug($data['title'], '-');
             $post::where('id',$id)
                 ->update($data);
         }

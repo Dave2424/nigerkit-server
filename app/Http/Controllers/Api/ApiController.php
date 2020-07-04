@@ -21,11 +21,13 @@ class ApiController extends Controller
 //        $this->middleware('auth:api');
         $this->url = url('/');
     }
-    public function increaseBlogViews($id)
+    public function increaseBlogViews($slug)
     {
-        $post = $this->post->find($id);
+        //replacing the id with slug 
+        // $post = $this->post->find($id);
+        $post = $this->post::where('slug', $slug)->first();
         $post->update(['views' => $post->views + 1]);
-        $update = $this->post->find($id);
-        return response()->json($update);
+        // $update = $this->post->find($id);
+        return response()->json($post);
     }
 }

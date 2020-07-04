@@ -25,14 +25,16 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'body' => ['required']
+            'body' => ['required'],
+            'files' => ['required']
         ];
     }
     public function messages()
     {
         return [
             'title.required' => 'posts need a title.',
-            'body.required' => 'Post content cannot be empty'
+            'body.required' => 'Post content cannot be empty',
+            'files.required' => 'Post caption is required!'
         ];
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -96,16 +97,17 @@ class ProductController extends Controller
         if ($request->validated()) {
             $product = $request->validated();
             $product_name = $request->get('name');
+            $slug = $this->generateSkuNo(15);
             $product_image = array();
             if (!is_null($product['files']) && count($product['files']) > 0) {
                 foreach ($request->file('files') as $file) {
                     //upload image and add link to array
-                    $path = '/storage'.HelperController::processImageUpload($file,  $product_name,'products',700,700);
+                    $path = '/storage'.HelperController::processImageUpload($file,  $slug,'products',700,700);
                     $product_image[] = $path;
                 }
                 $product['files'] = $product_image;
             }
-
+            $product['slug'] =  Str::slug(trim($product_name), '-') . '-' .$slug;
             Product::create($product);
             //updating the Sku table
             $id = $request->get('Sku');

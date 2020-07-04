@@ -23,6 +23,9 @@ class ViewController extends Controller
     public function allIcons() {
         return view('pages.icons');
     }
+    public function orders() {
+        return view('pages.order.orderlist');
+    }
     public function notifications() {
         return view('pages.notifications');
     }

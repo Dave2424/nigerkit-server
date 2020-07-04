@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Events\NewClientHasRegisteredEvent;
 use App\Http\Controllers\Controller;
+use App\Jobs\sendWelcomeMailJob;
 use App\Model\client;
 use App\User;
 use Illuminate\Http\Request;
@@ -46,7 +47,8 @@ class ApiAuthController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
-        event(new NewClientHasRegisteredEvent($user));
+        // event(new NewClientHasRegisteredEvent($user));
+        sendWelcomeMailJob::dispatch($user);
         return response()->json(['message' => 'Account created successfully']);
     }
 
