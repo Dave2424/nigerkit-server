@@ -38,7 +38,7 @@ Route::group([
 
     Route::get('get-product', 'Api\OpenApiController@getProduct');
     Route::get('get-category', 'Api\OpenApiController@category');
-    Route::post('searchProduct','Api\OpenApiController@searchProduct');
+    Route::post('search-product','Api\OpenApiController@searchProduct');
     Route::get('get-banner', 'Api\OpenApiController@Banners');
     Route::get('get-banner_sr', 'Api\OpenApiController@Banner_sr');
     Route::get('get-product-related-details/{slug}', 'Api\OpenApiController@relateDetails');

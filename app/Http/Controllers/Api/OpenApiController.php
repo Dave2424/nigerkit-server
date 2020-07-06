@@ -26,8 +26,10 @@ class OpenApiController extends Controller
     //getting all product
     public function getProduct() {
         $data = Product::with('Sku','Reviews')->get();
+
         return response()->json(['products' => $data]);
     }
+    
     public function allProduct() {
         $data = Product::with('Sku', 'Reviews')->get();
         return response()->json(['product' => $data]);
@@ -50,24 +52,16 @@ class OpenApiController extends Controller
     }
     public function searchProduct( Request $request )
     {
-        $type = $request->get('type');
-        $searchTerms = $request->get('key');
+        // $type = $request->get('searchterm');
+        $searchTerms = $request->get('searchTerm');
         $Result = [];
-        switch ($type){
-            case 'product':
 
-                $searchResults = (new Search())
-                    ->registerModel(Product::class, 'product_name')
-                    ->perform($searchTerms);
-
-                foreach ($searchResults as $result) {
-                    $Result[] = $result->searchable->id;
-                }
-                break;
-            case'productByCategory':
-
+        $searchResults = (new Search())
+            ->registerModel(Product::class, 'name')
+            ->perform($searchTerms);
+        foreach ($searchResults as $result) {
+            $Result[] = $result->searchable;
         }
-
         return response()->json($Result);
     }
 
@@ -81,18 +75,10 @@ class OpenApiController extends Controller
         return response()->json(['banner_sr'=> $banner]);
     }
 
-    public function relateDetails($id) {
-        $product = Product::where('id',$id)->get();
-        $productDetails = Product::with('Sku')
-            ->with('category')
-            ->with('Reviews')
-            ->where('id',$id)
-            ->get();
-        $reviews = Review::where('product_id', $id)->get();
-        foreach($reviews as $item) {
-            $item->user = User::where('id','=',$item->user_id)->first(['id','name','avatar']);
-        }
-        return response()->json(['details' => $productDetails,'product' => $product, 'reviews' => $reviews]);
+    public function relateDetails($slug) {
+        $product = Product::with('Sku','category','Reviews.user')->where('slug', $slug)->first();
+        $reviews = Review::with('user')->where('product_id', $product->id)->paginate(10);
+        return response()->json(['product' => $product, 'reviews' => $reviews]);
     }
     public function sku_No(){
         $sku_No = Sku::where('isvalid',false)->get();
