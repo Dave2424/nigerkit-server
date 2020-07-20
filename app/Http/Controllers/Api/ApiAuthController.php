@@ -43,7 +43,7 @@ class ApiAuthController extends Controller
         $user->lname = $data['lname'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
-        $user->address = $data['address'];
+        // $user->address = $data['address'];
         $user->password = Hash::make($data['password']);
         $user->save();
 
