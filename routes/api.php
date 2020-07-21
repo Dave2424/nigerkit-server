@@ -36,6 +36,7 @@ Route::group([
     Route::post('update', 'Api\ApiAccountController@update');
     // End profile
 
+    Route::get('get-index-data', 'Api\OpenApiController@getIndexData');
     Route::get('get-product', 'Api\OpenApiController@getProduct');
     Route::get('get-category', 'Api\OpenApiController@category');
     Route::post('search-product','Api\OpenApiController@searchProduct');

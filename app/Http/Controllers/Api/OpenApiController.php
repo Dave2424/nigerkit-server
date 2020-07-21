@@ -24,8 +24,60 @@ class OpenApiController extends Controller
 {
 
     //getting all product
+    public function getIndexData() {
+        $products = Product::with('Sku','Reviews')->get();
+        if(count($products) > 12){
+            $products = $products->random(12);
+        }
+        $top_rated = Product::with('Sku','Reviews')->get();
+        if(count($top_rated) > 3){
+            $top_rated = $top_rated->random(3);
+        }
+        $best_sellers = Product::with('Sku','Reviews')->get();
+        if(count($best_sellers) > 3){
+            $best_sellers = $best_sellers->random(3);
+        }
+        $special_offers = Product::with('Sku','Reviews')->get();
+        if(count($special_offers) > 3){
+            $special_offers = $special_offers->random(3);
+        }
+        $posts = Post::get();
+        if(count($posts) > 4){
+            $posts = $posts->random(4);
+        }
+        $top_banners = Banners::get();
+        if(count($top_banners) > 5){
+            $top_banners = $top_banners->random(5);
+        }
+
+        $banner_two = Banner_sr::get();
+        if(count($banner_two) > 0){
+            $banner_two = $banner_two->random()->first();
+        }
+
+        $categories = Category::get();
+        if(count($categories) > 8){
+            $categories = $categories->random(8);
+        }
+
+        $data = [
+            'products'=> $products,
+            'top_rated_products'=> $top_rated,
+            'best_sellers'=> $best_sellers,
+            'special_offers'=> $special_offers,
+            'posts' => $posts,
+            'top_banners' => $top_banners,
+            'banner_two' => $banner_two,
+            'categories' => $categories,
+        ];
+
+        return response()->json(['data' => $data]);
+    }
+
+
     public function getProduct() {
-        $data = Product::with('Sku','Reviews')->get();
+        // $data = Product::with('Sku','Reviews')->get();
+        $data = Product::with('Sku','Reviews')->get()->random(12);
 
         return response()->json(['products' => $data]);
     }
@@ -71,7 +123,7 @@ class OpenApiController extends Controller
     }
 
     public function Banner_sr() {
-        $banner = Banner_sr::all()->random();
+        $banner = Banner_sr::inRandomOrder()->get();
         return response()->json(['banner_sr'=> $banner]);
     }
 

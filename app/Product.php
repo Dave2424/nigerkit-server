@@ -10,6 +10,7 @@ class Product extends Model implements Searchable
 {
     protected $fillable =[
         'name',
+        'product_image',
         'description',
         'quantity',
         'brand',
