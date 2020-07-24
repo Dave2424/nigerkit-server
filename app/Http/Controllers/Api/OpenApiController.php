@@ -76,10 +76,8 @@ class OpenApiController extends Controller
 
 
     public function getProduct() {
-        // $data = Product::with('Sku','Reviews')->get();
-        $data = Product::with('Sku','Reviews')->get()->random(12);
-
-        return response()->json(['products' => $data]);
+        $products = Product::with('Sku', 'Reviews')->paginate(30);
+        return response()->json(['products' => $products]);
     }
     
     public function allProduct() {

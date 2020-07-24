@@ -29,6 +29,10 @@ class UsersTableSeeder extends Seeder
         factory(App\Banners::class, 10)->create();
         factory(App\User::class, 300)->create();
         factory(App\Model\Post::class, 300)->create();
-        factory(App\Product::class, 300)->create();
+        factory(App\Product::class, 300)->create()->each(function($product){
+            $sku = factory(App\Sku::class)->create();
+            $product->Sku = $sku->id;
+            $product->save();
+        });
     }
 }

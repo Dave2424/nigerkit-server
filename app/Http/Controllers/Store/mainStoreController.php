@@ -87,9 +87,8 @@ class mainStoreController extends Controller
     }
     public function getLocalProduct(Request $request)
     {
-        $query = $request->all();
-        $product = Product::find($query['product_id']);
-        $result = ['product' => $product];
+        $products = Product::with('Sku', 'Reviews')->find(['product_id']);
+        $result = ['product' => $products];
         return response()->json($result);
     }
     /**

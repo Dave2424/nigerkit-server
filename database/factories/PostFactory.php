@@ -81,3 +81,10 @@ $factory->define(App\Category::class, function (Faker $faker) {
         'slug' => $cat,
     ];
 });
+
+$factory->define(App\Sku::class, function(Faker $faker){
+    return [
+        'sku_no' => $faker->randomNumber($nbDigits = 4, $strict = false),
+        'isvalid' => 1
+    ];
+});
