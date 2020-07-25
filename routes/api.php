@@ -51,6 +51,7 @@ Route::group([
     Route::get('all-product', 'Api\OpenApiController@allProduct');
     Route::get('product-by-category/{id}', 'Api\OpenApiController@productCategory');
     Route::post('similair-product', 'Api\OpenApiController@similairProduct');
+    Route::post('add-subscriber', 'Api\OpenApiController@addSubscriber');
 
 });
 

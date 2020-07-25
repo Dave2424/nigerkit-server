@@ -18,6 +18,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
 use App\Repositories\GuzzleCall;
+use App\subscriber;
 use Carbon\Carbon;
 
 class OpenApiController extends Controller
@@ -76,7 +77,7 @@ class OpenApiController extends Controller
 
 
     public function getProduct() {
-        $products = Product::with('Sku', 'Reviews')->paginate(30);
+        $products = Product::with('Sku', 'Reviews')->paginate(20);
         return response()->json(['products' => $products]);
     }
     
@@ -175,6 +176,14 @@ class OpenApiController extends Controller
         }
         //return response
         return $formatted;
+    }
+
+
+    public function addSubscriber(Request $request)
+    {
+        $email = $request->get('email');
+        $subscriber = subscriber::updateOrCreate(['email' => $email]);
+        return response()->json(['result' => true,'subscriber' => $subscriber]);
     }
 
 

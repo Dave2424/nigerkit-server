@@ -14,8 +14,8 @@ class ApiPostController extends Controller
         $post = Post::paginate(6);
         return response()->json(['post' => $post]);
     }
-    public function postDetails($id) {
-        $postDetails = Post::with('comment.user','category')->where('slug', $id)->first();
+    public function postDetails($slug) {
+        $postDetails = Post::with('comment.user','category')->where('slug', $slug)->first();
         $relatedPost = Post::where('categories_id', $postDetails->categories_id)->orderBy('created_at')->get()->random(3);
         return response()->json(['post_details' => $postDetails, 'relate'=> $relatedPost]);
     }
