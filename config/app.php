@@ -166,6 +166,7 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\DataTables\EditorServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Snowfire\Beautymail\BeautymailServiceProvider::class,
 
 
         /*

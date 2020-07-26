@@ -17,6 +17,7 @@ class Product extends Model implements Searchable
         'price',
         'Sku',
         'content',
+        'product_image',
         'slug',
         'type',
         'category_id',

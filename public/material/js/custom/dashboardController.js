@@ -8,6 +8,7 @@ mainApp.controller('dashboardController', ['$rootScope', '$scope', '$location', 
         $scope.model.post = 0;
         $scope.model.product = 0;
         $scope.model.sub_admin = 0;
+        $scope.model.subscriber = 0;
 
 
 
@@ -19,6 +20,7 @@ mainApp.controller('dashboardController', ['$rootScope', '$scope', '$location', 
             $scope.model.post = resp.data.post;
             $scope.model.product = resp.data.product;
             $scope.model.sub_admin = resp.data.sub_admin;
+            $scope.model.subscriber = resp.data.subscriber;
         }, function(error){
             console.log(error);
         });

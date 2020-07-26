@@ -80,7 +80,7 @@
                 <i class="material-icons">supervisor_account</i>
               </div>
               <p class="card-category">Subscribers</p>
-              <h3 class="card-title">150
+              <h3 class="card-title">@{{model.subscriber}}
               </h3>
             </div>
             <div class="card-footer">

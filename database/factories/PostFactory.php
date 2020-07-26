@@ -42,7 +42,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
     return [
         // 'image' => $faker->imageUrl($width = 730, $height = 490, 'sports'),
         'product_image' => $faker->imageUrl($width = 730, $height = 490, 'technics'),
-
+        'files' => [$faker->imageUrl($width = 730, $height = 490, 'technics'), $faker->imageUrl($width = 730, $height = 490, 'transport'),],
         'name' => $faker->unique()->sentence($nbWords = 3, $variableNbWords = true),
         'description' => $faker->paragraph,
         'quantity' => rand(1,500),
@@ -85,6 +85,6 @@ $factory->define(App\Category::class, function (Faker $faker) {
 $factory->define(App\Sku::class, function(Faker $faker){
     return [
         'sku_no' => $faker->randomNumber($nbDigits = 4, $strict = false),
-        'isvalid' => 1
+        'isvalid' => 0
     ];
 });

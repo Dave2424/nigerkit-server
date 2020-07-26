@@ -6,6 +6,7 @@ use App\Model\client;
 use App\Model\Post;
 use App\Orderlist;
 use App\Product;
+use App\subscriber;
 use App\User;
 
 class HomeController extends Controller
@@ -42,6 +43,7 @@ class HomeController extends Controller
         $post = Post::all()->count();
         $product = Product::where('quantity', '<>', 0)->get()->count();
         $sub_admin = User::all()->count();
+        $subscriber = subscriber::all()->count();
 
         return response()
         ->json(['success' => true,
@@ -50,7 +52,8 @@ class HomeController extends Controller
         'user' => $user,
         'post' => $post,
         'product' => $product,
-        'sub_admin' => $sub_admin
+        'sub_admin' => $sub_admin,
+        'subscriber' => $subscriber
 
         ]);
     }

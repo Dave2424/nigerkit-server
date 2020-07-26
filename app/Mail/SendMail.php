@@ -30,8 +30,17 @@ class SendMail extends Mailable
      */
     public function build()
     {
+        $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        $beautymail->send('mail.test', [], function($message) 
+        {
+            $message                                                
+            ->from('donotreply@justlaravel.com')
+            ->to('david.ifeanyi84@gmail.com', 'Howdy buddy!')
+            ->subject('Test Mail!');
+        });
         // return $this->view('view.name');
-        return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.welcomemail');
+        // return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.test');
+        // return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.welcomemail');
 
     }
 }
