@@ -8,6 +8,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperController;
 use App\Info;
+use App\Jobs\sendWelcomeMailJob;
 use App\Model\client;
 use App\Model\Post;
 use App\Orderlist;
@@ -89,6 +90,14 @@ class OpenApiController extends Controller
         $product = Product::with('Sku', 'Reviews')->where('id', $id)->first();
         $productCategeory = Category::with('product')->where('id',$product->categories_id)->first();
         return response()->json(['productCategory' => $productCategeory]);
+    }
+    //getting similiar product by category
+    public function getproductByCategory($categoryslug) {
+        $category = Category::with('product.Reviews')->where('slug', $categoryslug)->first();
+        foreach($category->product as $option) {
+            $option->sku = Sku::find($option->SKu)->first();
+        }
+        return response()->json(['category' => $category]);
     }
     //getting blog
     public function getBlog() {
@@ -185,7 +194,10 @@ class OpenApiController extends Controller
         $subscriber = subscriber::updateOrCreate(['email' => $email]);
         return response()->json(['result' => true,'subscriber' => $subscriber]);
     }
-
+    public function mail()
+    {
+        sendWelcomeMailJob::dispatch('david.ifeanyi84@gmail.com');
+    }
 
     public function commentsOnProduct() {
 

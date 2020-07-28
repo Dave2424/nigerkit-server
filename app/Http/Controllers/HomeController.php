@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\sendWelcomeMailJob;
 use App\Model\client;
 use App\Model\Post;
 use App\Orderlist;

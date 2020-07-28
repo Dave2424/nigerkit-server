@@ -3,13 +3,14 @@
 namespace App\Model;
 
 use App\Orderlist;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class client extends Authenticatable implements JWTSubject
+class client extends Authenticatable implements JWTSubject, MustVerifyEmail
 // class client extends Model
 {
     use Notifiable;

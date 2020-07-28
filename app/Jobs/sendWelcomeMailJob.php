@@ -33,6 +33,6 @@ class sendWelcomeMailJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->Job_data['email'])->send(new SendMail());
+        Mail::to('david.ifeanyi84@gmail.com')->send(new SendMail());
     }
 }

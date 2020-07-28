@@ -36,6 +36,7 @@ Route::group([
     Route::post('update', 'Api\ApiAccountController@update');
     // End profile
 
+    // Route::get('test', 'Api\OpenApiController@mail');
     Route::get('get-index-data', 'Api\OpenApiController@getIndexData');
     Route::get('get-product', 'Api\OpenApiController@getProduct');
     Route::get('get-category', 'Api\OpenApiController@category');
@@ -47,7 +48,7 @@ Route::group([
     Route::post('address-search-places','Api\OpenApiController@searchPlacesByAddress');
     Route::post('vatfee', 'Api\ApiAccountController@vatFee');
     Route::post('update-password-data/{id}', 'Api\ApiAccountController@updatePasswordData');
-
+    Route::get('get-category-product/{categoryId}', 'Api\OpenApiController@getproductByCategory');
     Route::get('all-product', 'Api\OpenApiController@allProduct');
     Route::get('product-by-category/{id}', 'Api\OpenApiController@productCategory');
     Route::post('similair-product', 'Api\OpenApiController@similairProduct');
