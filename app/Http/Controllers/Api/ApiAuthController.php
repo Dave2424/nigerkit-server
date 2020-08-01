@@ -23,14 +23,14 @@ class ApiAuthController extends Controller
     public function __construct(client $userModel)
     {
         $this->user = $userModel;
-        $this->middleware('auth:api', ['except' => ['login','register','verify']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'verify']]);
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register( Request $request )
+    public function register(Request $request)
     {
         $data = $request->all();
 
@@ -53,27 +53,28 @@ class ApiAuthController extends Controller
     }
 
     //login
-    public function Login(Request $request){
+    public function Login(Request $request)
+    {
         //Get login credentials from request
         $credentials = [
             'email' => $request->get('email'),
             'password' => $request->get('password')
         ];
-        if (! $token = auth()->attempt($credentials)) {
+        if (!$token = auth()->attempt($credentials)) {
             //return error message
             return response()->json(['error' => 'Invalid email address or Password'], '401');
         }
 
-    //    if (is_null($user->email_verified_at)) {
-    //        return response()->json(['error' => "Your email is not verified",'is_not_verified'=>$user->slug]);
-    //    }
+        //    if (is_null($user->email_verified_at)) {
+        //        return response()->json(['error' => "Your email is not verified",'is_not_verified'=>$user->slug]);
+        //    }
 
         return $this->respondWithToken($token);
-
     }
-   public function me() {
-       return response()->Json($this->guard()->user());
-   }
+    public function me()
+    {
+        return response()->Json($this->guard()->user());
+    }
     protected function respondWithToken($token)
     {
         return response()->json([
@@ -83,17 +84,20 @@ class ApiAuthController extends Controller
             'user' => auth()->user()
         ]);
     }
-    public function refresh() {
+    public function refresh()
+    {
         return $this->respondWithToken($this->guard()->refresh());
     }
-    public function verify() {
-
+    public function verify()
+    {
     }
-    public function logout() {
+    public function logout()
+    {
         $this->guard()->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
-    public function guard() {
+    public function guard()
+    {
         return Auth::guard();
     }
 }

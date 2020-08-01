@@ -31,9 +31,10 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
-    
 
-    public function getDetails() {
+
+    public function getDetails()
+    {
         $query = Orderlist::where('status', 'paid');
 
         $orderlist = $query->get()->count();
@@ -47,20 +48,22 @@ class HomeController extends Controller
         $subscriber = subscriber::all()->count();
 
         return response()
-        ->json(['success' => true,
-        'orderlist' => $orderlist,
-        'revenue' => number_format($revenue),
-        'user' => $user,
-        'post' => $post,
-        'product' => $product,
-        'sub_admin' => $sub_admin,
-        'subscriber' => $subscriber
+            ->json([
+                'success' => true,
+                'orderlist' => $orderlist,
+                'revenue' => number_format($revenue),
+                'user' => $user,
+                'post' => $post,
+                'product' => $product,
+                'sub_admin' => $sub_admin,
+                'subscriber' => $subscriber
 
-        ]);
+            ]);
     }
 
-    public function getOrderlist() {
-        $orderlist = Orderlist::with('client')->paginate(1);
-        return response()->json(['success' => true,'orderlist'=> $orderlist]);
+    public function getOrderlist()
+    {
+        $orderlist = Orderlist::with('client,userInvoice')->paginate(1);
+        return response()->json(['success' => true, 'orderlist' => $orderlist]);
     }
 }

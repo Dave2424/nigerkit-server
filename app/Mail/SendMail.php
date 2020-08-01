@@ -20,7 +20,6 @@ class SendMail extends Mailable
 
     public function __construct()
     {
-        
     }
 
     /**
@@ -41,6 +40,5 @@ class SendMail extends Mailable
         // return $this->view('view.name');
         // return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.test');
         return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.welcomemail');
-
     }
 }
