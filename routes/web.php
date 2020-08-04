@@ -59,6 +59,8 @@ Route::get('upgrade', 'ViewController@upgrade')->name('upgrade');
 Route::get('review', 'ViewController@review')->name('review');
 Route::get('posts', 'ViewController@posts')->name('posts');
 Route::get('banners', 'ViewController@banner')->name('banner');
+Route::get('verify/{token}/{id}', 'ViewController@verify')->name('verify');
+Route::post('confirm-email/{token}/{id}', 'ProfileController@confirmEmail')->name('confirm-email');
 
 //Category Route//
 Route::get('category', 'CategoryController@index')->name('category');

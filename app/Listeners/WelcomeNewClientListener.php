@@ -7,7 +7,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 
-class WelcomeNewClientListener
+
+class WelcomeNewClientListener 
 {
    
     /**
@@ -18,7 +19,7 @@ class WelcomeNewClientListener
      */
     public function handle($event)
     {
-        
-        Mail::to($event->client->email)->send(new SendMail());
+        $user = $event->getUser();
+        $user->notify(new SendMail($user));
     }
 }

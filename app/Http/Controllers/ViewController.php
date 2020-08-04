@@ -8,7 +8,7 @@ class ViewController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:admin',['except' => ['verify']]);
     }
     public function index()
     {
@@ -46,5 +46,8 @@ class ViewController extends Controller
     }
     public function posts() {
         return view ('pages.post.post');
+    }
+    public function verify($token,$id) {
+        return view('auth.verifyclient', ['data' => $token, 'id' => $id]);
     }
 }

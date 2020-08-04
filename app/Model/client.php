@@ -23,7 +23,7 @@ class client extends Authenticatable implements JWTSubject, MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'fname','lname', 'email', 'password','phone','address'
+        'fname','lname', 'email', 'password','phone','address','token'
     ];
 
     /**

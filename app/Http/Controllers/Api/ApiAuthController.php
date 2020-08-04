@@ -47,8 +47,8 @@ class ApiAuthController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
-        // event(new NewClientHasRegisteredEvent($user));
-        sendWelcomeMailJob::dispatch($user);
+        event(new NewClientHasRegisteredEvent($user));
+        // sendWelcomeMailJob::dispatch($user);
         return response()->json(['message' => 'Account created successfully']);
     }
 
@@ -88,8 +88,9 @@ class ApiAuthController extends Controller
     {
         return $this->respondWithToken($this->guard()->refresh());
     }
-    public function verify()
+    public function verify($token)
     {
+        
     }
     public function logout()
     {

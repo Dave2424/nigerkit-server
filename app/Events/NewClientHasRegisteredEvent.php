@@ -24,4 +24,8 @@ class NewClientHasRegisteredEvent
     {
         $this->client = $client;
     }
+
+    public function getUser() {
+        return $this->client;
+    }
 }

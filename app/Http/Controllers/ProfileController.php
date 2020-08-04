@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Model\client;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -42,5 +43,12 @@ class ProfileController extends Controller
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
         return back()->withStatusPassword(__('Password successfully updated.'));
+    }
+    public function confirmEmail($token, $id) {
+        $new_user = client::find($id);
+        $new_user->token = $token;
+        $new_user->email_verified_at = Now();
+        $new_user->save(); 
+        return redirect('https://www.nigerkit.com');
     }
 }

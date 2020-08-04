@@ -5,9 +5,12 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
 
-class SendMail extends Mailable
+class SendMail extends Notification
 {
     use Queueable, SerializesModels;
 
@@ -16,10 +19,17 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public $data;
+    protected $data;
 
-    public function __construct()
+    public function __construct($user)
     {
+        $this->data = $user;
+    }
+
+    public function via($notificable)
+    {
+
+        return ['mail'];
     }
 
     /**
@@ -27,18 +37,14 @@ class SendMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function toMail()
     {
-        // $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
-        // $beautymail->send('mail.test', [], function($message) 
-        // {
-        //     $message                                                
-        //     ->from('donotreply@justlaravel.com')
-        //     ->to('david.ifeanyi84@gmail.com', 'Howdy buddy!')
-        //     ->subject('Test Mail!');
-        // });
-        // return $this->view('view.name');
-        // return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.test');
-        return $this->from('admin.nigerkit@gmail.no-reply')->subject('Welcome message')->view('mail.welcomemail');
+        $token = Str::random(60);
+        return (new MailMessage)
+            ->greeting('Hello ' . $this->data->fname)
+            ->subject('[Nigerkit] Registration Confirmation')
+            ->line('Thank you for registering on Nigertkit platform.')
+            ->line('Please confirm your email by clicking on the link below:')
+            ->action('Confirm email', route('verify', [ $token, $this->data->id]));
     }
 }

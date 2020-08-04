@@ -21,7 +21,7 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
 
-    Route::post('verify', 'Api\ApiAuthController@verify');
+    // Route::get('verify/{token}', 'Api\ApiAuthController@verify')->name('verify');
     Route::post('register', 'Api\ApiAuthController@register');
     Route::post('login', 'Api\ApiAuthController@login');
     Route::post('logout', 'Api\ApiAuthController@logout');
