@@ -40,8 +40,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Category::create($data);
+        $category = new Category();
+        $category->category = $request->get('category');
+        $category->slug = $request->get('category');
+        $category->save();
         $category = Category::all();
         return response()->json(['status' => 'Category added successfully', 'category' => $category]);
     }
@@ -65,7 +67,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-
     }
 
     /**

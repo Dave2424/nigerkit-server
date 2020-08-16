@@ -54,6 +54,12 @@ class mainStoreController extends Controller
         if (auth()->check()) {
             //user authenticated
 
+            // 'id');
+            // $table->integer('user_id');
+            // $table->integer('product_id');
+            // $table->string('product_sku');
+            // $table->bigInteger('quantity');
+            // $table->bigInteger('amount');
             //check if item already exist in cart
             if (!UserCart::where('user_id', '=', $data['user_id'])
                 ->where('product_id', '=', $data['product_id'])
@@ -61,7 +67,13 @@ class mainStoreController extends Controller
             ) {
 
                 //log new item
-                UserCart::create($data);
+                // var_dump($data);
+                $cart = [
+                    'product_id' => $data['product_id'],
+                    'user_id' => $data['user_id'],
+                    'sku_id' => $data['sku_id']
+                ];
+                UserCart::create($cart);
                 //pull all cart items for user
                 $cartItems = StoreHelperController::getCartItems();
 

@@ -49,7 +49,7 @@ class PostController extends Controller
             $post['slug'] = Str::slug($post['title'], '-');
             if (!is_null($post['files'])) {
                 $file = $request->file('files');
-                $image = '/storage' . HelperController::processImageUpload($file,  $post['title'], 'posts', 730, 490);
+                $image = 'storage' . HelperController::processImageUpload($file,  $post['title'], 'posts',300, 350);
             }
             $post['image'] = $image;
             $post['categories_id'] = 0;

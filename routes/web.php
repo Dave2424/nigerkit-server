@@ -71,6 +71,7 @@ Route::get('/deleteCategory/{id}', 'CategoryController@destroy');
 //Banner Route//
 Route::post('banner', 'BannersController@store')->name('add-banner');
 Route::post('banner_sr', 'BannersController@store_other')->name('add-banner_sr');
+Route::post('add-phone', 'BannersController@addphone')->name('add-phone');
 
 // Get details
 Route::get('dashboard-details', 'HomeController@getDetails');

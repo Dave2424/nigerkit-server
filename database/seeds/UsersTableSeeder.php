@@ -14,14 +14,14 @@ class UsersTableSeeder extends Seeder
     {
 
 
-        DB::table('admins')->insert([
-            'name' => 'Main Admin',
-            'email' => 'admin@material.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('admins')->insert([
+        //     'name' => 'Main Admin',
+        //     'email' => 'admin@material.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('secret'),
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
 
         factory(App\Category::class, 10)->create();

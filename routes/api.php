@@ -38,6 +38,7 @@ Route::group([
 
     // Route::get('test', 'Api\OpenApiController@mail');
     Route::get('get-index-data', 'Api\OpenApiController@getIndexData');
+    Route::get('get-phone', 'Api\OpenApiController@getPhone');
     Route::get('get-product', 'Api\OpenApiController@getProduct');
     Route::get('get-category', 'Api\OpenApiController@category');
     Route::post('search-product', 'Api\OpenApiController@searchProduct');

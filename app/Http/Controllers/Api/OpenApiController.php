@@ -12,6 +12,7 @@ use App\Jobs\sendWelcomeMailJob;
 use App\Model\client;
 use App\Model\Post;
 use App\Orderlist;
+use App\Phone;
 use App\Product;
 use App\Review;
 use App\Sku;
@@ -26,47 +27,53 @@ class OpenApiController extends Controller
 {
 
     //getting all product
-    public function getIndexData() {
-        $products = Product::with('Sku','Reviews')->get();
-        if(count($products) > 12){
-            $products = $products->random(12);
+    public function getIndexData()
+    {
+        $products = Product::with('Sku', 'Reviews')->latest()->get();
+        if (count($products) > 12) {
+            $products = $products->latest()->limit(12)->get();
+            // $products = $products->random(12);
         }
-        $top_rated = Product::with('Sku','Reviews')->get();
-        if(count($top_rated) > 3){
+        $top_rated = Product::with('Sku', 'Reviews')->get();
+        if (count($top_rated) > 3) {
             $top_rated = $top_rated->random(3);
         }
-        $best_sellers = Product::with('Sku','Reviews')->get();
-        if(count($best_sellers) > 3){
+        $best_sellers = Product::with('Sku', 'Reviews')->get();
+        if (count($best_sellers) > 3) {
             $best_sellers = $best_sellers->random(3);
         }
-        $special_offers = Product::with('Sku','Reviews')->get();
-        if(count($special_offers) > 3){
+        $special_offers = Product::with('Sku', 'Reviews')->get();
+        if (count($special_offers) > 3) {
             $special_offers = $special_offers->random(3);
         }
-        $posts = Post::get();
-        if(count($posts) > 4){
-            $posts = $posts->random(4);
-        }
-        $top_banners = Banners::get();
-        if(count($top_banners) > 5){
-            $top_banners = $top_banners->random(5);
-        }
+        $posts = Post::latest()->limit(4)->get();
+        // if(count($posts) > 4){
+        //     $posts = $posts->limit(4);
+        // }
+        $top_banners = Banners::latest()->limit(4)->get();
+        // if (count($top_banners) > 5) {
+        //     $top_banners = $top_banners->random(5);
+        // }
 
-        $banner_two = Banner_sr::get();
-        if(count($banner_two) > 0){
-            $banner_two = $banner_two->random()->first();
-        }
+        $banner_two = Banner_sr::latest()->limit(1)->first();
+        // if (count($banner_two) > 0) {
+        //     $banner_two = $banner_two->random()->first();
+        // }
 
-        $categories = Category::get();
-        if(count($categories) > 8){
-            $categories = $categories->random(8);
-        }
+        $categories = Category::latest()->limit(7)->get();
+        // $query = Category::all();
+        // $count = ($query->count()) - 5;
+
+        // $query = $query->skip($count)->get();
+        // if(count($categories)> 8){
+        // $categories = $categories->latest()->limit(8)->get();
+        // }
 
         $data = [
-            'products'=> $products,
-            'top_rated_products'=> $top_rated,
-            'best_sellers'=> $best_sellers,
-            'special_offers'=> $special_offers,
+            'products' => $products,
+            'top_rated_products' => $top_rated,
+            'best_sellers' => $best_sellers,
+            'special_offers' => $special_offers,
             'posts' => $posts,
             'top_banners' => $top_banners,
             'banner_two' => $banner_two,
@@ -75,42 +82,53 @@ class OpenApiController extends Controller
 
         return response()->json(['data' => $data]);
     }
+    public function getPhone()
+    {
+        $phone = Phone::first();
+        $data = $phone->phone;
+        return response()->json(['data' => $data]);
+    }
 
 
-    public function getProduct() {
-        $products = Product::with('Sku', 'Reviews')->paginate(20);
+    public function getProduct()
+    {
+        $products = Product::with('Sku', 'Reviews')->latest()->paginate(20);
         return response()->json(['products' => $products]);
     }
-    
-    public function allProduct() {
+
+    public function allProduct()
+    {
         $data = Product::with('Sku', 'Reviews')->get();
         return response()->json(['product' => $data]);
     }
-    public function productCategory($id) {
+    public function productCategory($id)
+    {
         $product = Product::with('Sku', 'Reviews')->where('id', $id)->first();
-        $productCategeory = Category::with('product')->where('id',$product->categories_id)->first();
+        $productCategeory = Category::with('product')->where('id', $product->categories_id)->first();
         return response()->json(['productCategory' => $productCategeory]);
     }
     //getting similiar product by category
-    public function getproductByCategory($categoryslug) {
+    public function getproductByCategory($categoryslug)
+    {
         $category = Category::with('product.Reviews')->where('slug', $categoryslug)->first();
-        foreach($category->product as $option) {
+        foreach ($category->product as $option) {
             $option->sku = Sku::find($option->SKu)->first();
         }
         return response()->json(['category' => $category]);
     }
     //getting blog
-    public function getBlog() {
+    public function getBlog()
+    {
         $data = Post::latest()->all();
         return response()->json(['blog' => $data]);
     }
     //Categories
-    public function category() {
+    public function category()
+    {
         $data = Category::all();
         return response()->json(['category' => $data]);
-
     }
-    public function searchProduct( Request $request )
+    public function searchProduct(Request $request)
     {
         // $type = $request->get('searchterm');
         $searchTerms = $request->get('searchTerm');
@@ -125,26 +143,30 @@ class OpenApiController extends Controller
         return response()->json($Result);
     }
 
-    public function Banners() {
+    public function Banners()
+    {
         $banner = Banners::all();
-        return response()->json(['banner'=> $banner]);
+        return response()->json(['banner' => $banner]);
     }
 
-    public function Banner_sr() {
+    public function Banner_sr()
+    {
         $banner = Banner_sr::inRandomOrder()->get();
-        return response()->json(['banner_sr'=> $banner]);
+        return response()->json(['banner_sr' => $banner]);
     }
 
-    public function relateDetails($slug) {
-        $product = Product::with('Sku','category','Reviews.user')->where('slug', $slug)->first();
+    public function relateDetails($slug)
+    {
+        $product = Product::with('Sku', 'category', 'Reviews.user')->where('slug', $slug)->first();
         $reviews = Review::with('user')->where('product_id', $product->id)->paginate(10);
         return response()->json(['product' => $product, 'reviews' => $reviews]);
     }
-    public function sku_No(){
-        $sku_No = Sku::where('isvalid',false)->get();
-        return response()->json(['sku'=> $sku_No]);
+    public function sku_No()
+    {
+        $sku_No = Sku::where('isvalid', false)->get();
+        return response()->json(['sku' => $sku_No]);
     }
-    public function searchPlacesByAddress( Request $request )
+    public function searchPlacesByAddress(Request $request)
     {
         //Get query text
         $query = $request->get('query');
@@ -174,7 +196,7 @@ class OpenApiController extends Controller
     {
         $formatted = [];
         //perform process
-        if(isset($result['predictions'])) {
+        if (isset($result['predictions'])) {
             foreach ($result['predictions'] as $suggestion) {
                 $formatted[] = [
                     'id' => isset($suggestion['id']) ? $suggestion['id'] : '',
@@ -192,20 +214,20 @@ class OpenApiController extends Controller
     {
         $email = $request->get('email');
         $subscriber = subscriber::updateOrCreate(['email' => $email]);
-        return response()->json(['result' => true,'subscriber' => $subscriber]);
+        return response()->json(['result' => true, 'subscriber' => $subscriber]);
     }
     public function mail()
     {
         sendWelcomeMailJob::dispatch('david.ifeanyi84@gmail.com');
     }
 
-    public function commentsOnProduct() {
-
+    public function commentsOnProduct()
+    {
     }
-    public function footerContent() {
-
+    public function footerContent()
+    {
     }
-    public function headerContent() {
-
+    public function headerContent()
+    {
     }
 }

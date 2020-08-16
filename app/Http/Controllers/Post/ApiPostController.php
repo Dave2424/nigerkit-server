@@ -11,13 +11,14 @@ class ApiPostController extends Controller
 {
     
     public function allPost() {
-        $post = Post::paginate(6);
+        $post = Post::latest()->paginate(6);
         return response()->json(['post' => $post]);
     }
     public function postDetails($slug) {
         $postDetails = Post::with('comment.user','category')->where('slug', $slug)->first();
-        $relatedPost = Post::where('categories_id', $postDetails->categories_id)->orderBy('created_at')->get()->random(3);
-        return response()->json(['post_details' => $postDetails, 'relate'=> $relatedPost]);
+        $relatedPost = Post::where('categories_id', $postDetails->categories_id)->orderBy('created_at')->latest()->limit(3)->get();
+        $latestPost = Post::orderBy('created_at')->latest()->limit(3)->get();
+        return response()->json(['post_details' => $postDetails, 'relate'=> $relatedPost, 'latest' => $latestPost]);
     }
     public function addComment(Request $request) {
         $data = $request->all();

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Banner_sr;
 use App\Banners;
 use App\Http\Requests\BannerRequest;
+use App\Http\Requests\PhoneRequest;
+use App\Phone;
 use Illuminate\Http\Request;
 
 class BannersController extends Controller
@@ -47,7 +49,7 @@ class BannersController extends Controller
             $banner = $request->validated();
             if (!is_null($banner['files'])) {
                     //upload image and add link to array
-                    $path = '/storage'.HelperController::processImageUpload($banner['files'],  'image','banners',170,1110);
+                    $path = 'storage'.HelperController::processImageUpload($banner['files'],  'image','banners',170,1110);
                 $banner['pictures'] = $path;
             }
             Banner_sr::create($banner);
@@ -63,10 +65,25 @@ class BannersController extends Controller
             $banner = $request->validated();
             if (!is_null($banner['files'])) {
                 //upload image and add link to array
-                $path = '/storage'.HelperController::processImageUpload($banner['files'],  'image','banners',395,840);
+                $path = 'storage'.HelperController::processImageUpload($banner['files'],  'image','banners',395,840);
                 $banner['pictures'] = $path;
             }
             Banners::create($banner);
+        }
+        return back()->withStatus(__('Uploaded successfully.'));
+    }
+
+
+    public function addphone(PhoneRequest $request)
+    {
+        //        dd($request->file('files'));add-phone
+        if ($request->validated()) {
+            $phone = $request->validated();
+            // dd($phone);
+            Phone::create($phone);
+            // $Phone = Phone();
+            // $Phone->phone = $phone;
+            // $Phone->save();
         }
         return back()->withStatus(__('Uploaded successfully.'));
     }

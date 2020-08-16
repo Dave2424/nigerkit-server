@@ -12,7 +12,7 @@ class StoreHelperController extends  Controller {
     {
         if (auth()->check()) {
             $user_id = auth()->user()->id;
-            return UserCart::with('product')->with('Sku_no')->where('user_id','=',$user_id)->get();
+            return UserCart::with('product.Reviews','Sku')->where('user_id','=',$user_id)->get();
         }
         return [];
     }

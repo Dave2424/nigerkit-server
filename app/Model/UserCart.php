@@ -13,7 +13,7 @@ class UserCart extends Model
     {
         return $this->belongsTo(Product::class,'product_id');
     }
-    public function Sku_no() {
+    public function Sku() {
         return $this->belongsTo(Sku::class,'sku_id');
     }
 }
