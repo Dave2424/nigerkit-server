@@ -8,7 +8,8 @@ class ViewController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin',['except' => ['verify']]);
+        // $this->middleware('auth:admin',['except' => ['verify']]);
+        $this->middleware('auth',['except' => ['verify']]);
     }
     public function index()
     {
