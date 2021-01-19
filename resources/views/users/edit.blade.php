@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('user.update', $user) }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('admin.update', $admin) }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('put')
 

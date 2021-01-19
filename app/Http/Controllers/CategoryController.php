@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
-        return view('pages.category', ['categories' => $category->paginate(5)]);
+        return view('pages.category.category', ['categories' => $category->paginate(5)]);
     }
 
     /**
@@ -36,8 +40,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Category::create($data);
+        $category = new Category();
+        $category->category = $request->get('category');
+        $category->slug = $request->get('category');
+        $category->save();
         $category = Category::all();
         return response()->json(['status' => 'Category added successfully', 'category' => $category]);
     }
@@ -61,7 +67,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-
     }
 
     /**

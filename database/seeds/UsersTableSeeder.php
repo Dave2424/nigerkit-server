@@ -12,13 +12,27 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin Admin',
-            'email' => 'admin@material.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+
+
+        // DB::table('admins')->insert([
+        //     'name' => 'Main Admin',
+        //     'email' => 'admin@material.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('secret'),
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
+
+
+        factory(App\Category::class, 10)->create();
+        factory(App\Banner_sr::class, 10)->create();
+        factory(App\Banners::class, 10)->create();
+        factory(App\User::class, 300)->create();
+        factory(App\Model\Post::class, 300)->create();
+        factory(App\Product::class, 300)->create()->each(function($product){
+            $sku = factory(App\Sku::class)->create();
+            $product->Sku = $sku->id;
+            $product->save();
+        });
     }
 }

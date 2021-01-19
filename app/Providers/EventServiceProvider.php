@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\NewClientHasRegisteredEvent;
+use App\Events\NewOrderPlaceEvent;
+use App\Listeners\NewOrderPlacedListener;
+use App\Listeners\WelcomeNewClientListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        NewClientHasRegisteredEvent::class => [
+            WelcomeNewClientListener::class,
+        ],
+        NewOrderPlaceEvent::class => [
+            NewOrderPlacedListener::class
+        ]
+    ];
+    protected $subscribe = [
+        
     ];
 
     /**

@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\sendWelcomeMailJob;
+use App\Model\client;
+use App\Model\Post;
+use App\Orderlist;
+use App\Product;
+use App\subscriber;
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -11,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -22,5 +30,40 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard');
+    }
+
+
+    public function getDetails()
+    {
+        $query = Orderlist::where('status', 'paid');
+
+        $orderlist = $query->get()->count();
+        $revenue = $query->sum('amount');
+        // $commplaint
+        $user = client::all()->count();
+        // $subscriber 
+        $post = Post::all()->count();
+        $product = Product::where('quantity', '<>', 0)->get()->count();
+        $sub_admin = User::all()->count();
+        $subscriber = subscriber::all()->count();
+
+        return response()
+            ->json([
+                'success' => true,
+                'orderlist' => $orderlist,
+                'revenue' => number_format($revenue),
+                'user' => $user,
+                'post' => $post,
+                'product' => $product,
+                'sub_admin' => $sub_admin,
+                'subscriber' => $subscriber
+
+            ]);
+    }
+
+    public function getOrderlist()
+    {
+        $orderlist = Orderlist::with('client,userInvoice')->paginate(1);
+        return response()->json(['success' => true, 'orderlist' => $orderlist]);
     }
 }

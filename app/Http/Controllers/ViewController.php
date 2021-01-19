@@ -8,7 +8,8 @@ class ViewController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth:admin',['except' => ['verify']]);
+        $this->middleware('auth',['except' => ['verify']]);
     }
     public function index()
     {
@@ -23,11 +24,14 @@ class ViewController extends Controller
     public function allIcons() {
         return view('pages.icons');
     }
+    public function orders() {
+        return view('pages.order.orderlist');
+    }
     public function notifications() {
         return view('pages.notifications');
     }
     public function category() {
-        return view('pages.category');
+        return view('pages.category.category');
     }
     public function map() {
         return view('pages.map');
@@ -38,10 +42,13 @@ class ViewController extends Controller
     public function upgrade() {
         return view('pages.upgrade');
     }
-    public function product() {
-        return view('pages.products');
+    public function banner() {
+        return view ('pages.setting.banner');
     }
-    public function addCategory() {
-        return view ('pages.addCategory');
+    public function posts() {
+        return view ('pages.post.post');
+    }
+    public function verify($token,$id) {
+        return view('auth.verifyclient', ['data' => $token, 'id' => $id]);
     }
 }

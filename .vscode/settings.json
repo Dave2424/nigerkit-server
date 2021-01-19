@@ -1,0 +1,43 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "database": "wmgt",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "connection_table",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "root"
+        },
+        {
+            "askForPassword": true,
+            "database": "wmgt",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "connection_table",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "root"
+        },
+        {
+            "askForPassword": true,
+            "database": "wmgt",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "connection",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}

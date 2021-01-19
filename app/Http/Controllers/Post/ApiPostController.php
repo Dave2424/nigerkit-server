@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Http\Controllers\Post;
+
+use App\Http\Controllers\Controller;
+use App\Model\Comment;
+use App\Model\Post;
+use Illuminate\Http\Request;
+
+class ApiPostController extends Controller
+{
+    
+    public function allPost() {
+        $post = Post::latest()->paginate(6);
+        return response()->json(['post' => $post]);
+    }
+    public function postDetails($slug) {
+        $postDetails = Post::with('comment.user','category')->where('slug', $slug)->first();
+        $relatedPost = Post::where('categories_id', $postDetails->categories_id)->orderBy('created_at')->latest()->limit(3)->get();
+        $latestPost = Post::orderBy('created_at')->latest()->limit(3)->get();
+        return response()->json(['post_details' => $postDetails, 'relate'=> $relatedPost, 'latest' => $latestPost]);
+    }
+    public function addComment(Request $request) {
+        $data = $request->all();
+        $post = Post::find($data['post_id'])->first();
+        $info = $this->comment($post,$data['comment'], $data['client_id']);
+        return response()->json(['status' => $info]);
+    }
+
+    function comment($commentable, string $comment, string $user_id)
+    {
+        $commentModel = Comment::class;
+        $comment = new $commentModel([
+            'comment' => $comment,
+            'commentable_type' => get_class($commentable),
+            'commentable_id' => $commentable->id,
+            'client_id'   => $user_id,
+        ]);
+        $comment->save();
+        return true;
+    }
+
+    function likePost($slug) {
+        $post = Post::where('slug',$slug)->firs();
+        $post->hasLiked += 1;
+        $post->save();
+        return response()->json(['post' => $post]);
+    }
+}
