@@ -31,7 +31,7 @@ class OpenApiController extends Controller
     {
         $products = Product::with('Sku', 'Reviews')->latest()->get();
         if (count($products) > 12) {
-            $products = $products->limit(12)->get();
+            $products = Product::with('Sku', 'Reviews')->latest()->limit(12)->get();
             // $products = $products->random(12);
         }
         $top_rated = Product::with('Sku', 'Reviews')->get();
