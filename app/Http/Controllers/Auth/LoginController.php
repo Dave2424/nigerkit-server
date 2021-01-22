@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Model\Admin;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Model\Admin\Admin;
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use App\Providers\RouteServiceProvider;
 
 class LoginController extends Controller
 {
@@ -18,7 +16,7 @@ class LoginController extends Controller
     | Login Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles authenticating users for the application and
+    | This controller handles authenticating admin for the application and
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
@@ -27,7 +25,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * Where to redirect admin after login.
      *
      * @var string
      */
@@ -40,44 +38,46 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest', ['except' => 'logout']);
     }
 
-    public function login( Request $request )
+    public function login(Request $request)
     {
-        
-        $this->validateLogin($request);
-        $admin=Admin::where('email',$request->email)->first();
+        $this->validate($request, [
+            'email'           => 'required|email|exists:admins',
+            'password'           => 'required',
+        ]);
 
-        if (auth()->guard('admin')->attempt($this->credentials($request), $request->filled('remember'))) {
+        $credentials = $request->only('email', 'password');
 
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $user = Auth::user();
 
-            $this->clearLoginAttempts($request);
-
-            return $this->authenticated($request, auth()->guard('admin')->user()) ?: redirect()->intended($this->redirectPath());
+            if ($user->status == Admin::$UserFlagged) {
+                $errors = ['email'=> 'Your Account Has been flagged! Please contact support'];
+                Auth::logout();
+                return redirect('/');
+            } else{
+                $user->login_status = 1;
+                $user->save();
+                return redirect('admin');
+            }
+                
         }
+        $errors = ['email'=>'Email address or password is incorrect!'];
 
-        if(!is_null($admin)) {
-            $admin->password = Hash::make($request->password);
-
-            $admin->setRememberToken(Str::random(60));
-
-            $admin->save();
-
-            event(new PasswordReset($admin));
-
-            auth()->guard('admin')->login($admin);
-            return $this->authenticated($request, auth()->guard('admin')->user()) ?: redirect()->intended($this->redirectPath());
-        }
-        return $this->sendFailedLoginResponse($request);
+        return redirect()->back()->withErrors( $errors )->withInput();
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        auth()->guard('admin')->logout();
-        $request->session()->invalidate();
-
-        return $this->loggedOut($request) ?: redirect('/');
+        $user = Auth::user();
+        $user->login_status = 0;
+        $user->save();
+        Auth::logout();
+        return redirect('/');
     }
+
+
 }

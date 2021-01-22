@@ -2,96 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
-use App\Model\Admin\Admin;
+use App\Model\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-
-
-
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:admin');
     }
-    /**
-     * Display a listing of the users
-     *
-     * @param  \App\User  $model
-     * @return \Illuminate\View\View
-     */
-    public function index(Admin $model)
-    {
-        return view('users.index', ['admin' => $model->paginate(15)]);
+    
+    public function index(){
+        $admins = Admin::paginate(10);
+        return view('users.admin.index', ['admins' =>$admins]);
     }
-
-    /**
-     * Show the form for creating a new user
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('users.create');
+    
+    public function create(){
+        return view('users.admin.create');
     }
+    
+    public function store(Request $request){
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
-    /**
-     * Store a newly created user in storage
-     *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \App\User  $model
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(UserRequest $request, Admin $model)
-    {
-        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+        Admin::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('admin.index')->withStatus(__('Admin successfully created.'));
     }
+    
 
-    /**
-     * Show the form for editing the specified user
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\View\View
-     */
-    public function edit(Admin $user)
-    {
-        return view('users.edit', compact('user'));
+    public function edit($admin_id){
+        $admin = Admin::findOrFail($admin_id);
+        return view('users.admin.edit', compact('admin'));
     }
+    
 
-    /**
-     * Update the specified user in storage
-     *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(UserRequest $request, Admin  $user)
+    public function update(Request $request, Admin  $admin)
     {
         $hasPassword = $request->get('password');
-        $user->update(
-            $request->merge(['password' => Hash::make($request->get('password'))])
-                ->except(
+        $admin->update(
+            $request->merge([
+                'password' => Hash::make($request->get('password'))
+                ])->except(
                     [$hasPassword ? '' : 'password']
                 )
-        );
+            );
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('admin.index')->withStatus(__('Admin successfully updated.'));
     }
-
-    /**
-     * Remove the specified user from storage
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy(Admin  $user)
+    
+    public function destroy(Admin  $admin)
     {
-        $user->delete();
+        $admin->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('admin.index')->withStatus(__('Admin successfully deleted.'));
     }
 }

@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('admin.store') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('user.store') }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
 
@@ -17,7 +17,7 @@
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('admin.index') }}" class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
+                      <a href="{{ route('user.index') }}" class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                   </div>
                 </div>
                 <div class="row">
@@ -35,7 +35,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="1email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required />
+                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required />
                       @if ($errors->has('email'))
                         <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                       @endif

@@ -13,9 +13,14 @@ return [
     |
     */
 
+    // 'defaults' => [
+    //     'guard' => 'api',
+    //     'passwords' => 'users',
+    // ],
+
     'defaults' => [
-        'guard' => 'api',
-        'passwords' => 'users',
+        'guard' => 'admin',
+        'passwords' => 'admins',
     ],
 
     /*
@@ -36,21 +41,20 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-
         'api' => [
             'driver' => 'jwt',
             'provider' => 'clients',
             'hash' => false,
         ],
-
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins'
-        ]
+            'provider' => 'admins',
+        ],
+        
     ],
 
     /*
@@ -69,24 +73,33 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
     'providers' => [
         'clients' => [
             'driver' => 'eloquent',
             'model' => App\Model\client::class,
             // 'model' => App\User::class,
         ],
-
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\User::class,
+        ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Model\Admin\Admin::class,
+            'model' => App\Model\Admin::class,
         ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
-
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
