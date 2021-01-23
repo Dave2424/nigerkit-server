@@ -17,7 +17,7 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'admin-management' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           {{--<i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>--}}
           <p>{{ __('Users') }}
@@ -41,12 +41,31 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item{{ $activePage == 'category' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('category') }}">
-          <i class="material-icons">category</i>
-          <p>{{ __('Categories') }}</p>
+      <li class="nav-item {{ ($activePage == 'tag-management' || $activePage == 'category-management') ? 'active open' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#tagzanomies">
+          {{--<i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>--}}
+          <p>{{ __('Tags & Categories') }}
+            <b class="caret"></b>
+          </p>
         </a>
+        <div class="collapse show" id="tagzanomies">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'tag-management' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('tag.index') }}">
+                <span class="sidebar-mini"> TM </span>
+                <span class="sidebar-normal"> {{ __('Tags Management') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'category-management' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('category.index') }}">
+                <span class="sidebar-mini"> UM </span>
+                <span class="sidebar-normal"> {{ __('Category Management') }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
+
       <li class="nav-item{{ $activePage == 'product' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('product') }}">
           <i class="material-icons">blur_on</i>

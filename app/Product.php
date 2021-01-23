@@ -5,33 +5,25 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use App\Category;
+use App\Tag;
 
 class Product extends Model implements Searchable
 {
-    protected $fillable =[
-        'name',
-        'product_image',
-        'description',
-        'quantity',
-        'brand',
-        'price',
-        'Sku',
-        'content',
-        'product_image',
-        'slug',
-        'type',
-        'category_id',
-        'files'
-    ];
+    protected $guarded = ['id'];
+
     protected $casts = [
         'files' => 'array'
     ];
+
     public function Sku() {
         return $this->belongsTo(Sku::class, 'Sku');
     }
+
     public function Reviews() {
         return $this->hasMany(Review::class);
     }
+
     public function category() {
         return $this->belongsTo(Category::class,'category_id');
     }
@@ -42,5 +34,13 @@ class Product extends Model implements Searchable
             $this,
             $this->name
         );
+    }
+    
+    public function tags(){
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function categories(){
+        return $this->morphToMany(Category::class, 'categorizable');
     }
 }

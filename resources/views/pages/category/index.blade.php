@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('User Management')])
+@extends('layouts.app', ['activePage' => 'category-management', 'titlePage' => __('Category Management')])
 
 @section('content')
   <div class="content">
@@ -7,8 +7,8 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-success">
-                <h4 class="card-title ">{{ __('Users') }}</h4>
-                <p class="card-category"> {{ __('Here you can manage user') }}</p>
+                <h4 class="card-title ">{{ __('Categorys') }}</h4>
+                <p class="card-category"> {{ __('Here you can manage category') }}</p>
               </div>
               <div class="card-body">
                 @if (session('status'))
@@ -25,7 +25,7 @@
                 @endif
                 <div class="row">
                   <div class="col-12 text-right">
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-success">{{ __('Add user') }}</a>
+                    <a href="{{ route('category.create') }}" class="btn btn-sm btn-success">{{ __('Add category') }}</a>
                   </div>
                 </div>
                 <div class="table-responsive">
@@ -35,7 +35,10 @@
                           {{ __('Name') }}
                       </th>
                       <th>
-                        {{ __('Email') }}
+                        {{ __('Post Count') }}
+                      </th>
+                      <th>
+                        {{ __('Product Count') }}
                       </th>
                       <th>
                         {{ __('Creation date') }}
@@ -45,27 +48,30 @@
                       </th>
                     </thead>
                     <tbody>
-                      @if(count($users)> 0)
-                      @foreach($users as $user)
+                      @if(count($categories)> 0)
+                      @foreach($categories as $category)
                         <tr>
                           <td>
-                            {{ $user->name }}
+                            {{ $category->category }}
                           </td>
                           <td>
-                            {{ $user->email }}
+                            {{ $category->posts()->count() }}
                           </td>
                           <td>
-                            {{ $user->created_at->format('Y-m-d') }}
+                            {{ $category->products()->count() }}
+                          </td>
+                          <td>
+                            {{ $category->created_at->format('Y-m-d') }}
                           </td>
                           <td class="td-actions text-right">
-                            <form action="{{ route('user.destroy', $user) }}" method="Post">
+                            <form action="{{ route('category.destroy', $category->id) }}" method="Post">
                                 @csrf
                             
-                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('user.edit', $user) }}" data-original-title="" title="">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('category.edit', $category) }}" data-original-title="" title="">
                                   <i class="material-icons">edit</i>
                                   <div class="ripple-container"></div>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this category?") }}') ? this.parentElement.submit() : ''">
                                     <i class="material-icons">close</i>
                                     <div class="ripple-container"></div>
                                 </button>

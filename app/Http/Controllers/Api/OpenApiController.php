@@ -84,8 +84,12 @@ class OpenApiController extends Controller
     }
     public function getPhone()
     {
+        $data = '';
         $phone = Phone::first();
-        $data = $phone->phone;
+        if($phone){
+             $data = $phone->phone;
+        }
+       
         return response()->json(['data' => $data]);
     }
 
@@ -110,8 +114,8 @@ class OpenApiController extends Controller
     //getting similiar product by category
     public function getproductByCategory($categoryslug)
     {
-        $category = Category::with('product.Reviews')->where('slug', $categoryslug)->first();
-        foreach ($category->product as $option) {
+        $category = Category::with('products.Reviews')->where('slug', $categoryslug)->first();
+        foreach ($category->products as $option) {
             $option->sku = Sku::find($option->SKu)->first();
         }
         return response()->json(['category' => $category]);

@@ -40,9 +40,9 @@
                       <th>
                         {{ __('Creation date') }}
                       </th>
-                      {{--<th class="text-right">--}}
-                        {{--{{ __('Actions') }}--}}
-                      {{--</th>--}}
+                      <th class="text-right">
+                        {{ __('Actions') }}
+                      </th>
                     </thead>
                     <tbody>
                       @if(count($admins)> 0)
@@ -61,7 +61,6 @@
                             @if ($admin->id != auth()->id())
                               <form action="{{ route('admin.destroy', $admin) }}" method="Post">
                                   @csrf
-                                  @method('delete')
                               
                                   <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('admin.edit', $admin) }}" data-original-title="" title="">
                                     <i class="material-icons">edit</i>

@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = [
-        'category'
-    ];
-    public function post() {
-        return $this->belongsTo(Post::class,'id');
+    protected $guarded = ['id'];
+
+    /**
+     * Get all of the posts that are assigned this tag.
+     */
+    public function posts()
+    {
+        return $this->morphedByMany(Post::class, 'categorizable');
     }
-    public function product() {
-        return $this->hasMany(Product::class, 'category_id', 'id');
+
+    /**
+     * Get all of the videos that are assigned this tag.
+     */
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'categorizable');
     }
 }

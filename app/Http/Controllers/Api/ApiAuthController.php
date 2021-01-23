@@ -60,7 +60,8 @@ class ApiAuthController extends Controller
             'email' => $request->get('email'),
             'password' => $request->get('password')
         ];
-        if (!$token = auth()->attempt($credentials)) {
+        $token = auth('api')->attempt($credentials);
+        if (!$token) {
             //return error message
             return response()->json(['error' => 'Invalid email address or Password'], '401');
         }
@@ -71,17 +72,19 @@ class ApiAuthController extends Controller
 
         return $this->respondWithToken($token);
     }
+    
     public function me()
     {
         return response()->Json($this->guard()->user());
     }
+
     protected function respondWithToken($token)
     {
         return response()->json([
             'Access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
+            'user' => auth('api')->user()
         ]);
     }
     public function refresh()
@@ -97,8 +100,9 @@ class ApiAuthController extends Controller
         $this->guard()->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
+    
     public function guard()
     {
-        return Auth::guard();
+        return Auth::guard('api');
     }
 }

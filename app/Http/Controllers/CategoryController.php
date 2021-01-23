@@ -4,99 +4,74 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\DefaultHelperController;
 
 class CategoryController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:admin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Category $category)
-    {
-        return view('pages.category.category', ['categories' => $category->paginate(5)]);
+    
+    public function index(){
+        $categories = Category::with(['posts', 'products'])->paginate(10);
+        return view('pages.category.index', ['categories' => $categories]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('pages.category.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $category = new Category();
-        $category->category = $request->get('category');
-        $category->slug = $request->get('category');
-        $category->save();
-        $category = Category::all();
-        return response()->json(['status' => 'Category added successfully', 'category' => $category]);
-    }
+    public function store(Request $request){
+        $this->validate($request, [
+            'category' => ['required', 'string','max:255', 'unique:categories'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
+        $category = Category::create([
+            'category'=>$request['category'],
+            'slug'=> DefaultHelperController::makeSlug($request['category']),
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
+        return redirect()->route('category.index')->withStatus(__('Category successfully created.'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
-    {
-        $id = $request->get('id');
-        $cate = $request->get('category');
-        $category::where('id', $id)
-            ->update(['category' => $cate]);
-        $category = Category::all();
-        return response()->json(['status' => 'Category updated successfully', 'category' => $category]);
+    
+    public function edit($category_id){
+        $category = Category::findOrFail($category_id);
+        return view('pages.category.edit', compact('category'));
     }
+    
+    public function update(Request $request, $category_id){
+        $category = Category::findOrFail($category_id);
+        $this->validate($request, [
+            'category' => ['required', 'string','max:255'],
+            'slug' => ['required'],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $cate = Category::find($id);
-        $cate->delete();
-        $category = Category::all();
-        return response()->json(['status' => 'Category Deleted successfully', 'category' => $category]);
+        if($request['category'] != $category->category){
+            $this->validate($request, [
+                'category' => ['required', 'unique:categories']
+            ]);
+        }
+
+        if($request['slug'] != $category->slug){
+            $this->validate($request, [
+                'slug' => ['required', 'string', 'unique:categories']
+            ]);
+
+            $request['slug'] = DefaultHelperController::makeSlug($request['slug']);
+        }
+
+        $category->update([
+            "category"=> $request['category'],
+            "slug"=> $request['slug'],
+        ]);
+
+        return redirect()->route('category.index')->withStatus(__('Category successfully updated.'));
+    }
+    
+    public function destroy($category_id){
+        $category = Category::findOrFail($category_id);
+        $category->delete();
+        return redirect()->route('category.index')->withStatus(__('Category successfully deleted.'));
     }
 }
