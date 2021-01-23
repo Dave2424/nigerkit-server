@@ -25,7 +25,7 @@ $(document).ready(function () {
             serverSide: true,
             responsive: true,
             ajax: {
-                url: "/get-posts",
+                url: "/admin/get-posts",
             },
             columns: [
                 {
@@ -95,7 +95,7 @@ $(document).ready(function () {
             $("#post_delete").modal("hide");
             $.ajax({
                 type: "GET",
-                url: "/delete-post/" + $id,
+                url: "/admin/delete-post/" + $id,
                 success: function (data) {
                     md.showSuccessMessage(data.status);
                     table.draw();

@@ -70,7 +70,7 @@ $(document).ready(function() {
             responsive: true,
             // dom: 'Bfrtip', //for print,pdf,csv,excel
             ajax: {
-                url: '/get-product',
+                url: '/admin/get-product',
             },
             columns:[
                 {
@@ -133,7 +133,7 @@ $(document).ready(function() {
             $('#product_delete').modal('hide');
             $.ajax({
                 type: 'GET',
-                url: '/delete-product/' + $id,
+                url: '/admin/delete-product/' + $id,
                 success: function(data) {
                     md.showSuccessMessage(data.status);
                      table.draw();
