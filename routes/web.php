@@ -32,7 +32,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::get('upgrade', 'ViewController@upgrade')->name('upgrade');
 	Route::get('review', 'ViewController@review')->name('review');
 	Route::get('posts', 'ViewController@posts')->name('posts');
-	Route::get('banners', 'ViewController@banner')->name('banner');
 	Route::get('verify/{token}/{id}', 'ViewController@verify')->name('verify');
 	Route::post('confirm-email/{token}/{id}', 'ProfileController@confirmEmail')->name('confirm-email');
 
@@ -69,14 +68,27 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::post('admins/{admin_id}/update', 'AdminController@update')->name('admin.update');
 	Route::post('admins/{admin_id}/delete', 'AdminController@destroy')->name('admin.destroy');
 	
-	// User Management
-	Route::get('users', 'UserController@index')->name("user.index");
-	Route::get('users/new', 'UserController@create')->name('user.create');
-	Route::post('users/new', 'UserController@store')->name('user.store');
-	Route::get('users/{user_id}/edit', 'UserController@edit')->name('user.edit');
-	Route::post('users/{user_id}/update', 'UserController@update')->name('user.update');
-	Route::post('users/{user_id}/delete', 'UserController@destroy')->name('user.destroy');
+	// Client Management
+	Route::get('clients', 'ClientController@index')->name("user.index");
+	Route::get('client/new', 'ClientController@create')->name('user.create');
+	Route::post('client/new', 'ClientController@store')->name('user.store');
+	Route::get('client/{user_id}/edit', 'ClientController@edit')->name('user.edit');
+	Route::post('client/{user_id}/update', 'ClientController@update')->name('user.update');
+	Route::post('client/{user_id}/delete', 'ClientController@destroy')->name('user.destroy');
 
+	// Banner Management
+	Route::get('banner-manager', 'ViewController@banner')->name('banner');
+	Route::get('banners', 'BannersController@index')->name("banner.index");
+	Route::get('banner/new', 'BannersController@create')->name('banner.create');
+	Route::post('banner/new', 'BannersController@store')->name('banner.store');
+	Route::get('banner/{banner_id}/edit', 'BannersController@edit')->name('banner.edit');
+	Route::post('banner/{banner_id}/update', 'BannersController@update')->name('banner.update');
+	Route::post('banner/{banner_id}/delete', 'BannersController@destroy')->name('banner.destroy');
+
+	// Settings Management
+	Route::get('settings', 'SettingController@index')->name("settings.index");
+	Route::post('settings', 'SettingController@update')->name('settings.update');
+	
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);

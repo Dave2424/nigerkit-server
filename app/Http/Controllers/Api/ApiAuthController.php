@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Events\NewClientHasRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Jobs\sendWelcomeMailJob;
-use App\Model\client;
+use App\Model\Client;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +20,7 @@ class ApiAuthController extends Controller
      * AuthController constructor.
      * @param User $userModel
      */
-    public function __construct(client $userModel)
+    public function __construct(Client $userModel)
     {
         $this->user = $userModel;
         $this->middleware('auth:api', ['except' => ['login', 'register', 'verify']]);
@@ -38,7 +38,7 @@ class ApiAuthController extends Controller
         if ($this->user->where('email', '=', $data['email'])->exists()) {
             return response()->json(['error' => 'User with same email already exists. Go to login page and click forgot password'], '401');
         }
-        $user = new client();
+        $user = new Client();
         $user->fname = $data['fname'];
         $user->lname = $data['lname'];
         $user->email = $data['email'];

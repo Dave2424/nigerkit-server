@@ -44,8 +44,7 @@ class AdminController extends Controller
     }
     
 
-    public function update(Request $request, Admin  $admin)
-    {
+    public function update(Request $request, Admin  $admin){
         $hasPassword = $request->get('password');
         $admin->update(
             $request->merge([
@@ -58,10 +57,8 @@ class AdminController extends Controller
         return redirect()->route('admin.index')->withStatus(__('Admin successfully updated.'));
     }
     
-    public function destroy(Admin  $admin)
-    {
+    public function destroy(Admin  $admin){
         $admin->delete();
-
         return redirect()->route('admin.index')->withStatus(__('Admin successfully deleted.'));
     }
 }

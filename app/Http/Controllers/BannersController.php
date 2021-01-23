@@ -8,43 +8,75 @@ use App\Http\Requests\BannerRequest;
 use App\Http\Requests\PhoneRequest;
 use App\Phone;
 use Illuminate\Http\Request;
+use Storage;
 
 class BannersController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:admin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    
+    public function index(){
+        $banners = Banners::paginate(10);
+        return view('settings.banner.index', ['banners' =>$banners]);
+    }
+    
+    public function create(){
+        return view('settings.banner.create');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function store(BannerRequest $request){
+        // dd($request);
+        if ($request->validated()) {
+            $banner = $request->validated();
+            if (!is_null($banner['files'])) {
+                $path = 'storage'.HelperController::processImageUpload($banner['files'],  'image','banners',395,840);
+                $banner['pictures'] = $path;
+            }
+            Banners::create([
+                "title"=>$request['title'],
+                "pictures"=>$banner['pictures'],
+                "details"=>$request['details'],
+            ]);
+        }
+        return redirect()->route('banner.index')->withStatus(__('Uploaded successfully.'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store_other(BannerRequest $request)
-    {
-//        dd($request->file('files'));
+    public function edit($banner_id){
+        $banner = Banners::findOrFail($banner_id);
+        return view('settings.banner.edit', compact('banner'));
+    }
+    
+    public function update(Request $request, $banner_id){
+        $banner = Banners::findOrFail($banner_id);
+        $file = $request->file('files');
+
+        if (!is_null($file)) {
+            $path = 'storage'.HelperController::processImageUpload($file,  'image','banners',395,840);
+            $banner['pictures'] = $path;
+            Storage::delete($banner->pictures);
+        }
+
+        $banner->update([
+            "title"=>$request['title'],
+            "pictures"=>$banner['pictures'],
+            "details"=>$request['details'],
+        ]);
+
+        return redirect()->route('banner.index')->withStatus(__('Banner successfully updated.'));
+    }
+    
+    public function destroy($banner_id){
+        $banner = Banners::findOrFail($banner_id);
+        Storage::delete($banner->pictures);
+        $banner->delete();
+        return redirect()->route('banner.index')->withStatus(__('Banner successfully deleted.'));
+    }
+
+
+
+    public function store_other(BannerRequest $request){
         if ($request->validated()) {
             $banner = $request->validated();
             if (!is_null($banner['files'])) {
@@ -58,20 +90,6 @@ class BannersController extends Controller
     }
 
 
-    public function store(BannerRequest $request)
-    {
-//        dd($request->file('files'));
-        if ($request->validated()) {
-            $banner = $request->validated();
-            if (!is_null($banner['files'])) {
-                //upload image and add link to array
-                $path = 'storage'.HelperController::processImageUpload($banner['files'],  'image','banners',395,840);
-                $banner['pictures'] = $path;
-            }
-            Banners::create($banner);
-        }
-        return back()->withStatus(__('Uploaded successfully.'));
-    }
 
 
     public function addphone(PhoneRequest $request)
@@ -79,57 +97,8 @@ class BannersController extends Controller
         //        dd($request->file('files'));add-phone
         if ($request->validated()) {
             $phone = $request->validated();
-            // dd($phone);
             Phone::create($phone);
-            // $Phone = Phone();
-            // $Phone->phone = $phone;
-            // $Phone->save();
         }
         return back()->withStatus(__('Uploaded successfully.'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Banners  $banners
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Banners $banners)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Banners  $banners
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Banners $banners)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Banners  $banners
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Banners $banners)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Banners  $banners
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Banners $banners)
-    {
-        //
     }
 }

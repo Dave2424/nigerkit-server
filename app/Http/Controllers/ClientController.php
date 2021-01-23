@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Model\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ClientController extends Controller
 {
     public function __construct(){
         $this->middleware('auth:admin');
     }
     
     public function index(){
-        $users = User::paginate(10);
+        $users = Client::paginate(10);
         return view('users.user.index', ['users' =>$users]);
     }
     
@@ -28,24 +28,23 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        User::create([
+        Client::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('user.index')->withStatus(__('Client successfully created.'));
     }
     
 
     public function edit($user_id){
-        $user = User::findOrFail($user_id);
+        $user = Client::findOrFail($user_id);
         return view('users.user.edit', compact('user'));
     }
     
 
-    public function update(Request $request, User  $user)
-    {
+    public function update(Request $request, Client  $user){
         $hasPassword = $request->get('password');
         $user->update(
             $request->merge([
@@ -55,13 +54,12 @@ class UserController extends Controller
                 )
             );
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('user.index')->withStatus(__('Client successfully updated.'));
     }
     
-    public function destroy(User  $user)
-    {
+    public function destroy(Client  $user){
         $user->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('user.index')->withStatus(__('Client successfully deleted.'));
     }
 }

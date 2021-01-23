@@ -10,9 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class client extends Authenticatable implements JWTSubject, MustVerifyEmail
-// class client extends Model
-{
+class Client extends Authenticatable implements JWTSubject, MustVerifyEmail{
     use Notifiable;
 
     protected  $guarded = ['id'];

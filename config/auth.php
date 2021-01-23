@@ -88,18 +88,7 @@ return [
             'model' => App\Model\Admin::class,
         ],
     ],
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-        ],
-        'admins' => [
-            'provider' => 'admins',
-            'table' => 'password_resets',
-            'expire' => 15,
-        ],
-    ],
+
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -114,13 +103,16 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
     'passwords' => [
-        'users' => [
+        'clients' => [
             'provider' => 'clients',
             'table' => 'password_resets',
             'expire' => 60,
-            'throttle' => 60,
+        ],
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
         'admins' => [
             'provider' => 'admins',
