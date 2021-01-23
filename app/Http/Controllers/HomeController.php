@@ -8,7 +8,7 @@ use App\Model\Post;
 use App\Orderlist;
 use App\Product;
 use App\subscriber;
-use App\User;
+use App\Admin;
 
 class HomeController extends Controller
 {
@@ -43,8 +43,8 @@ class HomeController extends Controller
         $user = client::all()->count();
         // $subscriber 
         $post = Post::all()->count();
-        $product = Product::where('quantity', '<>', 0)->get()->count();
-        $sub_admin = User::all()->count();
+        $product = Product::where('quantity', '>', 0)->get()->count();
+        $sub_admin = Admin::all()->count();
         $subscriber = subscriber::all()->count();
 
         return response()

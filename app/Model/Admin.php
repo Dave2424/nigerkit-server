@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     use Notifiable;
-    protected $fillable = ['name','email','password'];
+    protected $guarded = ['id'];
 
     public static $UserActive = 1;
     public static $UserFlagged = 0;

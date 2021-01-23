@@ -67,6 +67,16 @@ class BannersController extends Controller
         return redirect()->route('banner.index')->withStatus(__('Banner successfully updated.'));
     }
     
+    public function updateStatus($banner_id){
+        $banner = Banners::findOrFail($banner_id);
+
+        $banner->update([
+            "status"=>$banner->status == 1 ? 0: 1,
+        ]);
+
+        return redirect()->route('banner.index')->withStatus(__('Banner successfully updated.'));
+    }
+    
     public function destroy($banner_id){
         $banner = Banners::findOrFail($banner_id);
         Storage::delete($banner->pictures);

@@ -16,15 +16,6 @@ class Client extends Authenticatable implements JWTSubject, MustVerifyEmail{
     protected  $guarded = ['id'];
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'fname','lname', 'email', 'password','phone','address','token'
-    ];
-
-    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
