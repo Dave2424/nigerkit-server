@@ -41,7 +41,7 @@ class OpenApiController extends Controller
         if (count($best_sellers) > 3) {
             $best_sellers = $best_sellers->random(3);
         }
-        $special_offers = Product::with('Sku', 'Reviews')->where('type', 'special')->get();
+        $special_offers = Product::with('Sku', 'Reviews')->where('type', 'best_seller')->get();
         if (count($special_offers) > 3) {
             $special_offers = $special_offers->random(3);
         }
