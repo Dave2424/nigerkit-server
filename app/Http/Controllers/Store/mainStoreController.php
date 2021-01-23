@@ -41,9 +41,9 @@ class mainStoreController extends Controller
         //Base url
         $this->url = url('/');
     }
-    public function getCart()
+    public function getCart($user_id)
     {
-        $cartItems = StoreHelperController::getCartItems();
+        $cartItems = StoreHelperController::getCartItems($user_id);
         return response()->json($cartItems);
     }
 
@@ -51,15 +51,7 @@ class mainStoreController extends Controller
     {
         $data = $request->all();
 
-        if (auth()->check()) {
             //user authenticated
-
-            // 'id');
-            // $table->integer('user_id');
-            // $table->integer('product_id');
-            // $table->string('product_sku');
-            // $table->bigInteger('quantity');
-            // $table->bigInteger('amount');
             //check if item already exist in cart
             if (!UserCart::where('user_id', '=', $data['user_id'])
                 ->where('product_id', '=', $data['product_id'])
@@ -83,7 +75,6 @@ class mainStoreController extends Controller
 
             //return response
             return response()->json(['error' => "Item has been added to cart already"]);
-        }
 
         return response()->json(['error' => "There is an error"]);
     }

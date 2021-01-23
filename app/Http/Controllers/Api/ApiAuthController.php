@@ -35,14 +35,16 @@ class ApiAuthController extends Controller
         $data = $request->all();
 
         //check if use with thesame email exists
-        if ($this->user->where('email', '=', $data['email'])->exists()) {
+        if ($this->user->where('email', '=', $data['email'])->exists())
             return response()->json(['error' => 'User with same email already exists. Go to login page and click forgot password'], '401');
-        }
+
+        if ($this->user->where('phone', '=', $data['phone'])->exists())
+            return response()->json(['error' => 'User with same phone number already exists.'], '401');
         $user = new Client();
         $user->fname = $data['fname'];
         $user->lname = $data['lname'];
         $user->email = $data['email'];
-        $user->phone = $data['phone'];
+        $user->phone = $data['phone'] ?? '';
         // $user->address = $data['address'];
         $user->password = Hash::make($data['password']);
         $user->save();
@@ -72,7 +74,7 @@ class ApiAuthController extends Controller
 
         return $this->respondWithToken($token);
     }
-    
+
     public function me()
     {
         return response()->Json($this->guard()->user());
@@ -93,14 +95,13 @@ class ApiAuthController extends Controller
     }
     public function verify($token)
     {
-        
     }
     public function logout()
     {
         $this->guard()->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
-    
+
     public function guard()
     {
         return Auth::guard('api');
