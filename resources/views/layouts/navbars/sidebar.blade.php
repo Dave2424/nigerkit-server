@@ -70,19 +70,19 @@
             </li>
 
             <li class="nav-item{{ $activePage == 'product' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('product') }}">
+                <a class="nav-link" href="{{ route('product.index') }}">
                     <i class="material-icons">blur_on</i>
                     <p>{{ __('Product') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'post' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('posts') }}">
+                <a class="nav-link" href="{{ route('post.index') }}">
                     <i class="material-icons">post_add</i>
                     <p>{{ __('Posts') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'orders' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('orders') }}">
+                <a class="nav-link" href="{{ route('order.index') }}">
                     <i class="material-icons">bubble_chart</i>
                     <p>{{ __('Orders') }}</p>
                 </a>

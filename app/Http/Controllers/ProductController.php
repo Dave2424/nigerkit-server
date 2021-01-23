@@ -12,6 +12,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use App\Http\Controllers\DefaultHelperController;
 
 class ProductController extends Controller
 {
@@ -19,25 +20,53 @@ class ProductController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    
+    public function index(){
+        $products = Product::paginate(10);
 
+        return view('pages.product.index',
+            ['products' => $products]
+        );
+    }
+
+    public function create(){
+        $categories = Category::all();
+        $sku_num = $this->generateSkuNo(14);
+        return view('pages.product.create', ['categories' =>$categories, 'Sku' => $sku_num]);
+    }
+    
+    public function store(ProductRequest $request){
+        if ($request->validated()) {
+            $product = $request->validated();
+            $product_name = $request->get('name');
+            $slug = $product_name." ".request('Sku');
+            $product_image = array();
+            if (!is_null($product['files']) && count($product['files']) > 0) {
+                foreach ($request->file('files') as $file) {
+                    //upload image and add link to array
+                    $path = 'storage' . HelperController::processImageUpload($file,  $slug, 'products', 147,227);
+                    $product_image[] = $path;
+                }
+                $product['files'] = $product_image;
+            }
+            $product['slug'] =  DefaultHelperController::makeSlug($slug);
+            $product['product_image'] = $product['files'][0]; // taking the first image path as the main image for the pics.
+            Product::create($product);
+        }
+        return redirect()->route('product.index')->withStatus(__('Product successfully added.'));
+    }
+
+    public function indexs(){
         $category = Category::all();
         $sku = Sku::paginate(10);
         $sku_num = Sku::all();
-        return view(
-            'pages.product.products',
+
+        return view('pages.product.products',
             ['categories' => $category, 'sku' => $sku, 'Sku' => $sku_num]
         );
     }
 
-    public function allProduct(Request $request)
-    {
+    public function allProduct(Request $request){
         if ($request->ajax()) {
             $product = Product::latest()->get();
             return DataTables::of($product)
@@ -73,53 +102,10 @@ class ProductController extends Controller
         return view('pages.product.products');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     public function sku_no($id)
     {
         $num = Sku::where('id', $id)->value('sku_no');;
         return $num;
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ProductRequest $request)
-    {
-        if ($request->validated()) {
-            $product = $request->validated();
-            $product_name = $request->get('name');
-            $slug = $this->generateSkuNo(15);
-            $product_image = array();
-            if (!is_null($product['files']) && count($product['files']) > 0) {
-                foreach ($request->file('files') as $file) {
-                    //upload image and add link to array
-                    $path = 'storage' . HelperController::processImageUpload($file,  $slug, 'products', 147,227);
-                    $product_image[] = $path;
-                }
-                $product['files'] = $product_image;
-            }
-            $product['slug'] =  Str::slug(trim($product_name), '-') . '-' . $slug;
-            $product['product_image'] = $product['files'][0]; // taking the first image path as the main image for the pics.
-            Product::create($product);
-            //updating the Sku table
-            $id = $request->get('Sku');
-            DB::table('skus')
-                ->where('id', $id)
-                ->update(['isvalid' => false]);
-        }
-        return back()->withStatus(__('Product detail added successfully.'));
     }
 
     //generating a Sku records

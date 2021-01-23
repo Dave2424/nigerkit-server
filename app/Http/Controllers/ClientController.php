@@ -56,6 +56,16 @@ class ClientController extends Controller
 
         return redirect()->route('user.index')->withStatus(__('Client successfully updated.'));
     }
+
+    public function updateStatus($user_id){
+        $user = Client::findOrFail($user_id);
+
+        $user->update([
+            "status"=>$user->status == 1 ? 0: 1,
+        ]);
+
+        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+    }
     
     public function destroy(Client  $user){
         $user->delete();

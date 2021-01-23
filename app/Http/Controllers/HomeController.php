@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\sendWelcomeMailJob;
-use App\Model\client;
+use App\Model\Client;
 use App\Model\Post;
 use App\Orderlist;
 use App\Product;
 use App\subscriber;
-use App\User;
+use App\Model\Admin;
 
 class HomeController extends Controller
 {
@@ -40,11 +40,11 @@ class HomeController extends Controller
         $orderlist = $query->get()->count();
         $revenue = $query->sum('amount');
         // $commplaint
-        $user = client::all()->count();
+        $user = Client::all()->count();
         // $subscriber 
         $post = Post::all()->count();
-        $product = Product::where('quantity', '<>', 0)->get()->count();
-        $sub_admin = User::all()->count();
+        $product = Product::where('quantity', '>', 0)->get()->count();
+        $sub_admin = Admin::all()->count();
         $subscriber = subscriber::all()->count();
 
         return response()

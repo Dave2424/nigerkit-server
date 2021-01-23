@@ -35,16 +35,19 @@
                                     <th>
                                         {{ __('Image') }}
                                     </th>
-                                    <th>
+                                    <th style="width: 25em">
                                         {{ __('Title') }}
                                     </th>
-                                    <th>
+                                    <th style="width: 25em">
                                         {{ __('Description') }}
                                     </th>
-                                    <th>
-                                        {{ __('Creation date') }}
+                                    <th class="text-center" style="max-width: 100px;">
+                                      {{ __('Status') }}
                                     </th>
-                                    <th class="text-right">
+                                    <th class="text-center" style="width: 150px">
+                                      {{ __('Creation date') }}
+                                    </th>
+                                    <th class="text-right" style="max-width: 200px">
                                         {{ __('Actions') }}
                                     </th>
                                 </thead>
@@ -61,7 +64,16 @@
                                         <td>
                                             {{ $banner->details }}
                                         </td>
-                                        <td style="width: 100px">
+                                        <td class="text-center">
+                                            <form action="{{ route('banner.update_status', $banner->id) }}" method="Post">
+                                                @csrf
+                                                <button type="button" class="text-center btn bg-{{ $banner->status==1 ? "success" : "danger" }}"
+                                                    onclick="confirm('{{ __("Are you sure you want to update this banner status?") }}') ? this.parentElement.submit() : ''">
+                                                {{ $banner->status==1 ? "Active" : "Inactive" }}
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td class="text-center" style="width: 100px">
                                             {{ $banner->created_at->format('Y-m-d') }}
                                         </td>
                                         <td class="td-actions text-right">

@@ -56,6 +56,16 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')->withStatus(__('Admin successfully updated.'));
     }
+
+    public function updateStatus($admin_id){
+        $admin = Admin::findOrFail($admin_id);
+
+        $admin->update([
+            "status"=>$admin->status == 1 ? 0: 1,
+        ]);
+
+        return redirect()->route('admin.index')->withStatus(__('Admin successfully updated.'));
+    }
     
     public function destroy(Admin  $admin){
         $admin->delete();
