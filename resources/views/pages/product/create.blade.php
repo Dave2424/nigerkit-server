@@ -5,13 +5,32 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data"
+                    autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
 
                     <div class="card ">
                         <div class="card-header card-header-success">
                             <h4 class="card-title">{{ __('Add Product') }}</h4>
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <ul class="nav nav-tabs" data-tabs="tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('product.index') }}">
+                                                <i class="material-icons">toc</i> Products List
+                                                <div class="ripple-container"></div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('product.create') }}">
+                                                <i class="material-icons">playlist_add</i> Add New Product
+                                                <div class="ripple-container"></div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body ">
                             <div class="row">
@@ -21,7 +40,6 @@
                                 </div>
                             </div>
                             <div class="row">
-
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="row">
                                         <div class="col-sm-10 ml-auto mr-auto">
@@ -45,7 +63,8 @@
                                                 <textarea id="input-description"
                                                     class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}"
                                                     rows="2" placeholder="describe the product" name="description"
-                                                    required="true" aria-required="true">{{ old('description') }}</textarea>
+                                                    required="true"
+                                                    aria-required="true">{{ old('description') }}</textarea>
                                                 @if ($errors->has('description'))
                                                 <span id="description-error" class="error text-danger"
                                                     for="input-description">{{ $errors->first('description') }}</span>
@@ -84,8 +103,11 @@
                                                 <select name="type" class="form-control selectpicker"
                                                     data-style="btn btn-link">
                                                     <option value="">Select product type</option>
-                                                    <option value="special" {{(old('type')== "special")? "selected" : "" }}>special</option>
-                                                    <option value="bestSeller" {{(old('type')== "bestSeller")? "selected" : "" }}>Best Seller</option>
+                                                    <option value="special"
+                                                        {{(old('type')== "special")? "selected" : "" }}>special</option>
+                                                    <option value="bestSeller"
+                                                        {{(old('type')== "bestSeller")? "selected" : "" }}>Best Seller
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -101,11 +123,11 @@
                                                     required="true" aria-required="true">
                                                     <option disabled>Select product category</option>
                                                     @if(count($categories) > 0)
-                                                      @foreach($categories as $category)
-                                                      <option value="{{$category->id}}"
+                                                    @foreach($categories as $category)
+                                                    <option value="{{$category->id}}"
                                                         {{(old('category_id')== $category->id)? "selected" : "" }}>
-                                                          {{$category->category}}</option>
-                                                      @endforeach
+                                                        {{$category->category}}</option>
+                                                    @endforeach
                                                     @endif
                                                 </select>
                                                 @if ($errors->has('category_id'))
@@ -149,7 +171,9 @@
                                     <div class="row">
                                         <div class="col-sm-10 ml-auto mr-auto">
                                             <div class="form-group">
-                                              <input type="text" class="form-control {{ $errors->has('Sku') ? ' has-danger' : '' }}" name="Sku" value="{{old('Sku', $Sku)}}">
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('Sku') ? ' has-danger' : '' }}"
+                                                    name="Sku" value="{{old('Sku', $Sku)}}">
                                                 @if ($errors->has('Sku'))
                                                 <span id="sku-error" class="error text-danger"
                                                     for="input-sku">{{ $errors->first('Sku') }}</span>
@@ -189,5 +213,5 @@
 </div>
 @endsection
 @push('banner')
-    <script src="{{ asset('material') }}/js/custom/banner.js"></script>
+<script src="{{ asset('material') }}/js/custom/banner.js"></script>
 @endpush

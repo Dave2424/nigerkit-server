@@ -56,56 +56,60 @@ class ProductController extends Controller
         return redirect()->route('product.index')->withStatus(__('Product successfully added.'));
     }
 
-    public function indexs(){
-        $category = Category::all();
-        $sku = Sku::paginate(10);
-        $sku_num = Sku::all();
-
-        return view('pages.product.products',
-            ['categories' => $category, 'sku' => $sku, 'Sku' => $sku_num]
-        );
+    public function edit($product_id){
+        $product = Product::findOrFail($product_id);
+        $categories = Category::all();
+        return view('pages.product.edit', ['categories' =>$categories, 'product' => $product]);
     }
 
-    public function allProduct(Request $request){
-        if ($request->ajax()) {
-            $product = Product::latest()->get();
-            return DataTables::of($product)
-                ->addColumn('content', function ($data) {
-                    if ($data->content) {
-                        $button = $data->content;
-                    } else {
-                        $button = 'No content';
-                    }
-                    return $button;
-                })
-                ->addColumn('Sku', function ($data) {
-                    $div = $this->sku_no($data->Sku);
-                    return $div;
-                })
-                ->addColumn('files', function ($data) {
-                    $button = '<a id="' . $data->id . '" data-item="' . htmlspecialchars($data) . '" type="button" rel="tooltip" 
-                                style="margin-right: -10px" title="View picture" class="p-file btn btn-success btn-link btn-sm">
-                                <i class="material-icons">attachment</i></a>';
-                    return $button;
-                })
-                ->addColumn('action', function ($data) {
-                    $button = '<div class="text-center"><a id="' . $data->id . '" data-item="' . htmlspecialchars($data) . '" data-sku="' . $data->Sku . '" type="button" rel="tooltip" 
-                                    title="Edit product" class="edit btn btn-info btn-link btn-sm">
-                                    <i class="material-icons">edit</i></a>';
-                    $button .= '<a id="' . $data->id . '" type="button" rel="tooltip" title="Remove" class="delete btn btn-danger btn-link btn-sm">
-                                    <i class="material-icons">close</i></a></div>';
-                    return $button;
-                })
-                ->rawColumns(['files', 'action'])
-                ->make(true);
+    public function update(Request $request, $product_id){
+        $product = Product::findOrFail($product_id);
+
+        $old_sku_value = $product->Sku;
+
+        $product->name = $request->get('name');
+        $product->description = request('description');
+        $product->quantity = request('quantity');
+        $product->brand = request('brand');
+        $product->price = request('price');
+        $product->Sku = request('Sku');
+        $product->content = request('content');
+        $product->category_id = request('category_id');
+        $product_image = array();
+        if (!is_null($request['files']) && count($request['files']) > 0) {
+            if (!is_null($product->product_image)) {
+                HelperController::removeImage($product->product_image);
+            }
+
+            foreach ($request->file('files') as $file) {
+                //upload image and add link to array
+                $path = 'storage' . HelperController::processImageUpload($file,  $product->slug, 'products', 147,227);
+                $product_image[] = $path;
+            }
+            $product['files'] = $product_image;
         }
-        return view('pages.product.products');
+        $product->product_image = $product['files'][0];
+        //updating the product details
+        $product->update();
+
+        return redirect()->route('product.index')->withStatus(__('Product edited successfully'));
     }
 
-    public function sku_no($id)
-    {
-        $num = Sku::where('id', $id)->value('sku_no');;
-        return $num;
+    public function updateStatus($product_id){
+        $product = Product::findOrFail($product_id);
+        $product->update([
+            "status"=>$product->status == 1 ? 0: 1,
+        ]);
+
+        return redirect()->back()->withStatus(__('Product successfully updated.'));
+    }
+
+    public function destroy($id){
+        $product = Product::find($id);
+        if($product){
+            $product->delete();
+        }
+        return redirect()->back()->withStatus(__('Product details deleted successfully'));
     }
 
     //generating a Sku records
@@ -117,125 +121,10 @@ class ProductController extends Controller
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+        if(Product::where('Sku', $randomString)->first()){
+            $this->generateSkuNo($length);
+        }
         return $randomString;
-    }
-    public function GenerateSku()
-    {
-        $sku = new Sku();
-        for ($n = 0; $n < 5; $n++) {
-            $sku->sku_no =  $this->generateSkuNo();
-            $sku->save();
-        }
-        return back()->withStatus(__('Sku generated successfully.'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    //editing the Sku records
-    public function handle_sku(Request $request)
-    {
-        $sk = $request->get('sku');
-        $old_value = $request->get('data-item');
-        $action = $request->get('action');
-        $response = '';
-        if ($action == 'edit') {
-            DB::table('skus')
-                ->where('sku_no', $old_value)
-                ->update(['sku_no' => $sk]);
-            $response = 'Sku no edited successfully';
-        } else {
-            DB::table('skus')->where('sku_no', $sk)->delete();
-            $response = 'Sku no deleted successfully';
-        }
-        return response()->json(['status' => $response]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        $id = $request->get('id');
-        $Data = [];
-        $product_name = $request->get('name');
-        $old_sku_value = $request->get('Old_sku');
-        $Data['name'] = $product_name;
-        $Data['description'] = $request->get('description');
-        $Data['quantity'] = $request->get('quantity');
-        $Data['brand'] = $request->get('brand');
-        $Data['price'] = $request->get('price');
-        $Data['Sku'] = $request->get('Sku');
-        $Data['content'] = $request->get('content');
-        $Data['category_id'] = $request->get('category_id');
-        $slug = $this->generateSkuNo(15);
-        $Data['slug'] =  Str::slug(trim($product_name), '-') . '-' . $slug;
-        $product_image = array();
-
-        if (!empty($_FILES['file'])) {
-            $Old_product_file = $product::find($id);
-            if (!is_null($Old_product_file->files) && count($Old_product_file->files) > 0) {
-                foreach ($Old_product_file->files as $image) {
-                    HelperController::removeImage($image);
-                }
-            }
-
-            $product_file = $this->reArrayFiles($_FILES['file']); //reArranging the image array
-            foreach ($product_file as $files) {
-                $name = $files['name'];
-                $temp_file = $files['tmp_name'];
-                $temp_ext = explode('.', $name);
-                $ext = end($temp_ext);
-                //Process new image
-                $imageName = preg_replace('/\s+/', '', $product_name);
-                $user_image = '/products/' . uniqid(rand()) . $imageName . '.' . $ext;
-                $path = 'storage' . $user_image;
-                $product_image[] = $path;
-
-                $imageR = Image::make($temp_file);
-                $imageR = $imageR->resize(227,147);
-                Storage::disk('public')->put($user_image, (string)$imageR->encode());
-            }
-            $Data['product_image'] = $product_image[0];
-            $Data['files'] = $product_image;
-        }
-        //updating the product details
-        $product::where('id', $id)
-            ->update($Data);
-
-        //updating the sku table.
-        DB::table('skus')
-            ->where('id', $Data['Sku'])
-            ->update(['isvalid' => false]);
-
-        //changing the old value to valid
-        DB::table('skus')
-            ->where('id', $old_sku_value)
-            ->update(['isvalid' => true]);
-        return response()->json(['status' => 'Product edited successfully']);
     }
 
     /**
@@ -254,18 +143,5 @@ class ProductController extends Controller
             }
         }
         return $file_array;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $product = Product::find($id);
-        $product->Delete();
-        return response()->json(['status' => 'Product details deleted successfully']);
     }
 }

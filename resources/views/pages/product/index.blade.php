@@ -19,17 +19,17 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#addProduct" data-toggle="tab">
+                                        <a class="nav-link" href="{{ route('product.create') }}">
                                             <i class="material-icons">playlist_add</i> Add product
                                             <div class="ripple-container"></div>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link" href="#view_sku" data-toggle="tab">
                                             <i class="material-icons">tune</i> Sku No_
                                             <div class="ripple-container"></div>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -47,12 +47,6 @@
                             </div>
                         </div>
                         @endif
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <a href="{{ route('product.create') }}"
-                                    class="btn btn-sm btn-success">{{ __('Add product') }}</a>
-                            </div>
-                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-dark">
@@ -129,7 +123,7 @@
                                                 @csrf
 
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('product.edit', $product) }}" data-original-title=""
+                                                    href="{{ route('product.edit', $product->id) }}" data-original-title=""
                                                     title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
@@ -148,6 +142,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $products->links()}}
                     </div>
                 </div>
             </div>

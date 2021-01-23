@@ -69,10 +69,10 @@
                 </div>
             </li>
 
-            <li class="nav-item{{ $activePage == 'product' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'product-management' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('product.index') }}">
                     <i class="material-icons">blur_on</i>
-                    <p>{{ __('Product') }}</p>
+                    <p>{{ __('Products') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'post' ? ' active' : '' }}">

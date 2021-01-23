@@ -24,11 +24,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::post('product/{product_id}/update', 'ProductController@update')->name('product.update');
 	Route::post('product/{product_id}/update-status', 'ProductController@updateStatus')->name('product.update_status');
 	Route::post('product/{product_id}/delete', 'ProductController@destroy')->name('product.destroy');
-
-	Route::post('add-product', 'ProductController@store')->name('add-product');
-	Route::get('/get-product', 'ProductController@allProduct');
-	Route::post('/edit-product', 'ProductController@update');
-	Route::get('/delete-product/{id}', 'ProductController@destroy');
+	
 	Route::get('generateSku', 'ProductController@GenerateSku')->name('generate');
 	Route::post('/handle-sku','ProductController@handle_sku');
 

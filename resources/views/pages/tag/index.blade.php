@@ -88,6 +88,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $tags->links()}}
                     </div>
                 </div>
             </div>

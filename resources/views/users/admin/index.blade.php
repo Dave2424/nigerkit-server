@@ -112,6 +112,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $admins->links()}}
                     </div>
                 </div>
             </div>
