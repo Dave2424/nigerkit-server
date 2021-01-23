@@ -95,7 +95,7 @@
                                             {{ $product->name }}
                                         </td>
                                         <td>
-                                            {{ $product->description }}
+                                            {{ Str::limit(strip_tags($product->description), 150) }}
                                         </td>
                                         <td class="text-center">
                                             {{ $product->quantity }}
