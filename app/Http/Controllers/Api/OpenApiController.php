@@ -29,20 +29,20 @@ class OpenApiController extends Controller
     //getting all product
     public function getIndexData()
     {
-        $products = Product::with('Sku', 'Reviews')->latest()->get();
+        $products = Product::with('Reviews')->latest()->get();
         if (count($products) > 12) {
             $products = Product::with('Sku', 'Reviews')->latest()->limit(12)->get();
             // $products = $products->random(12);
         }
-        $top_rated = Product::with('Sku', 'Reviews')->get();
+        $top_rated = Product::with('Reviews')->get();
         if (count($top_rated) > 3) {
             $top_rated = $top_rated->random(3);
         }
-        $best_sellers = Product::with('Sku', 'Reviews')->get();
+        $best_sellers = Product::with('Reviews')->get();
         if (count($best_sellers) > 3) {
             $best_sellers = $best_sellers->random(3);
         }
-        $special_offers = Product::with('Sku', 'Reviews')->get();
+        $special_offers = Product::with('Reviews')->get();
         if (count($special_offers) > 3) {
             $special_offers = $special_offers->random(3);
         }
@@ -96,18 +96,18 @@ class OpenApiController extends Controller
 
     public function getProduct()
     {
-        $products = Product::with('Sku', 'Reviews')->latest()->paginate(20);
+        $products = Product::with('Reviews')->latest()->paginate(20);
         return response()->json(['products' => $products]);
     }
 
     public function allProduct()
     {
-        $data = Product::with('Sku', 'Reviews')->get();
+        $data = Product::with('Reviews')->get();
         return response()->json(['product' => $data]);
     }
     public function productCategory($id)
     {
-        $product = Product::with('Sku', 'Reviews')->where('id', $id)->first();
+        $product = Product::with('Reviews')->where('id', $id)->first();
         $productCategeory = Category::with('product')->where('id', $product->categories_id)->first();
         return response()->json(['productCategory' => $productCategeory]);
     }
@@ -115,9 +115,6 @@ class OpenApiController extends Controller
     public function getproductByCategory($categoryslug)
     {
         $category = Category::with('products.Reviews')->where('slug', $categoryslug)->first();
-        foreach ($category->products as $option) {
-            $option->sku = Sku::find($option->SKu)->first();
-        }
         return response()->json(['category' => $category]);
     }
     //getting blog
@@ -161,7 +158,7 @@ class OpenApiController extends Controller
 
     public function relateDetails($slug)
     {
-        $product = Product::with('Sku', 'category', 'Reviews.user')->where('slug', $slug)->first();
+        $product = Product::with('category', 'Reviews.user')->where('slug', $slug)->first();
         $reviews = Review::with('user')->where('product_id', $product->id)->paginate(10);
         return response()->json(['product' => $product, 'reviews' => $reviews]);
     }

@@ -16,9 +16,9 @@ class Product extends Model implements Searchable
         'files' => 'array'
     ];
 
-    public function Sku() {
-        return $this->belongsTo(Sku::class, 'Sku');
-    }
+    // public function Sku() {
+    //     return $this->belongsTo(Sku::class, 'Sku');
+    // }
 
     public function Reviews() {
         return $this->hasMany(Review::class);

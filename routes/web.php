@@ -16,8 +16,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::get('dashboard-details', 'HomeController@getDetails');
 	Route::get('get-orderlist','HomeController@getOrderlist');
 
-	//product Route//
-	Route::get('product', 'ProductController@index')->name('product');
+	//Product Management//
+	Route::get('products', 'ProductController@index')->name('product.index');
+	Route::get('product/new', 'ProductController@create')->name('product.create');
+	Route::post('product/new', 'ProductController@store')->name('product.store');
+	Route::get('product/{product_id}/edit', 'ProductController@edit')->name('product.edit');
+	Route::post('product/{product_id}/update', 'ProductController@update')->name('product.update');
+	Route::post('product/{product_id}/update-status', 'ProductController@updateStatus')->name('product.update_status');
+	Route::post('product/{product_id}/delete', 'ProductController@destroy')->name('product.destroy');
+
 	Route::post('add-product', 'ProductController@store')->name('add-product');
 	Route::get('/get-product', 'ProductController@allProduct');
 	Route::post('/edit-product', 'ProductController@update');
@@ -33,15 +40,19 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::get('/edit-post/{id}','PostController@edit')->name('edit-post');
 	Route::post('edit-post','PostController@update')->name('update-post');
 
+	// Order Management
+	Route::get('orders', 'ViewController@orders')->name('order.index');
+
+	// Posts Management
+	Route::get('posts', 'ViewController@posts')->name('post.index');
+
 	//View Route//
 	Route::get('table-list', 'ViewController@tablelist')->name('table');
-	Route::get('orders', 'ViewController@orders')->name('orders');
 	Route::get('map', 'ViewController@map')->name('map');
 	Route::get('notifications', 'ViewController@notifications')->name('notifications');
 	Route::get('rtl-support', 'ViewController@support')->name('language');
 	Route::get('upgrade', 'ViewController@upgrade')->name('upgrade');
 	Route::get('review', 'ViewController@review')->name('review');
-	Route::get('posts', 'ViewController@posts')->name('posts');
 	Route::get('verify/{token}/{id}', 'ViewController@verify')->name('verify');
 	Route::post('confirm-email/{token}/{id}', 'ProfileController@confirmEmail')->name('confirm-email');
 

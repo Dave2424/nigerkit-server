@@ -12,7 +12,7 @@ mainApp.controller('dashboardController', ['$rootScope', '$scope', '$location', 
 
 
 
-        appService.fetchData('/dashboard-details',
+        appService.fetchData('/admin/dashboard-details',
         function (resp) {
             $scope.model.orderlist = resp.data.orderlist;
             $scope.model.revenue = resp.data.revenue;
