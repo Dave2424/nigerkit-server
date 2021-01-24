@@ -10,7 +10,7 @@
                     @csrf
 
                     <div class="card ">
-                        <div class="card-header card-header-primary">
+                        <div class="card-header card-header-success">
                             <h4 class="card-title">{{ __('Edit Product') }}</h4>
                             <div class="nav-tabs-navigation">
                                 <div class="nav-tabs-wrapper">
@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-primary">{{ __('Save Update') }}</button>
+                            <button type="submit" class="btn btn-success">{{ __('Save Update') }}</button>
                         </div>
                     </div>
                 </form>

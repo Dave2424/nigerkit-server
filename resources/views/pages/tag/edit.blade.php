@@ -9,7 +9,7 @@
             @csrf
 
             <div class="card ">
-              <div class="card-header card-header-primary">
+              <div class="card-header card-header-success">
                 <h4 class="card-title">{{ __('Edit Tag') }}</h4>
                 <p class="card-tag"></p>
               </div>
@@ -43,7 +43,7 @@
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                <button type="submit" class="btn btn-success">{{ __('Save') }}</button>
               </div>
             </div>
           </form>
