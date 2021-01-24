@@ -54,6 +54,7 @@ Route::group([
     Route::get('product-by-category/{id}', 'Api\OpenApiController@productCategory');
     Route::post('similair-product', 'Api\OpenApiController@similairProduct');
     Route::post('add-subscriber', 'Api\OpenApiController@addSubscriber');
+    Route::get('get-states', 'Api\OpenApiController@getState');
 });
 
 Route::group(['prefix' => 'post'], function () {

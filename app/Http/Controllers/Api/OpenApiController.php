@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
 use App\Repositories\GuzzleCall;
 use App\Setting;
+use App\State;
 use App\Subscriber;
 use Carbon\Carbon;
 
@@ -211,7 +212,11 @@ class OpenApiController extends Controller
     {
         sendWelcomeMailJob::dispatch('david.ifeanyi84@gmail.com');
     }
-
+    public function getState()
+    {
+        $states = State::with('cities')->where('country_id', 161)->get();
+        return response()->json(['success' => true, 'states' => $states]);
+    }
     public function commentsOnProduct()
     {
     }
