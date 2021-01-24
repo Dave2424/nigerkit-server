@@ -52,9 +52,6 @@ class Admin extends Authenticatable
     }
 
     public function hasPermissionTo($payload): bool{
-        if($this->hasRole("supper_admin")){
-            return true;
-        }
         
         $check_permission =  Permission::where(["key"=> $payload])->first();
         if(is_null($check_permission)){
@@ -86,6 +83,10 @@ class Admin extends Authenticatable
                 }
             }
             $permission = $this->permissions()->where('id', $payload)->first();
+        }
+        
+        if($this->hasRole("supper_admin")){
+            return true;
         }
 
         return $permission && $permission->status == 1 ? true : false;

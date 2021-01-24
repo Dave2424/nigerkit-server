@@ -13,7 +13,15 @@ class ReviewController extends Controller{
     }
     public function index()
     {
-        //
+        $this->__construct();
+        if($this->user->hasPermissionTo("Create_Post") ||
+            $this->user->hasPermissionTo("Update_Post") ||
+            $this->user->hasPermissionTo("Update_Post_Status") ||
+            $this->user->hasPermissionTo("Read_Post") ||
+            $this->user->hasPermissionTo("Delete_Post")){
+                // 
+        }
+        return back();
     }
 
     /**

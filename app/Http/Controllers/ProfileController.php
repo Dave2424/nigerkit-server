@@ -15,7 +15,11 @@ class ProfileController extends Controller{
     }
 
     public function edit(){
-        return view('profile.edit');
+        $this->__construct();
+        if($this->user->hasPermissionTo("Update_Profile")){
+            return view('profile.edit');
+        }
+        return back();
     }
 
     /**
@@ -25,9 +29,12 @@ class ProfileController extends Controller{
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileRequest $request){
-        auth()->user()->update($request->all());
-
-        return back()->withStatus(__('Profile successfully updated.'));
+        $this->__construct();
+        if($this->user->hasPermissionTo("Update_Profile")){
+            auth()->user()->update($request->all());
+            return back()->withStatus(__('Profile successfully updated.'));
+        }
+        return back();
     }
 
     /**
@@ -37,9 +44,12 @@ class ProfileController extends Controller{
      * @return \Illuminate\Http\RedirectResponse
      */
     public function password(PasswordRequest $request){
-        auth()->user()->update(['password' => Hash::make($request->get('password'))]);
-
-        return back()->withStatusPassword(__('Password successfully updated.'));
+        $this->__construct();
+        if($this->user->hasPermissionTo("Update_Profile_Password")){
+            auth()->user()->update(['password' => Hash::make($request->get('password'))]);
+            return back()->withStatusPassword(__('Password successfully updated.'));
+        }
+        return back();
     }
     public function confirmEmail($token, $id) {
         $new_user = client::find($id);
