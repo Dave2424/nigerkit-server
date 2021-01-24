@@ -106,7 +106,10 @@
             </a>
             </li> --}}
 
-            <li class="nav-item {{ ($activePage == 'banner-management'||$activePage == 'settings-management') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'banner-management'||
+                                    $activePage == 'settings-management'||
+                                    $activePage == 'role-management'||
+                                    $activePage == 'permission-management') ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#settings" aria-expanded="true">
                     <p>{{ __('Settings') }}
                         <b class="caret"></b>
@@ -116,8 +119,20 @@
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'banner-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('banner.index') }}">
-                                <span class="sidebar-mini"> BR </span>
-                                <span class="sidebar-normal">{{ __('Banner Manager') }} </span>
+                                <span class="sidebar-mini"> BM </span>
+                                <span class="sidebar-normal">{{ __('Banner Management') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'role-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('role.index') }}">
+                                <span class="sidebar-mini"> RM </span>
+                                <span class="sidebar-normal">{{ __('Role Management') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'permission-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('permission.index') }}">
+                                <span class="sidebar-mini"> PM </span>
+                                <span class="sidebar-normal">{{ __('Permission Management') }} </span>
                             </a>
                         </li>
                         <li class="nav-item{{ $activePage == 'settings-management' ? ' active' : '' }}">
