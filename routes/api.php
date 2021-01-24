@@ -73,7 +73,7 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('store-get-cart/{user_id}', 'Store\mainStoreController@getCart');
     Route::post('store-add-to-cart', 'Store\mainStoreController@addToCart');
     Route::post('store-place-order', 'Store\mainStoreController@placeOrder');
-    Route::get('store-remove-from-cart/{item_id}', 'Store\mainStoreController@removeFromCart');
+    Route::get('store-remove-from-cart/{item_id}/{user_id}', 'Store\mainStoreController@removeFromCart');
     Route::post('store-calculate-delivery', 'Store\mainStoreController@storeCalculateDelivery');
     Route::get('order-list/{client_id}', 'Store\mainStoreController@orderList');
     Route::get('order-list-recent/{client_id}', 'Store\mainStoreController@orderListRecent');
