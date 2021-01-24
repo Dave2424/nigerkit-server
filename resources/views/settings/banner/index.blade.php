@@ -67,9 +67,10 @@
                                         <td class="text-center">
                                             <form action="{{ route('banner.update_status', $banner->id) }}" method="Post">
                                                 @csrf
-                                                <button type="button" class="text-center btn bg-{{ $banner->status==1 ? "success" : "danger" }}"
+                                                <button type="button" rel="tooltip" data-original-title="{{ $banner->status==1 ? "Deactivate" : "Activate" }} Banner" title="{{ $banner->status==1 ? "Deactivate" : "Activate" }} Banner"
+                                                    class="text-center btn bg-{{ $banner->status==1 ? "success" : "danger" }}"
                                                     onclick="confirm('{{ __("Are you sure you want to update this banner status?") }}') ? this.parentElement.submit() : ''">
-                                                {{ $banner->status==1 ? "Active" : "Inactive" }}
+                                                    {{ $banner->status==1 ? "Active" : "Inactive" }}
                                                 </button>
                                             </form>
                                         </td>
@@ -80,12 +81,13 @@
                                             <form action="{{ route('banner.destroy', $banner) }}" method="Post">
                                                 @csrf
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('banner.edit', $banner) }}">
+                                                    href="{{ route('banner.edit', $banner->id) }}" data-original-title="Edit Banner"
+                                                    title="Edit Banner">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link"
-                                                    data-original-title="" title=""
+                                                <button rel="tooltip" type="button" class="btn btn-danger btn-link"
+                                                    data-original-title="Delete Banner" title="Delete Banner"
                                                     onclick="confirm('{{ __("Are you sure you want to delete this banner?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>

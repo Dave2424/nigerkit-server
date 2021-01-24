@@ -89,17 +89,18 @@
                                             {{ Str::limit(strip_tags($post->description), 150) }}
                                         </td>
                                         <td class="text-center">
-                                            {{ $post->quantity }}
+                                            {{ Str::limit($post->categoriesToSting(), 50) }}
                                         </td>
                                         <td class="text-center">
-                                            {{ $post->brand }}
+                                            {{ Str::limit($post->tagsToSting(), 50) }}
                                         </td>
                                         <td class="text-center">
                                             <form action="{{ route('post.update_status', $post->id) }}" method="Post">
                                                 @csrf
-                                                <button type="button" class="text-center btn bg-{{ $post->status==1 ? "success" : "danger" }}"
+                                                <button type="button" rel="tooltip" data-original-title="{{ $post->status==1 ? "Deactivate" : "Activate" }} Post" title="{{ $post->status==1 ? "Deactivate" : "Activate" }} Post"
+                                                    class="text-center btn bg-{{ $post->status==1 ? "success" : "danger" }}"
                                                     onclick="confirm('{{ __("Are you sure you want to update this post status?") }}') ? this.parentElement.submit() : ''">
-                                                {{ $post->status==1 ? "Active" : "Inactive" }}
+                                                    {{ $post->status==1 ? "Active" : "Inactive" }}
                                                 </button>
                                             </form>
                                         </td>
@@ -111,12 +112,13 @@
                                                 @csrf
 
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('post.edit', $post->id) }}" data-original-title=""
-                                                    title="">
+                                                    href="{{ route('post.edit', $post) }}" data-original-title="Edit Post"
+                                                    title="Edit Post">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link"
+                                                <button rel="tooltip" type="button" class="btn btn-danger btn-link"
+                                                    data-original-title="Delete Post" title="Delete Post"
                                                     onclick="confirm('{{ __("Are you sure you want to delete this post?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>

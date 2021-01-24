@@ -61,9 +61,10 @@
                                         <td class="text-center">
                                             <form action="{{ route('user.update_status', $user->id) }}" method="Post">
                                                 @csrf
-                                                <button type="button" class="text-center btn bg-{{ $user->status==1 ? "success" : "danger" }}"
+                                                <button type="button" rel="tooltip" data-original-title="{{ $user->status==1 ? "Deactivate" : "Activate" }} User" title="{{ $user->status==1 ? "Deactivate" : "Activate" }} User"
+                                                    class="text-center btn bg-{{ $user->status==1 ? "success" : "danger" }}"
                                                     onclick="confirm('{{ __("Are you sure you want to update this user status?") }}') ? this.parentElement.submit() : ''">
-                                                {{ $user->status==1 ? "Active" : "Inactive" }}
+                                                    {{ $user->status==1 ? "Active" : "Inactive" }}
                                                 </button>
                                             </form>
                                         </td>
@@ -75,13 +76,13 @@
                                                 @csrf
 
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('user.edit', $user) }}" data-original-title=""
-                                                    title="">
+                                                    href="{{ route('user.edit', $user) }}" data-original-title="Edit User"
+                                                    title="Edit User">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link"
-                                                    data-original-title="" title=""
+                                                <button rel="tooltip" type="button" class="btn btn-danger btn-link"
+                                                    data-original-title="Delete User" title="Delete User"
                                                     onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>

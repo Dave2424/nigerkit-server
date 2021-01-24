@@ -109,9 +109,10 @@
                                         <td class="text-center">
                                             <form action="{{ route('product.update_status', $product->id) }}" method="Post">
                                                 @csrf
-                                                <button type="button" class="text-center btn bg-{{ $product->status==1 ? "success" : "danger" }}"
+                                                <button type="button" rel="tooltip" data-original-title="{{ $product->status==1 ? "Deactivate" : "Activate" }} Product" title="{{ $product->status==1 ? "Deactivate" : "Activate" }} Product"
+                                                    class="text-center btn bg-{{ $product->status==1 ? "success" : "danger" }}"
                                                     onclick="confirm('{{ __("Are you sure you want to update this product status?") }}') ? this.parentElement.submit() : ''">
-                                                {{ $product->status==1 ? "Active" : "Inactive" }}
+                                                    {{ $product->status==1 ? "Active" : "Inactive" }}
                                                 </button>
                                             </form>
                                         </td>
@@ -121,18 +122,18 @@
                                         <td class="td-actions text-right" style="max-width: 150px;">
                                             <form action="{{ route('product.destroy', $product->id) }}" method="Post">
                                                 @csrf
-
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('product.edit', $product->id) }}" data-original-title=""
-                                                    title="">
+                                                    href="{{ route('product.edit', $product) }}" data-original-title="Edit Product"
+                                                    title="Edit Product">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link"
-                                                    data-original-title="" title=""
+                                                <button rel="tooltip" type="button" class="btn btn-danger btn-link"
+                                                    data-original-title="Delete Product" title="Delete Product"
                                                     onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>
+                                                </button>
                                                 </button>
                                             </form>
                                         </td>

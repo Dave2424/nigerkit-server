@@ -25,7 +25,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('admin.create') }}"
+                                <a href="{{ route('admin.create') }}" rel="tooltip" data-original-title="Create New Profile Admin"
                                     class="btn btn-sm btn-success">{{ __('Add admin') }}</a>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                         <td class="text-center">
                                             <form action="{{ route('admin.update_status', $admin->id) }}" method="Post">
                                                 @csrf
-                                                <button type="button"
+                                                <button type="button" rel="tooltip" data-original-title="{{ $admin->status==1 ? "Deactivate" : "Activate" }} Admin" title="{{ $admin->status==1 ? "Deactivate" : "Activate" }} Admin"
                                                     class="text-center btn bg-{{ $admin->status==1 ? "success" : "danger" }}"
                                                     onclick="confirm('{{ __("Are you sure you want to update this admin status?") }}') ? this.parentElement.submit() : ''">
                                                     {{ $admin->status==1 ? "Active" : "Inactive" }}
@@ -86,13 +86,13 @@
                                                 @csrf
 
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('admin.edit', $admin) }}" data-original-title=""
-                                                    title="">
+                                                    href="{{ route('admin.edit', $admin) }}" data-original-title="Edit Admin"
+                                                    title="Edit Admin">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link"
-                                                    data-original-title="" title=""
+                                                <button rel="tooltip" type="button" class="btn btn-danger btn-link"
+                                                    data-original-title="Delete Admin" title="Delete Admin"
                                                     onclick="confirm('{{ __("Are you sure you want to delete this admin?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>
@@ -100,6 +100,7 @@
                                             </form>
                                             @else
                                             <a rel="tooltip" class="btn btn-success btn-link"
+                                                data-original-title="Edit profile" title="Edit profile"
                                                 href="{{ route('profile.edit') }}" data-original-title="" title="">
                                                 <i class="material-icons">edit</i>
                                                 <div class="ripple-container"></div>

@@ -67,15 +67,14 @@
                                         <td class="td-actions text-right" style="max-width: 150px;">
                                             <form action="{{ route('tag.destroy', $tag->id) }}" method="Post">
                                                 @csrf
-
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('tag.edit', $tag) }}" data-original-title=""
-                                                    title="">
+                                                    href="{{ route('tag.edit', $tag) }}" data-original-title="Edit Tag"
+                                                    title="Edit Tag">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link"
-                                                    data-original-title="" title=""
+                                                <button rel="tooltip" type="button" class="btn btn-danger btn-link"
+                                                    data-original-title="Delete Tag" title="Delete Tag"
                                                     onclick="confirm('{{ __("Are you sure you want to delete this tag?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>

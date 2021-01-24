@@ -21,16 +21,22 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
 	// Order Management
 	Route::get('orders', 'ViewController@orders')->name('order.index');
-
-	//View Route//
-	Route::get('table-list', 'ViewController@tablelist')->name('table');
-	Route::get('map', 'ViewController@map')->name('map');
-	Route::get('notifications', 'ViewController@notifications')->name('notifications');
-	Route::get('rtl-support', 'ViewController@support')->name('language');
-	Route::get('upgrade', 'ViewController@upgrade')->name('upgrade');
+	
+	// Order Management
 	Route::get('review', 'ViewController@review')->name('review');
+
+	//View Route
 	Route::get('verify/{token}/{id}', 'ViewController@verify')->name('verify');
 	Route::post('confirm-email/{token}/{id}', 'ProfileController@confirmEmail')->name('confirm-email');
+
+	//Subscriber Management//
+	Route::get('subscribers', 'SubscriberController@index')->name('subscriber.index');
+	Route::get('subscriber/new', 'SubscriberController@create')->name('subscriber.create');
+	Route::post('subscriber/new', 'SubscriberController@store')->name('subscriber.store');
+	Route::get('subscriber/{subscriber_id}/edit', 'SubscriberController@edit')->name('subscriber.edit');
+	Route::post('subscriber/{subscriber_id}/update', 'SubscriberController@update')->name('subscriber.update');
+	Route::post('subscriber/{subscriber_id}/update-status', 'SubscriberController@updateStatus')->name('subscriber.update_status');
+	Route::post('subscriber/{subscriber_id}/delete', 'SubscriberController@destroy')->name('subscriber.destroy');
 
 	//Post Management//
 	Route::get('posts', 'PostController@index')->name('post.index');

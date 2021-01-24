@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li
-                class="nav-item {{ ($activePage == 'admin-management' || $activePage == 'user-management') ? ' active' : '' }}">
+                class="nav-item {{ ($activePage == 'admin-management' || $activePage == 'user-management' || $activePage == 'subscriber-management') ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
                     {{--<i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>--}}
                     <p>{{ __('Users') }}
@@ -38,6 +38,12 @@
                             <a class="nav-link" href="{{ route('user.index') }}">
                                 <span class="sidebar-mini"> UM </span>
                                 <span class="sidebar-normal"> {{ __('User Management') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'subscriber-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('subscriber.index') }}">
+                                <span class="sidebar-mini"> SM </span>
+                                <span class="sidebar-normal"> {{ __('Subscriber Management') }} </span>
                             </a>
                         </li>
                     </ul>
