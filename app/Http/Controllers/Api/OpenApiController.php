@@ -32,42 +32,24 @@ class OpenApiController extends Controller
         $products = Product::with('Reviews')->latest()->get();
         if (count($products) > 12) {
             $products = Product::with('Sku', 'Reviews')->latest()->limit(12)->get();
-            // $products = $products->random(12);
         }
         $top_rated = Product::with('Reviews')->get();
         if (count($top_rated) > 3) {
             $top_rated = $top_rated->random(3);
         }
-        $best_sellers = Product::with('Reviews')->get();
+        $best_sellers = Product::with('Reviews')->where('type', 'best_seller')->get();
         if (count($best_sellers) > 3) {
             $best_sellers = $best_sellers->random(3);
         }
-        $special_offers = Product::with('Reviews')->get();
+        $special_offers = Product::with('Reviews')->where('type', 'special')->get();
         if (count($special_offers) > 3) {
             $special_offers = $special_offers->random(3);
         }
         $posts = Post::latest()->limit(4)->get();
-        // if(count($posts) > 4){
-        //     $posts = $posts->limit(4);
-        // }
         $top_banners = Banners::latest()->limit(4)->get();
-        // if (count($top_banners) > 5) {
-        //     $top_banners = $top_banners->random(5);
-        // }
-
         $banner_two = Banner_sr::latest()->limit(1)->first();
-        // if (count($banner_two) > 0) {
-        //     $banner_two = $banner_two->random()->first();
-        // }
-
         $categories = Category::latest()->limit(7)->get();
-        // $query = Category::all();
-        // $count = ($query->count()) - 5;
 
-        // $query = $query->skip($count)->get();
-        // if(count($categories)> 8){
-        // $categories = $categories->latest()->limit(8)->get();
-        // }
 
         $data = [
             'products' => $products,
@@ -86,10 +68,10 @@ class OpenApiController extends Controller
     {
         $data = '';
         $phone = Phone::first();
-        if($phone){
-             $data = $phone->phone;
+        if ($phone) {
+            $data = $phone->phone;
         }
-       
+
         return response()->json(['data' => $data]);
     }
 
