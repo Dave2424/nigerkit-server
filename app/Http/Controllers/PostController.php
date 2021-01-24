@@ -11,21 +11,27 @@ use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
 
-class PostController extends Controller
-{
+class PostController extends Controller{
     public $user;
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:admin');
         $this->user = auth('admin')->user();
     }
     
     public function index(){
-        $posts = Post::paginate(10);
+        $this->__construct();
+        if($this->user->hasPermissionTo("Create_Post") ||
+            $this->user->hasPermissionTo("Update_Post") ||
+            $this->user->hasPermissionTo("Update_Post_Status") ||
+            $this->user->hasPermissionTo("Read_Post") ||
+            $this->user->hasPermissionTo("Delete_Post")){
 
-        return view('pages.post.index',
-            ['posts' => $posts]
-        );
+            $posts = Post::paginate(10);
+            return view('pages.post.index',
+                ['posts' => $posts]
+            );
+        }
+        return back();
     }
 
     public function create(){
@@ -66,7 +72,7 @@ class PostController extends Controller
 
     public function edit($post_id){
         $this->__construct();
-        if($this->user->hasPermissionTo("Edit_Post")){
+        if($this->user->hasPermissionTo("Update_Post")){
             $post = Post::findOrFail($post_id);
             $post->tags = $post->tagsToSting();
             $post->categories = $post->categoriesToSting();
@@ -78,7 +84,7 @@ class PostController extends Controller
     
     public function update(Request $request, $post_id){
         $this->__construct();
-        if($this->user->hasPermissionTo("Edit_Post")){
+        if($this->user->hasPermissionTo("Update_Post")){
             $post = Post::findOrFail($post_id);
             $file = $request->file('files');
 

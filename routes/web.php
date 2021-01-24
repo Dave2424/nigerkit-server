@@ -42,12 +42,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
 	//Permission Management//
 	Route::get('permissions', 'PermissionController@index')->name('permission.index');
-	Route::get('permission/new', 'PermissionController@create')->name('permission.create');
-	Route::post('permission/new', 'PermissionController@store')->name('permission.store');
-	Route::get('permission/{permission_id}/edit', 'PermissionController@edit')->name('permission.edit');
-	Route::post('permission/{permission_id}/update', 'PermissionController@update')->name('permission.update');
+	Route::get('permission/new', 'PermissionController@create')->name('permission.create'); //Not in use
+	Route::post('permission/new', 'PermissionController@store')->name('permission.store'); //Not in use
+	Route::get('permission/{permission_id}/edit', 'PermissionController@edit')->name('permission.edit'); //Not in use
+	Route::post('permission/{permission_id}/update', 'PermissionController@update')->name('permission.update'); //Not in use
 	Route::post('permission/{permission_id}/update-status', 'PermissionController@updateStatus')->name('permission.update_status');
-	Route::post('permission/{permission_id}/delete', 'PermissionController@destroy')->name('permission.destroy');
+	Route::post('permission/{permission_id}/delete', 'PermissionController@destroy')->name('permission.destroy'); //Not in use
 
 	//Subscriber Management//
 	Route::get('subscribers', 'SubscriberController@index')->name('subscriber.index');
@@ -94,12 +94,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
 	// Admin Management
 	Route::get('admins', 'AdminController@index')->name("admin.index");
-	Route::get('admins/new', 'AdminController@create')->name('admin.create');
-	Route::post('admins/new', 'AdminController@store')->name('admin.store');
-	Route::get('admins/{admin_id}/edit', 'AdminController@edit')->name('admin.edit');
-	Route::post('admins/{admin_id}/update', 'AdminController@update')->name('admin.update');
-	Route::post('admins/{admin_id}/update-status', 'AdminController@updateStatus')->name('admin.update_status');
-	Route::post('admins/{admin_id}/delete', 'AdminController@destroy')->name('admin.destroy');
+	Route::get('admin/new', 'AdminController@create')->name('admin.create');
+	Route::post('admin/new', 'AdminController@store')->name('admin.store');
+	Route::get('admin/{admin_id}/edit', 'AdminController@edit')->name('admin.edit');
+	Route::post('admin/{admin_id}/update', 'AdminController@update')->name('admin.update');
+	Route::post('admin/{admin_id}/update-status', 'AdminController@updateStatus')->name('admin.update_status');
+	Route::post('admin/{admin_id}/delete', 'AdminController@destroy')->name('admin.destroy');
+	Route::get('admin/{role_id}/edit-permissions', 'AdminController@editPermission')->name('admin.edit_permission');
+	Route::post('admin/{role_id}/update-permissions', 'AdminController@updatePermission')->name('admin.update_permission');
+	Route::get('admin/{role_id}/edit-roles', 'AdminController@editRole')->name('admin.edit_role');
+	Route::post('admin/{role_id}/update-roles', 'AdminController@updateRole')->name('admin.update_role');
 	
 	// Client Management
 	Route::get('clients', 'ClientController@index')->name("user.index");
