@@ -29,6 +29,26 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::get('verify/{token}/{id}', 'ViewController@verify')->name('verify');
 	Route::post('confirm-email/{token}/{id}', 'ProfileController@confirmEmail')->name('confirm-email');
 
+	//Role Management//
+	Route::get('roles', 'RoleController@index')->name('role.index');
+	Route::get('role/new', 'RoleController@create')->name('role.create');
+	Route::post('role/new', 'RoleController@store')->name('role.store');
+	Route::get('role/{role_id}/edit', 'RoleController@edit')->name('role.edit');
+	Route::post('role/{role_id}/update', 'RoleController@update')->name('role.update');
+	Route::post('role/{role_id}/update-status', 'RoleController@updateStatus')->name('role.update_status');
+	Route::post('role/{role_id}/delete', 'RoleController@destroy')->name('role.destroy');
+	Route::get('role/{role_id}/edit-permissions', 'RoleController@editPermission')->name('role.edit_permission');
+	Route::post('role/{role_id}/update-permissions', 'RoleController@updatePermission')->name('role.update_permission');
+
+	//Permission Management//
+	Route::get('permissions', 'PermissionController@index')->name('permission.index');
+	Route::get('permission/new', 'PermissionController@create')->name('permission.create');
+	Route::post('permission/new', 'PermissionController@store')->name('permission.store');
+	Route::get('permission/{permission_id}/edit', 'PermissionController@edit')->name('permission.edit');
+	Route::post('permission/{permission_id}/update', 'PermissionController@update')->name('permission.update');
+	Route::post('permission/{permission_id}/update-status', 'PermissionController@updateStatus')->name('permission.update_status');
+	Route::post('permission/{permission_id}/delete', 'PermissionController@destroy')->name('permission.destroy');
+
 	//Subscriber Management//
 	Route::get('subscribers', 'SubscriberController@index')->name('subscriber.index');
 	Route::get('subscriber/new', 'SubscriberController@create')->name('subscriber.create');
