@@ -10,7 +10,7 @@
                     @csrf
 
                     <div class="card ">
-                        <div class="card-header card-header-primary">
+                        <div class="card-header card-header-success">
                             <h4 class="card-title">{{ __('Edit Post') }}</h4>
                             <div class="nav-tabs-navigation">
                                 <div class="nav-tabs-wrapper">
@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-12 text-right">
                                     <a href="{{ route('post.index') }}"
-                                        class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                        class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                             <div class="row">

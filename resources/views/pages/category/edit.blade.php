@@ -9,14 +9,14 @@
             @csrf
 
             <div class="card ">
-              <div class="card-header card-header-primary">
+              <div class="card-header card-header-success">
                 <h4 class="card-title">{{ __('Edit Category') }}</h4>
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('category.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                      <a href="{{ route('category.index') }}" class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                   </div>
                 </div>
                 <div class="row">
