@@ -20,7 +20,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
 use App\Repositories\GuzzleCall;
-use App\subscriber;
+use App\Setting;
+use App\State;
+use App\Subscriber;
 use Carbon\Carbon;
 
 class OpenApiController extends Controller
@@ -63,6 +65,11 @@ class OpenApiController extends Controller
         ];
 
         return response()->json(['data' => $data]);
+    }
+    public function getFooterDetails()
+    {
+        $settings = Setting::all();
+        return response()->json(['settings' => $settings]);
     }
     public function getPhone()
     {
@@ -196,14 +203,20 @@ class OpenApiController extends Controller
     public function addSubscriber(Request $request)
     {
         $email = $request->get('email');
-        $subscriber = subscriber::updateOrCreate(['email' => $email]);
-        return response()->json(['result' => true, 'subscriber' => $subscriber]);
+        if (count(Subscriber::where('email', $email)->get()) > 0)
+            return response()->json(['success' => true, 'error' => 'We\'ve got your email']);
+        $subscriber = subscriber::Create(['email' => $email, 'status' => 1]);
+        return response()->json(['result' => true, 'message' => 'You will receive updates on your email']);
     }
     public function mail()
     {
         sendWelcomeMailJob::dispatch('david.ifeanyi84@gmail.com');
     }
-
+    public function getState()
+    {
+        $states = State::with('cities')->where('country_id', 161)->get();
+        return response()->json(['success' => true, 'states' => $states]);
+    }
     public function commentsOnProduct()
     {
     }

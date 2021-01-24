@@ -36,7 +36,7 @@ Route::group([
     Route::post('update', 'Api\ApiAccountController@update');
     // End profile
 
-    // Route::get('test', 'Api\OpenApiController@mail');
+    Route::get('get-footer-details', 'Api\OpenApiController@getFooterDetails');
     Route::get('get-index-data', 'Api\OpenApiController@getIndexData');
     Route::get('get-phone', 'Api\OpenApiController@getPhone');
     Route::get('get-product', 'Api\OpenApiController@getProduct');
@@ -54,6 +54,7 @@ Route::group([
     Route::get('product-by-category/{id}', 'Api\OpenApiController@productCategory');
     Route::post('similair-product', 'Api\OpenApiController@similairProduct');
     Route::post('add-subscriber', 'Api\OpenApiController@addSubscriber');
+    Route::get('get-states', 'Api\OpenApiController@getState');
 });
 
 Route::group(['prefix' => 'post'], function () {
