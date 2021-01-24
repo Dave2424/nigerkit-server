@@ -79,18 +79,18 @@ class mainStoreController extends Controller
         return response()->json(['error' => "There is an error"]);
     }
 
-    public function removeFromCart($item_id)
+    public function removeFromCart($item_id, $user_id)
     {
         UserCart::find($item_id)->delete();
         //pull all cart items for user
-        $cartItems = StoreHelperController::getCartItems();
+        $cartItems = StoreHelperController::getCartItems($user_id);
 
         //return response
         return response()->json($cartItems);
     }
     public function getLocalProduct(Request $request)
     {
-        $products = Product::with('Sku', 'Reviews')->find(['product_id']);
+        $products = Product::with('Reviews')->find(['product_id']);
         $result = ['product' => $products];
         return response()->json($result);
     }

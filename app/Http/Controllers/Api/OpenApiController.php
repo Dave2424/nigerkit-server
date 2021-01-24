@@ -6,24 +6,18 @@ use App\Banner_sr;
 use App\Banners;
 use App\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\HelperController;
-use App\Info;
 use App\Jobs\sendWelcomeMailJob;
-use App\Model\client;
 use App\Model\Post;
-use App\Orderlist;
 use App\Phone;
 use App\Product;
 use App\Review;
 use App\Sku;
-use App\User;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
 use App\Repositories\GuzzleCall;
 use App\Setting;
 use App\State;
 use App\Subscriber;
-use Carbon\Carbon;
 
 class OpenApiController extends Controller
 {
@@ -33,7 +27,7 @@ class OpenApiController extends Controller
     {
         $products = Product::with('Reviews')->latest()->get();
         if (count($products) > 12) {
-            $products = Product::with('Sku', 'Reviews')->latest()->limit(12)->get();
+            $products = Product::with('Reviews')->latest()->limit(12)->get();
         }
         $top_rated = Product::with('Reviews')->get();
         if (count($top_rated) > 3) {
