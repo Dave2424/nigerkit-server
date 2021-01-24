@@ -11,7 +11,7 @@
 
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Edit Role') }}</h4>
+                            <h4 class="card-title">{{ __('Edit '.$admin->name.' Permissions') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
@@ -22,10 +22,10 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="width: 100%">
+                            <div class="row">
                                 @if(count($permissions)>0)
                                     @foreach($permissions as $permission)
-                                    <div class="ml-auto mr-auto">
+                                    <div class="ml-auto mr-auto col-md-2 col-sm-3 text-center">
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <label>
                                                 <input type="checkbox" class="form-control"
