@@ -51,13 +51,17 @@ class ProductController extends Controller
             }
             $product['slug'] =  DefaultHelperController::makeSlug($slug);
             $product['product_image'] = $product['files'][0]; // taking the first image path as the main image for the pics.
-            Product::create($product);
+            $saved_product = Product::create($product);
+            $saved_product->syncTags($request['tags']);
+            $saved_product->syncCategories($request['categories']);
         }
         return redirect()->route('product.index')->withStatus(__('Product successfully added.'));
     }
 
     public function edit($product_id){
         $product = Product::findOrFail($product_id);
+        $product->tags = $product->tagsToSting();
+        $product->categories = $product->categoriesToSting();
         $categories = Category::all();
         return view('pages.product.edit', ['categories' =>$categories, 'product' => $product]);
     }
@@ -91,6 +95,8 @@ class ProductController extends Controller
         $product->product_image = $product['files'][0];
         //updating the product details
         $product->update();
+        $product->syncTags($request['tags']);
+        $product->syncCategories($request['categories']);
 
         return redirect()->route('product.index')->withStatus(__('Product edited successfully'));
     }

@@ -75,7 +75,7 @@
                     <p>{{ __('Products') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'post' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'post-management' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('post.index') }}">
                     <i class="material-icons">post_add</i>
                     <p>{{ __('Posts') }}</p>

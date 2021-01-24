@@ -112,6 +112,16 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-10 ml-auto mr-auto">
+                                            <div class="form-group">
+                                                <label>Post Tags (seperated by comma)</label>
+                                                <textarea class="form-control" rows="3" id="input-content"
+                                                    name="tags">{{ old('tags') }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="row">
@@ -134,6 +144,16 @@
                                                 <span id="content-error" class="error text-danger"
                                                     for="input-category">{{ $errors->first('category_id') }}</span>
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-10 ml-auto mr-auto">
+                                            <div class="form-group">
+                                                <label>Post categories seperated by comma</label>
+                                                <textarea class="form-control" rows="3" id="input-content"
+                                                    name="categories">{{ old('categories') }}</textarea>
                                             </div>
                                         </div>
                                     </div>

@@ -15,32 +15,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	// Get details
 	Route::get('dashboard-details', 'HomeController@getDetails');
 	Route::get('get-orderlist','HomeController@getOrderlist');
-
-	//Product Management//
-	Route::get('products', 'ProductController@index')->name('product.index');
-	Route::get('product/new', 'ProductController@create')->name('product.create');
-	Route::post('product/new', 'ProductController@store')->name('product.store');
-	Route::get('product/{product_id}/edit', 'ProductController@edit')->name('product.edit');
-	Route::post('product/{product_id}/update', 'ProductController@update')->name('product.update');
-	Route::post('product/{product_id}/update-status', 'ProductController@updateStatus')->name('product.update_status');
-	Route::post('product/{product_id}/delete', 'ProductController@destroy')->name('product.destroy');
 	
 	Route::get('generateSku', 'ProductController@GenerateSku')->name('generate');
-	Route::post('/handle-sku','ProductController@handle_sku');
-
-	//Post Route//
-	Route::post('add-post','PostController@store')->name('add-post');
-	Route::get('view-post','PostController@show')->name('viewPost');
-	Route::get('/get-posts','PostController@allPosts');
-	Route::get('/delete-post/{id}', 'PostController@destroy');
-	Route::get('/edit-post/{id}','PostController@edit')->name('edit-post');
-	Route::post('edit-post','PostController@update')->name('update-post');
+	Route::post('handle-sku','ProductController@handle_sku');
 
 	// Order Management
 	Route::get('orders', 'ViewController@orders')->name('order.index');
-
-	// Posts Management
-	Route::get('posts', 'ViewController@posts')->name('post.index');
 
 	//View Route//
 	Route::get('table-list', 'ViewController@tablelist')->name('table');
@@ -51,6 +31,24 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::get('review', 'ViewController@review')->name('review');
 	Route::get('verify/{token}/{id}', 'ViewController@verify')->name('verify');
 	Route::post('confirm-email/{token}/{id}', 'ProfileController@confirmEmail')->name('confirm-email');
+
+	//Post Management//
+	Route::get('posts', 'PostController@index')->name('post.index');
+	Route::get('post/new', 'PostController@create')->name('post.create');
+	Route::post('post/new', 'PostController@store')->name('post.store');
+	Route::get('post/{post_id}/edit', 'PostController@edit')->name('post.edit');
+	Route::post('post/{post_id}/update', 'PostController@update')->name('post.update');
+	Route::post('post/{post_id}/update-status', 'PostController@updateStatus')->name('post.update_status');
+	Route::post('post/{post_id}/delete', 'PostController@destroy')->name('post.destroy');
+
+	//Product Management//
+	Route::get('products', 'ProductController@index')->name('product.index');
+	Route::get('product/new', 'ProductController@create')->name('product.create');
+	Route::post('product/new', 'ProductController@store')->name('product.store');
+	Route::get('product/{product_id}/edit', 'ProductController@edit')->name('product.edit');
+	Route::post('product/{product_id}/update', 'ProductController@update')->name('product.update');
+	Route::post('product/{product_id}/update-status', 'ProductController@updateStatus')->name('product.update_status');
+	Route::post('product/{product_id}/delete', 'ProductController@destroy')->name('product.destroy');
 
 	//Category Management
 	Route::get('categories', 'CategoryController@index')->name('category.index');

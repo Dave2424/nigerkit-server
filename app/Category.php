@@ -4,6 +4,7 @@ namespace App;
 
 use App\Model\Post;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\DefaultHelperController;
 
 class Category extends Model
 {
@@ -15,6 +16,18 @@ class Category extends Model
     public function posts()
     {
         return $this->morphedByMany(Post::class, 'categorizable');
+    }
+
+    public static function getCategory($string){
+        $slug = DefaultHelperController::makeSlug($string);
+        $cat = Category::where('slug', $slug)->first();
+        if(!$cat){
+            $cat = Category::create([
+                'category'=>$string,
+                'slug'=> $slug
+            ]);
+        }
+        return $cat;
     }
 
     /**

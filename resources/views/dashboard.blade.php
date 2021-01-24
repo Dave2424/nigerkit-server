@@ -61,7 +61,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <a href="{{ route('admin.index') }}">
+                <a href="{{ route('user.index') }}">
                     <div class="card card-stats">
                         <div class="card-header card-header-info card-header-icon">
                             <div class="card-icon">
@@ -101,7 +101,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <a href="{{ route('admin.index') }}">
+                <a href="{{ route('post.index') }}">
                     <div class="card card-stats">
                         <div class="card-header card-header-danger card-header-icon">
                             <div class="card-icon">
@@ -119,7 +119,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <a href="{{ route('admin.index') }}">
+                <a href="{{ route('product.index') }}">
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
