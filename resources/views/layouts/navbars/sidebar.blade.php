@@ -1,4 +1,4 @@
-{{ $user = auth('admin')->user() }}
+@php $user = auth('admin')->user() @endphp
 <div class="sidebar" data-color="green" data-background-color="white"
     data-image="{{ asset('material') }}/img/sidebar-3.jpg">
     <!--
