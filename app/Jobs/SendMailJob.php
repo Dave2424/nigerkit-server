@@ -2,15 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Mail\SendMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
 
-class sendWelcomeMailJob implements ShouldQueue
+class SendMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -19,11 +17,9 @@ class sendWelcomeMailJob implements ShouldQueue
      *
      * @return void
      */
-    protected $Job_data;
-
-    public function __construct($data)
+    public function __construct()
     {
-        $this->Job_data = $data;
+        //
     }
 
     /**
@@ -33,8 +29,6 @@ class sendWelcomeMailJob implements ShouldQueue
      */
     public function handle()
     {
-        // Mail::to('david.ifeanyi84@gmail.com')->send(new SendMail($this->Job_data));
-        $user = $this->Job_data->getUser();
-        $user->notify(new SendMail($user));
+        //
     }
 }

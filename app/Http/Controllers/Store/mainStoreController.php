@@ -67,7 +67,7 @@ class mainStoreController extends Controller
                 ];
                 UserCart::create($cart);
                 //pull all cart items for user
-                $cartItems = StoreHelperController::getCartItems();
+                $cartItems = StoreHelperController::getCartItems($data['user_id']);
 
                 //return response
                 return response()->json(['items' => $cartItems, 'message' => "Product has been added to cart"]);
@@ -227,7 +227,7 @@ class mainStoreController extends Controller
         UserInvoice::create($invoice);
 //
         if ($data['buyer_id'] > 0) {
-            $cartItems = StoreHelperController::getCartItems();
+            $cartItems = StoreHelperController::getCartItems($data['buyer_id']);
         } else {
             $cartItems = [];
         }

@@ -18,18 +18,6 @@
                                             <div class="ripple-container"></div>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#addProduct" data-toggle="tab">
-                                            <i class="material-icons">playlist_add</i> Add product
-                                            <div class="ripple-container"></div>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#view_sku" data-toggle="tab">
-                                            <i class="material-icons">tune</i> Sku No_
-                                            <div class="ripple-container"></div>
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>

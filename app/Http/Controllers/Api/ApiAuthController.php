@@ -47,9 +47,10 @@ class ApiAuthController extends Controller
         $user->phone = $data['phone'] ?? '';
         // $user->address = $data['address'];
         $user->password = Hash::make($data['password']);
-        $user->save();
-
-        event(new NewClientHasRegisteredEvent($user));
+        // $user->save();
+        if ($user->save())
+            event(new NewClientHasRegisteredEvent($user));
+        // sendWelcomeMailJob::dispatchNow($user);
         // sendWelcomeMailJob::dispatch($user);
         return response()->json(['message' => 'Account created successfully']);
     }

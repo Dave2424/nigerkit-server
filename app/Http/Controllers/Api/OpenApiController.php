@@ -37,11 +37,11 @@ class OpenApiController extends Controller
         if (count($top_rated) > 3) {
             $top_rated = $top_rated->random(3);
         }
-        $best_sellers = Product::with('Reviews')->get();
+        $best_sellers = Product::with('Reviews')->where('type', 'best_seller')->get();
         if (count($best_sellers) > 3) {
             $best_sellers = $best_sellers->random(3);
         }
-        $special_offers = Product::with('Reviews')->get();
+        $special_offers = Product::with('Reviews')->where('type', 'special')->get();
         if (count($special_offers) > 3) {
             $special_offers = $special_offers->random(3);
         }
@@ -68,10 +68,10 @@ class OpenApiController extends Controller
     {
         $data = '';
         $phone = Phone::first();
-        if($phone){
-             $data = $phone->phone;
+        if ($phone) {
+            $data = $phone->phone;
         }
-       
+
         return response()->json(['data' => $data]);
     }
 
