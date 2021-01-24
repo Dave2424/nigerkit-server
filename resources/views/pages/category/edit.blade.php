@@ -16,7 +16,7 @@
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('category.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                      <a href="{{ route('category.index') }}" class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                   </div>
                 </div>
                 <div class="row">

@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-12 text-right">
                                     <a href="{{ route('post.index') }}"
-                                        class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                        class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
                             <div class="row">
