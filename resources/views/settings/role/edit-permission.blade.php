@@ -47,16 +47,16 @@
                        
                         @if(count($permissions)>0 && auth('admin')->user()->hasPermissionTo("Update_Role_Permission"))
                             <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Save Update') }}</button>
+                                <button type="submit" class="btn btn-success">{{ __('Save Update') }}</button>
                             </div>
                         @else
                             @if(auth('admin')->user()->hasPermissionTo("Create_Permission"))
                             <div class="card-footer ml-auto mr-auto">
-                                <a href="{{ route('permission.create') }}" class="btn btn-primary">{{ __('Save Update') }}</a>
+                                <a href="{{ route('permission.create') }}" class="btn btn-success">{{ __('Save Update') }}</a>
                             </div>
                             @else
                             <div class="card-footer ml-auto mr-auto">
-                                <a href="{{ route('role.index') }}" class="btn btn-primary">{{ __('Return Back') }}</a>
+                                <a href="{{ route('role.index') }}" class="btn btn-success">{{ __('Return Back') }}</a>
                             </div>
                             @endif
                         @endif
