@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Review;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class ReviewController extends Controller{
+    public $user;
+    public function __construct(){
+        $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
+    }
     public function index()
     {
         //

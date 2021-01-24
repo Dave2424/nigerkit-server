@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
+    public $user;
     public function __construct(){
         $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
     }
     
     public function index(){

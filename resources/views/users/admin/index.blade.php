@@ -84,6 +84,18 @@
                                             @if ($admin->id != auth()->id())
                                             <form action="{{ route('admin.destroy', $admin) }}" method="Post">
                                                 @csrf
+                                                <a rel="tooltip" class="btn btn-success btn-link"
+                                                    href="{{ route('admin.edit_role', $admin->id) }}" data-original-title="Edit Role"
+                                                    title="Edit Role">
+                                                    <i class="material-icons">bubble_chart</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <a rel="tooltip" class="btn btn-success btn-link"
+                                                    href="{{ route('admin.edit_permission', $admin->id) }}" data-original-title="Edit Permission"
+                                                    title="Edit Permission">
+                                                    <i class="material-icons">bubble_chart</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
 
                                                 <a rel="tooltip" class="btn btn-success btn-link"
                                                     href="{{ route('admin.edit', $admin) }}" data-original-title="Edit Admin"

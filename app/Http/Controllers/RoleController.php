@@ -7,8 +7,10 @@ use App\Role;
 use App\Permission;
 
 class RoleController extends Controller{
+    public $user;
     public function __construct(){
         $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
     }
     
     public function index(){

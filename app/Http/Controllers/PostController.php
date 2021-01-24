@@ -11,11 +11,9 @@ use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
 
-class PostController extends Controller
-{
+class PostController extends Controller{
     public $user;
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:admin');
         $this->user = auth('admin')->user();
     }

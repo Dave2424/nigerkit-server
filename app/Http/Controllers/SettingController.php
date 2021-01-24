@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Setting;
 
-class SettingController extends Controller
-{
+class SettingController extends Controller{
+    public $user;
+    public function __construct(){
+        $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
+    }
+
     public function index(){
         $site_name = Setting::getValue("SITE_NAME");
         $site_email = Setting::getValue("SITE_EMAIL");

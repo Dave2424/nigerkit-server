@@ -7,15 +7,14 @@ use App\Http\Requests\PasswordRequest;
 use App\Model\client;
 use Illuminate\Support\Facades\Hash;
 
-class ProfileController extends Controller
-{
-    /**
-     * Show the form for editing the profile.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit()
-    {
+class ProfileController extends Controller{
+    public $user;
+    public function __construct(){
+        $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
+    }
+
+    public function edit(){
         return view('profile.edit');
     }
 
@@ -25,8 +24,7 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\ProfileRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ProfileRequest $request)
-    {
+    public function update(ProfileRequest $request){
         auth()->user()->update($request->all());
 
         return back()->withStatus(__('Profile successfully updated.'));
@@ -38,8 +36,7 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\PasswordRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function password(PasswordRequest $request)
-    {
+    public function password(PasswordRequest $request){
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
         return back()->withStatusPassword(__('Password successfully updated.'));

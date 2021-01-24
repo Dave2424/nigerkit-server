@@ -14,11 +14,11 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 use App\Http\Controllers\DefaultHelperController;
 
-class ProductController extends Controller
-{
-    public function __construct()
-    {
+class ProductController extends Controller{
+    public $user;
+    public function __construct(){
         $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
     }
     
     public function index(){

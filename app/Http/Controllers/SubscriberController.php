@@ -6,10 +6,11 @@ use App\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class SubscriberController extends Controller
-{
+class SubscriberController extends Controller{
+    public $user;
     public function __construct(){
         $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
     }
     
     public function index(){

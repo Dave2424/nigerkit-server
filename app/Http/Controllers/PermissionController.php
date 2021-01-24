@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Permission;
 
 class PermissionController extends Controller{
+    public $user;
     public function __construct(){
         $this->middleware('auth:admin');
+        $this->user = auth('admin')->user();
     }
     
     public function index(){
