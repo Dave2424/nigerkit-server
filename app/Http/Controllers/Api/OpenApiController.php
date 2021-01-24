@@ -208,7 +208,7 @@ class OpenApiController extends Controller
     }
     public function getState()
     {
-        $states = State::with('cities')->where('country_id', 161)->get();
+        $states = State::where('country_id', 161)->get();
         return response()->json(['success' => true, 'states' => $states]);
     }
     public function commentsOnProduct()
