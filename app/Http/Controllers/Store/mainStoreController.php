@@ -103,7 +103,8 @@ class mainStoreController extends Controller
     {
 
         $items = $request->all();
-        $percentage = Info::where('key', 'percentage')->first()->value;
+        // $percentage = Info::where('key', 'percentage')->first()->value;
+        $percentage = 0.7;
         $cart_items = json_decode($request->get('cart_item'));
         $total = 0;
         $cart_ids = '';
@@ -120,8 +121,8 @@ class mainStoreController extends Controller
         $salePercentage = (($total * $percentage) / 100);
         $grandTotal = $total + $deliveryFee + $salePercentage;
         $grandTotal = round($grandTotal);
-        $identifier = 'OD' . HelperController::generateIdentifier(14); //unique order id
-        $amount = [
+        $identifier = 'NK-' . HelperController::generateIdentifier(14); //unique order id
+        $details = [
             'deliveryFee' => $deliveryFee,
             'percentage' => $salePercentage,
             'grandTotal' => $grandTotal,
@@ -141,7 +142,7 @@ class mainStoreController extends Controller
             'amount' => $grandTotal
         ]);
 
-        return response()->json(['amount' => $amount]);
+        return response()->json(['amount_details' => $details]);
     }
 
     public function placeOrder(Request $request)
@@ -153,10 +154,12 @@ class mainStoreController extends Controller
         $recipients = [];
         // Get order items
         $items = json_decode($request->get('items'));
+
         //use transaction reference to get payStack charge
         $payStackChargeVerify = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 1);
-        if (!isset($payStackChargeVerify['status']) || $payStackChargeVerify['status'] == false)
-            return response()->json(['Payment Was not successful']);
+        // dd($payStackChargeVerify);
+        if (!isset($payStackChargeVerify['data']['status']) || $payStackChargeVerify['data']['status'] == false)
+            return response()->json(['error' => true, 'message' => 'Payment Was not successful']);
         $payStackCharge = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 0);
 
         $recipients['buyer'] = ['email' => $data['email'], 'name' => $data['name']];
@@ -173,13 +176,19 @@ class mainStoreController extends Controller
 
         $user = (new client)->where('email', '=', $data['email'])->first();
         if (is_null($user)) {
-            $usrData = ['name' => $data['name'], 'email' => $data['email'], 'password' => Hash::make('password'), 'phone' => $data['phone'], 'address' => $data['delivery_address']];
+            $usrData = [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make('password'),
+                'phone' => $data['phone'],
+                'address' => $data['delivery_address']
+            ];
             $user = (new client)->create($usrData);
         }
         if (!is_null($user)) {
             $data['buyer_id'] = $user->id;
-            $data['name'] = $user->name ? $user->name : null;
-            $data['email'] = $user->email ? $user->email : null;
+            $data['name'] = $user->name ?? null;
+            $data['email'] = $user->email ?? null;
             $data['location'] = $data['delivery_address'];
             $user->update(['phone' => $data['phone'], 'address' => $data['delivery_address']]);
         }
@@ -191,13 +200,11 @@ class mainStoreController extends Controller
         //invoice holder
         $invoice['items'] = [];
         $invoice['buyer_id'] = $data['buyer_id'];
+        $invoice['order_id'] = $data['identifier'];
+        $invoice['order_date'] = Carbon::now();
+        $invoice['order_status'] = 'paid';
 
         foreach ($items as $index => $item) {
-
-            //set invoice data
-            $invoice['order_id'] = $data['identifier'];
-            $invoice['order_date'] = Carbon::now();
-            $invoice['order_status'] = 'paid';
 
             $invoice['items'][] = [
                 'product_name' => $item->product->name,
@@ -215,37 +222,38 @@ class mainStoreController extends Controller
                     $search->delete();
                 }
             }
-            $invoice['remark'] = "Thank you for your purchase. Our Rep will be in touch with you shortly for your order delivery";
-
-
-            //Attach total
-            $invoice['sub_total'] = $data['items_total'];
-            $invoice['total'] = $data['grand_total'];
-            //generate invoice
-            UserInvoice::create($invoice);
-            //
-            if ($data['buyer_id'] > 0) {
-                $cartItems = StoreHelperController::getCartItems($data['buyer_id']);
-            } else {
-                $cartItems = [];
-            }
-
-            //send push notification to target user if offline
-            //        $this->handleOfflineOrderNotification($recipients);
-
-            $invoice['itemList'] = $items; //showing the user the item bought
-            //
-            //            //changing the value of status in OrderList table
-            Orderlist::where('identifier_id', $data['identifier'])
-                ->update(['status' => 'paid']);
-
-            // return success response with invoice
-            return response()->json([
-                'invoice' => $invoice,
-                'cartItems' => $cartItems,
-                'message' => "Your order has been successfully place. You will be notified on your order status."
-            ]);
         }
+        $invoice['remark'] = "Thank you for your purchase. Our Rep will be in touch with you shortly for your order delivery";
+
+
+        //Attach total
+        $invoice['sub_total'] = $data['items_total'];
+        $invoice['total'] = $data['grand_total'];
+        //generate invoice
+        UserInvoice::create($invoice);
+        //
+        if ($data['buyer_id'] > 0) {
+            $cartItems = StoreHelperController::getCartItems($data['buyer_id']);
+        } else {
+            $cartItems = [];
+        }
+
+        //send push notification to target user if offline
+        //        $this->handleOfflineOrderNotification($recipients);
+
+        $invoice['itemList'] = $items; //showing the user the item bought
+        //
+        //            //changing the value of status in OrderList table
+        Orderlist::where('identifier_id', $data['identifier'])
+            ->update(['status' => 'paid']);
+
+        // return success response with invoice
+        return response()->json([
+            'invoice' => $invoice,
+            'cartItems' => $cartItems,
+            'message' => "Your order has been successfully place. You will be notified on your order status."
+        ]);
+        // }
     }
 
 
@@ -269,7 +277,7 @@ class mainStoreController extends Controller
     //Orderlist per user
     public function orderList($client_id)
     {
-        $orderList = orderList::where('client_id', $client_id)->where('status', 'paid')->paginate(5);
+        $orderList = orderList::where('client_id', $client_id)->where('status', 'paid')->latest()->paginate(5);
         return response()->json(['orderlist' => $orderList]);
     }
 
@@ -278,7 +286,7 @@ class mainStoreController extends Controller
     {
         $recent = orderList::where('client_id', $client_id)
             ->whereDate('created_at', '>', Carbon::now()->subDays(3))
-            ->limit(5)->get();
+            ->limit(5)->latest()->get();
         return response()->json(['recent_order' => $recent]);
     }
 
@@ -286,7 +294,7 @@ class mainStoreController extends Controller
     public function orderListDetails($identifier_id)
     {
         $orderdetails = orderList::with('userInvoice')->where('identifier_id', $identifier_id)->first();
-        $Vatfee = Info::where('key', 'percentage')->pluck('value');
-        return response()->json(['details' => $orderdetails, 'vatFee' => $Vatfee]);
+        // $Vatfee = Info::where('key', 'percentage')->pluck('value');
+        return response()->json(['details' => $orderdetails, 'vatFee' => 0.7]);
     }
 }

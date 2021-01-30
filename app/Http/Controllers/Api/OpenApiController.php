@@ -68,12 +68,12 @@ class OpenApiController extends Controller
     public function getPhone()
     {
         $data = '';
-        $phone = Phone::first();
+        $phone = Phone::latest()->first();
         if ($phone) {
             $data = $phone->phone;
         }
 
-        return response()->json(['data' => $data]);
+        return response()->json(['success' => true,'data' => $data]);
     }
 
 
