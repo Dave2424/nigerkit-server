@@ -122,13 +122,15 @@ class mainStoreController extends Controller
         $grandTotal = $total + $deliveryFee + $salePercentage;
         $grandTotal = round($grandTotal);
         $identifier = 'NK-' . HelperController::generateIdentifier(14); //unique order id
+        $key = env('PAYSTACK_PUBLIC_LIVE');
         $details = [
             'deliveryFee' => $deliveryFee,
             'percentage' => $salePercentage,
             'grandTotal' => $grandTotal,
             'total' => $total,
             'order_time' => Carbon::now(),
-            'identifier' => $identifier
+            'identifier' => $identifier,
+            'key' => $key
         ];
         Orderlist::create([
             'identifier_id' => $identifier,
@@ -181,7 +183,9 @@ class mainStoreController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make('password'),
                 'phone' => $data['phone'],
-                'address' => $data['delivery_address']
+                'address' => $data['delivery_address'],
+                'state' => $data['state'],
+                'city' => $data['city']
             ];
             $user = (new client)->create($usrData);
         }
@@ -190,7 +194,12 @@ class mainStoreController extends Controller
             $data['name'] = $user->name ?? null;
             $data['email'] = $user->email ?? null;
             $data['location'] = $data['delivery_address'];
-            $user->update(['phone' => $data['phone'], 'address' => $data['delivery_address']]);
+            $user->update([
+                'phone' => $data['phone'], 
+                'address' => $data['delivery_address'],
+                'state' => $data['state'],
+                'city' => $data['city']
+                ]);
         }
         unset($data['user_id']);
 
