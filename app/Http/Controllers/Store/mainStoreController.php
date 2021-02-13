@@ -13,6 +13,7 @@ use App\Orderlist;
 use App\PaystackTransaction;
 use App\User;
 use App\Product;
+use App\Setting;
 use App\Repositories\PayStackVerifyTransaction;
 use App\UserInvoice;
 use Carbon\Carbon;
@@ -122,7 +123,7 @@ class mainStoreController extends Controller
         $grandTotal = $total + $deliveryFee + $salePercentage;
         $grandTotal = round($grandTotal);
         $identifier = 'NK-' . HelperController::generateIdentifier(14); //unique order id
-        $key = env('PAYSTACK_PUBLIC_LIVE');
+        $key = Setting::getValue('PAYSTACK_PUBLIC_LIVE');
         $details = [
             'deliveryFee' => $deliveryFee,
             'percentage' => $salePercentage,
