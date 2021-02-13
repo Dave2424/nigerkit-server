@@ -38,6 +38,12 @@
                                     <th>
                                         {{ __('Email') }}
                                     </th>
+                                    <th>
+                                        {{ __('Phone') }}
+                                    </th>
+                                    <th class="text-center" style="max-width: 100px;">
+                                        {{ __('Email Verified') }}
+                                    </th>
                                     <th class="text-center" style="max-width: 100px;">
                                         {{ __('Status') }}
                                     </th>
@@ -58,6 +64,19 @@
                                         <td>
                                             {{ $user->email }}
                                         </td>
+                                        <td>
+                                            {{ $user->phone }}
+                                        </td>
+                                        <td class="text-center">
+                                            <form action="{{ route('user.update_email_status', $user->id) }}" method="Post">
+                                                @csrf
+                                                <button type="button" rel="tooltip" data-original-title="{{ !$user->email_verified_at ? "Verify" : "Reset" }} User" title="{{ !$user->email_verified_at ? "Verify" : "Reset" }} Email"
+                                                    class="text-center btn bg-{{ $user->email_verified_at ? "success" : "danger" }}"
+                                                    onclick="confirm('{{ __("Are you sure you want to update this user email status?") }}') ? this.parentElement.submit() : ''">
+                                                    {{ $user->email_verified_at ? "Yes" : "No" }}
+                                                </button>
+                                            </form>
+                                        </td>
                                         <td class="text-center">
                                             <form action="{{ route('user.update_status', $user->id) }}" method="Post">
                                                 @csrf
@@ -68,7 +87,7 @@
                                                 </button>
                                             </form>
                                         </td>
-                                        <td style="width: 150px">
+                                        <td class="text-center" style="width: 150px">
                                             {{ $user->created_at->format('Y-m-d') }}
                                         </td>
                                         <td class="td-actions text-right">

@@ -173,7 +173,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-sm-10 ml-auto mr-auto">
                                             <div class="form-group{{ $errors->has('quantity') ? ' has-danger' : '' }}">
                                                 <input
@@ -187,7 +187,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row">
                                         <div class="col-sm-10 ml-auto mr-auto">
                                             <div class="form-group">

@@ -75,6 +75,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::post('product/{product_id}/update', 'ProductController@update')->name('product.update');
 	Route::post('product/{product_id}/update-status', 'ProductController@updateStatus')->name('product.update_status');
 	Route::post('product/{product_id}/delete', 'ProductController@destroy')->name('product.destroy');
+	Route::get('product/{product_id}/stock-up', 'ProductController@productStockUp')->name('product_stock_up');
+	Route::post('product/{product_id}/stock-up', 'ProductController@storeProductStockUp');
 
 	//Category Management
 	Route::get('categories', 'CategoryController@index')->name('category.index');
@@ -112,6 +114,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::get('client/{user_id}/edit', 'ClientController@edit')->name('user.edit');
 	Route::post('client/{user_id}/update', 'ClientController@update')->name('user.update');
 	Route::post('client/{user_id}/update-status', 'ClientController@updateStatus')->name('user.update_status');
+	Route::post('client/{user_id}/update-email-status', 'ClientController@updateEmailStatus')->name('user.update_email_status');
 	Route::post('client/{user_id}/delete', 'ClientController@destroy')->name('user.destroy');
 
 	// Banner Management

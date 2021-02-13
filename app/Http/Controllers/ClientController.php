@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class ClientController extends Controller
 {
@@ -19,6 +20,7 @@ class ClientController extends Controller
         if($this->user->hasPermissionTo("Create_Client") ||
             $this->user->hasPermissionTo("Update_Client") ||
             $this->user->hasPermissionTo("Update_Client_Status") ||
+            $this->user->hasPermissionTo("Update_Client_Email_Status") ||
             $this->user->hasPermissionTo("Read_Client") ||
             $this->user->hasPermissionTo("Delete_Client")){
 
@@ -93,7 +95,21 @@ class ClientController extends Controller
                 "status"=>$user->status == 1 ? 0: 1,
             ]);
 
-            return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+            return redirect()->route('user.index')->withStatus(__('User status successfully updated.'));
+        }
+        return back();
+    }
+
+    public function updateEmailStatus($user_id){
+        $this->__construct();
+        if($this->user->hasPermissionTo("Update_Client_Email_Status")){
+            $user = Client::findOrFail($user_id);
+
+            $user->update([
+                "email_verified_at" => $user->email_verified_at ? null : Carbon::now(),
+            ]);
+
+            return redirect()->route('user.index')->withStatus(__('User email status successfully updated.'));
         }
         return back();
     }
