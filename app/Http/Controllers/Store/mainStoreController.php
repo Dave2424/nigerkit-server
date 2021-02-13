@@ -118,7 +118,8 @@ class mainStoreController extends Controller
             }
         }
         $cart_ids = substr($cart_ids, 0, -1); //removing the last (-)
-        $deliveryFee = 1000;
+        $deliveryFee = 1;
+        // $deliveryFee = 1000;
         $salePercentage = (($total * $percentage) / 100);
         $grandTotal = $total + $deliveryFee + $salePercentage;
         $grandTotal = round($grandTotal);
