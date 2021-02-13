@@ -179,7 +179,7 @@ class mainStoreController extends Controller
         (new PaystackTransaction)->create($payload);
 
 
-        $user = (new Client)->where('email', '=', $data['email'])->first();
+        $user = (new Client)->find($data['user_id']);
         if (is_null($user)) {
             $usrData = [
                 'name' => $data['name'],
@@ -187,7 +187,7 @@ class mainStoreController extends Controller
                 'password' => Hash::make('password'),
                 'phone' => $data['phone'],
                 'address' => $data['delivery_address'],
-                'state' => $data['state'],
+                'state' => $data['state_id'],
                 'city' => $data['city']
             ];
             $user = (new Client)->create($usrData);
