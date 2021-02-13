@@ -6,7 +6,7 @@ use App\Events\NewOrderPlaceEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperController;
 use App\Info;
-use App\Model\client;
+use App\Model\Client;
 use Illuminate\Http\Request;
 use App\Model\UserCart;
 use App\Orderlist;
@@ -123,7 +123,7 @@ class mainStoreController extends Controller
         $salePercentage = (($total * $percentage) / 100);
         $grandTotal = $total + $deliveryFee + $salePercentage;
         $grandTotal = round($grandTotal);
-        $identifier = 'NK-' . HelperController::generateIdentifier(14); //unique order id
+        $identifier = 'NKT-' . HelperController::generateIdentifier(14); //unique order id
         $key = Setting::getValue('PAYSTACK_PUBLIC_LIVE');
         $details = [
             'deliveryFee' => $deliveryFee,
@@ -162,7 +162,8 @@ class mainStoreController extends Controller
         //use transaction reference to get payStack charge
         $payStackChargeVerify = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 1);
         // dd($payStackChargeVerify);
-        if (!isset($payStackChargeVerify['data']['status']) || $payStackChargeVerify['data']['status'] == false)
+        // || $payStackChargeVerify['data']['status'] != 'success'
+        if (!isset($payStackChargeVerify['data']['status']))
             return response()->json(['error' => true, 'message' => 'Payment Was not successful']);
         $payStackCharge = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 0);
 
@@ -178,7 +179,7 @@ class mainStoreController extends Controller
         (new PaystackTransaction)->create($payload);
 
 
-        $user = (new client)->where('email', '=', $data['email'])->first();
+        $user = (new Client)->where('email', '=', $data['email'])->first();
         if (is_null($user)) {
             $usrData = [
                 'name' => $data['name'],
@@ -189,7 +190,7 @@ class mainStoreController extends Controller
                 'state' => $data['state'],
                 'city' => $data['city']
             ];
-            $user = (new client)->create($usrData);
+            $user = (new Client)->create($usrData);
         }
         if (!is_null($user)) {
             $data['buyer_id'] = $user->id;
@@ -199,7 +200,7 @@ class mainStoreController extends Controller
             $user->update([
                 'phone' => $data['phone'], 
                 'address' => $data['delivery_address'],
-                'state' => $data['state'],
+                'state' => $data['state_id'],
                 'city' => $data['city']
                 ]);
         }
