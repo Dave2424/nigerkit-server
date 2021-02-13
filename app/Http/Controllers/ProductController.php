@@ -12,6 +12,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use App\Http\Controllers\DefaultHelperController;
 
 class ProductController extends Controller{
@@ -169,8 +170,7 @@ class ProductController extends Controller{
      * @param Array
      * @return array
      */
-    public function reArrayFiles(&$array)
-    {
+    public function reArrayFiles(&$array){
         $file_array = array();
         $file_count = count($array['name']);
         $file_keys = array_keys($array);
@@ -180,5 +180,51 @@ class ProductController extends Controller{
             }
         }
         return $file_array;
+    }
+
+    public function productStockUp($product_id){
+        $this->__construct();
+        if($this->user->hasPermissionTo("Stock_Product")){
+            $product = Product::findOrFail($product_id);
+            return view('pages.product.stock-up', ['product' => $product]);
+        }
+        return back();
+    }
+
+    public function storeProductStockUp(Request $request, $product_id){
+        $this->__construct();
+        $this->validate($request, [
+            'invoice_amount' => ['required', 'numeric', 'min:0'],
+            'invoice_number' => ['required', 'string', 'max:50', 'unique:stock_inventories'],
+            'stock_added' => ['required', 'numeric', 'min:1'],
+        ]);
+
+        if($this->user->hasPermissionTo("Stock_Product")){
+            $product = Product::findOrFail($product_id);
+            if($product){
+                $activeInventory = $product->activeProductInventories();
+                if($activeInventory){
+                    $activeInventory->update([
+                        'closing_stock'=>$product->stock,
+                        'status'=>0,
+                        'closing_date'=>Carbon::now(),
+                    ]);
+                }
+                $product->productInventories()->create([
+                    'invoice_number'=> $request['invoice_number'],
+                    'invoice_amount'=> $request['invoice_amount'],
+                    'stock_added'=> $request['stock_added'],
+                    'opening_stock'=> ($product->stock + (int)$request['stock_added']),
+                    'stock_balance_bf'=> $product->stock,
+                    'stock_added_date'=> Carbon::now(),
+                ]);
+
+                $product->update([
+                    'stock'=> ($product->stock + (int)$request['stock_added']),
+                ]);
+            }
+            return redirect()->route('product.index')->withStatus(__('Product stocked successfully'));
+        }
+        return back();
     }
 }

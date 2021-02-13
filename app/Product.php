@@ -86,4 +86,12 @@ class Product extends Model implements Searchable
         }
         return $cat_ids;
     }
+
+    public function productInventories(){
+        return $this->hasMany(StockInventory::class,'product_id');
+    }
+
+    public function activeProductInventories(){
+        return $this->productInventories()->whereStatus(1)->first();
+    }
 }

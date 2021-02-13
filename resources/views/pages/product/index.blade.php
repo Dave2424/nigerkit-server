@@ -63,7 +63,7 @@
                                         {{ __('Description') }}
                                     </th>
                                     <th class="text-center" style="max-width: 100px;">
-                                        {{ __('Quantity') }}
+                                        {{ __('Stock') }}
                                     </th>
                                     <th class="text-center" style="max-width: 100px;">
                                         {{ __('Brand') }}
@@ -98,7 +98,8 @@
                                             {{ Str::limit(strip_tags($product->description), 150) }}
                                         </td>
                                         <td class="text-center">
-                                            {{ $product->quantity }}
+                                            {{ $product->stock }}
+                                            <a class="btn btn-sm" href="{{ route('product_stock_up', $product->id) }}">Stock Up</a>
                                         </td>
                                         <td class="text-center">
                                             {{ $product->brand }}
