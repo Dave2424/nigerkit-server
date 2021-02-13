@@ -9,14 +9,14 @@
             @csrf
 
             <div class="card ">
-              <div class="card-header card-header-primary">
+              <div class="card-header card-header-success">
                 <h4 class="card-title">{{ __('Edit Subscriber') }}</h4>
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('subscriber.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                      <a href="{{ route('subscriber.index') }}" class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                   </div>
                 </div>
                 <div class="row">
@@ -43,7 +43,7 @@
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Save Update') }}</button>
+                <button type="submit" class="btn btn-success">{{ __('Save Update') }}</button>
               </div>
             </div>
           </form>

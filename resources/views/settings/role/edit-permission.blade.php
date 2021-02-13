@@ -10,7 +10,7 @@
                     @csrf
 
                     <div class="card ">
-                        <div class="card-header card-header-primary">
+                        <div class="card-header card-header-success">
                             <h4 class="card-title">{{ __('Edit '.$role->name.' Role') }}</h4>
                             <p class="card-category"></p>
                         </div>
@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-12 text-right">
                                     <a href="{{ route('role.index') }}"
-                                        class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                        class="btn btn-sm btn-success">{{ __('Back to list') }}</a>
                                 </div>
                             </div>
 
@@ -47,16 +47,16 @@
                        
                         @if(count($permissions)>0 && auth('admin')->user()->hasPermissionTo("Update_Role_Permission"))
                             <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Save Update') }}</button>
+                                <button type="submit" class="btn btn-success">{{ __('Save Update') }}</button>
                             </div>
                         @else
                             @if(auth('admin')->user()->hasPermissionTo("Create_Permission"))
                             <div class="card-footer ml-auto mr-auto">
-                                <a href="{{ route('permission.create') }}" class="btn btn-primary">{{ __('Save Update') }}</a>
+                                <a href="{{ route('permission.create') }}" class="btn btn-success">{{ __('Save Update') }}</a>
                             </div>
                             @else
                             <div class="card-footer ml-auto mr-auto">
-                                <a href="{{ route('role.index') }}" class="btn btn-primary">{{ __('Return Back') }}</a>
+                                <a href="{{ route('role.index') }}" class="btn btn-success">{{ __('Return Back') }}</a>
                             </div>
                             @endif
                         @endif
