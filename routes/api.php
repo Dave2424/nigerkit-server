@@ -30,7 +30,7 @@ Route::group([
     Route::post('change-password/{oldPassword}', 'Api\ApiAuthController@changePassword');
 });
 Route::group([
-    'middleware' => ['api']
+    'middleware' => ['api', 'cors']
 ], function () {
     // Profile
     Route::post('update', 'Api\ApiAccountController@update');
@@ -57,7 +57,7 @@ Route::group([
     Route::get('get-states', 'Api\OpenApiController@getState');
 });
 
-Route::group(['prefix' => 'post'], function () {
+Route::group(['middleware' => ['api', 'cors'], 'prefix' => 'post'], function () {
 
     Route::get('get-all-post', 'Post\ApiPostController@allPost');
     Route::get('get-post-details/{post_slug}', 'Post\ApiPostController@postDetails');
@@ -66,7 +66,7 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('like-post/{slug}', 'Post\ApiPostController@likePost');
 });
 
-Route::group(['prefix' => 'store'], function () {
+Route::group(['middleware' => ['api', 'cors'], 'prefix' => 'store' ], function () {
 
     Route::get('/get-local-product', 'Store\mainStoreController@getLocalProduct');
     /// Main Store routes starts

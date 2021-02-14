@@ -52,31 +52,36 @@ class mainStoreController extends Controller
     {
         $data = $request->all();
 
-        //user authenticated
-        //check if item already exist in cart
-        if (!UserCart::where('user_id', '=', $data['user_id'])
-            ->where('product_id', '=', $data['product_id'])
-            ->where('sku_id', '=', $data['sku_id'])->exists()) {
+        $user = Client::find($data['user_id']);
+        $product = Product::find($data['product_id']);
 
-            //log new item
-            // var_dump($data);
-            $cart = [
-                'product_id' => $data['product_id'],
-                'user_id' => $data['user_id'],
-                'sku_id' => $data['sku_id']
-            ];
-            UserCart::create($cart);
+        //check if item already exist in cart
+        if ($user && $product) {
+            $item = $user->cart()->where('product_id', '=', $data['product_id'])->first();
+            if(!$item && ($product->available_qty > 0)){
+                $user->cart()->create([
+                    'product_id'=>$data['product_id'],
+                    'amount'=>$product->price,
+                ]);
+            }elseif($item && $product->available_qty > ($item->quantity + 1)){
+                $item->update([
+                    'quantity'=>($item->quantity + 1),
+                    'amount'=>($item->quantity + 1) * $product->price,
+                ]);
+            }
+            
             //pull all cart items for user
             $cartItems = StoreHelperController::getCartItems($data['user_id']);
 
             //return response
             return response()->json(['items' => $cartItems, 'message' => "Product has been added to cart"]);
+        }elseif($product->available_qty < 1){
+            //return response
+            return response()->json(['error' => "Item is out of stock!"]);
+        }else{
+            //return response
+            return response()->json(['error' => "User/Item does not exist!"]);
         }
-
-        //return response
-        return response()->json(['error' => "Item has been added to cart already"]);
-
-        return response()->json(['error' => "There is an error"]);
     }
 
     public function removeFromCart($item_id, $user_id)
@@ -135,6 +140,7 @@ class mainStoreController extends Controller
             'identifier' => $identifier,
             'key' => $key
         ];
+
         Orderlist::create([
             'identifier_id' => $identifier,
             'cart_id' => $cart_ids,
@@ -150,9 +156,7 @@ class mainStoreController extends Controller
         return response()->json(['amount_details' => $details]);
     }
 
-    public function placeOrder(Request $request)
-    {
-
+    public function placeOrder(Request $request){
         //Get other information are regards this order
         $data = $request->all();
         $invoice = [];
@@ -160,54 +164,32 @@ class mainStoreController extends Controller
         // Get order items
         $items = json_decode($request->get('items'));
 
+        //get buyer
+        $user = (new Client)->find($data['user_id']);
+
         //use transaction reference to get payStack charge
         $payStackChargeVerify = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 1);
-        // dd($payStackChargeVerify);
-        // || $payStackChargeVerify['data']['status'] != 'success'
-        if (!isset($payStackChargeVerify['data']['status']))
-            return response()->json(['error' => true, 'message' => 'Payment was not successful']);
+        
+        if (!isset($payStackChargeVerify['data']['status'])){
+            return response()->json(['error' => true, 'message' => 'Payment Was not successful']);
+        }
+        
         $payStackCharge = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 0);
 
         $recipients['buyer'] = ['email' => $data['email'], 'name' => $data['name']];
+
         $payload = [
             'phone' => $data['phone'],
+            'order_id' => $data['identifier'],
+            'user_id' => $user->id,
             'reference' => $data['transaction_ref'],
             'status' => $payStackChargeVerify['status'],
             'message' => $payStackChargeVerify['message'],
             'data' => $payStackChargeVerify['data'],
         ];
 
-        (new PaystackTransaction)->create($payload);
-
-
-        $user = (new Client)->find($data['user_id']);
-        if (is_null($user)) {
-            $usrData = [
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make('password'),
-                'phone' => $data['phone'],
-                'address' => $data['delivery_address'],
-                'state' => $data['state_id'],
-                'city' => $data['city']
-            ];
-            $user = (new Client)->create($usrData);
-        }
-        if (!is_null($user)) {
-            $data['buyer_id'] = $user->id;
-            $data['name'] = $user->name ?? null;
-            $data['email'] = $user->email ?? null;
-            $data['location'] = $data['delivery_address'];
-            $user->update([
-                'phone' => $data['phone'], 
-                'address' => $data['delivery_address'],
-                'state' => $data['state_id'],
-                'city' => $data['city']
-                ]);
-        }
-        unset($data['user_id']);
-
-        //get buyer
+        $transaction = (new PaystackTransaction)->create($payload);
+        
         $data['buyer_id'] = $user->id;
 
         //invoice holder
@@ -218,8 +200,8 @@ class mainStoreController extends Controller
         $invoice['order_status'] = 'paid';
 
         foreach ($items as $index => $item) {
-
             $invoice['items'][] = [
+                'product_id' => $item->product->id,
                 'product_name' => $item->product->name,
                 'description' => $item->product->description,
                 'quantity' => $item->quantity,
@@ -228,37 +210,41 @@ class mainStoreController extends Controller
                 'total' => $item->amount
             ];
 
-            //remove item from cart
-            if ($data['buyer_id'] > 0 && isset($item->id)) {
-                $search = UserCart::find($item->id);
-                if (!is_null($search)) {
-                    $search->delete();
-                }
+            $product = Product::find($item->product->id);
+            if($product){
+                $qty_sold = $product->qty_sold + $item->quantity;
+                $available_qty = $product->stock - $qty_sold;
+                $product->update([
+                    'qty_sold'=>$qty_sold,
+                    'available_qty'=>$available_qty > 0 ? $available_qty : 0,
+                ]);
             }
         }
-        $invoice['remark'] = "Thank you for your purchase. Our Rep will be in touch with you shortly for your order delivery";
+        //remove items from cart
+        $user->cart()->delete();
 
+        $invoice['remark'] = "Thank you for your purchase. Our Rep will be in touch with you shortly for your order delivery";
 
         //Attach total
         $invoice['sub_total'] = $data['items_total'];
         $invoice['total'] = $data['grand_total'];
+        
         //generate invoice
-        UserInvoice::create($invoice);
-        //
-        if ($data['buyer_id'] > 0) {
-            $cartItems = StoreHelperController::getCartItems($data['buyer_id']);
-        } else {
-            $cartItems = [];
-        }
+        $invoice = UserInvoice::create($invoice);
+        
+        $cartItems = StoreHelperController::getCartItems($user->id);
 
         //send push notification to target user if offline
         //        $this->handleOfflineOrderNotification($recipients);
 
         $invoice['itemList'] = $items; //showing the user the item bought
-        //
-        //            //changing the value of status in OrderList table
+        
+        //changing order payment status
         Orderlist::where('identifier_id', $data['identifier'])
-            ->update(['status' => 'paid']);
+            ->update([
+                'transaction_id' => $transaction->id,
+                'status' => 'paid',
+            ]);
 
         // return success response with invoice
         return response()->json([
@@ -266,7 +252,6 @@ class mainStoreController extends Controller
             'cartItems' => $cartItems,
             'message' => "Your order has been successfully place. You will be notified on your order status."
         ]);
-        // }
     }
 
 

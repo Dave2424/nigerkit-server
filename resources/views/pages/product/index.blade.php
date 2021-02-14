@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'product-management', 'titlePage' => __('Product Management')])
 
 @section('content')
-<div class="content">
+<div class="content" ng-controller="productController">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -13,8 +13,18 @@
                             <div class="nav-tabs-wrapper">
                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#viewProduct" data-toggle="tab">
-                                            <i class="material-icons">toc</i> View products
+                                        <a class="nav-link @{{model.trash == false ? 'active' : ''}}" href="#viewProduct"
+                                            ng-click="model.showData()"
+                                            data-toggle="tab">
+                                            <i class="material-icons">toc</i> View Products
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a  class="nav-link @{{model.trash == true ? 'active' : ''}}" href="#viewProduct"
+                                            ng-click="model.showTrashedData()"
+                                            data-toggle="tab">
+                                            <i class="material-icons">delete</i> View Trashed Products
                                             <div class="ripple-container"></div>
                                         </a>
                                     </li>
@@ -82,73 +92,105 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    @if(count($products)> 0)
-                                    @foreach($products as $product)
-                                    <tr>
+                                    <tr ng-repeat="(index, product) in model.products.data">
                                         <td>
-                                            <img src="{{ asset($product->product_image)}}" width="50">
+                                            <img src="@{{ product.product_image }}" width="50">
                                         </td>
                                         <td class="text-center" style="max-width: 100px;">
-                                            {{ $product->Sku }}
+                                            @{{ product.Sku }}
                                         </td>
                                         <td>
-                                            {{ $product->name }}
+                                            @{{ product.name }}
                                         </td>
                                         <td>
-                                            {{ Str::limit(strip_tags($product->description), 150) }}
+                                            @{{ product.description }}
                                         </td>
                                         <td class="text-center">
-                                            {{ $product->stock }}
-                                            <a class="btn btn-sm" href="{{ route('product_stock_up', $product->id) }}">Stock Up</a>
+                                            @{{ product.stock }}
+                                            <button class="btn btn-sm" >Stock Up</button>
                                         </td>
                                         <td class="text-center">
-                                            {{ $product->brand }}
+                                            @{{ product.brand }}
                                         </td>
                                         <td class="text-center">
-                                            {{ $product->price }}
+                                            @{{ product.price }}
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('product.update_status', $product->id) }}" method="Post">
-                                                @csrf
-                                                <button type="button" rel="tooltip" data-original-title="{{ $product->status==1 ? "Deactivate" : "Activate" }} Product" title="{{ $product->status==1 ? "Deactivate" : "Activate" }} Product"
-                                                    class="text-center btn bg-{{ $product->status==1 ? "success" : "danger" }}"
-                                                    onclick="confirm('{{ __("Are you sure you want to update this product status?") }}') ? this.parentElement.submit() : ''">
-                                                    {{ $product->status==1 ? "Active" : "Inactive" }}
-                                                </button>
-                                            </form>
+                                            <button type="button" rel="tooltip" data-original-title="@{{ product.status==1 ? "Deactivate" : "Activate" }} Product" title="@{{ product.status==1 ? "Deactivate" : "Activate" }} Product"
+                                                class="text-center btn bg-@{{ product.status==1 ? "success" : "danger" }}"
+                                                onclick="confirm('{{ __("Are you sure you want to update this product status?") }}') ? this.parentElement.submit() : ''">
+                                                @{{ product.status==1 ? "Active" : "Inactive" }}
+                                            </button>
                                         </td>
                                         <td class="text-center" style="max-width: 150px;">
-                                            {{ $product->created_at->format('Y-m-d') }}
+                                            @{{ product.created_at }}
                                         </td>
                                         <td class="td-actions text-right" style="max-width: 150px;">
-                                            <form action="{{ route('product.destroy', $product->id) }}" method="Post">
-                                                @csrf
-                                                <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('product.edit', $product) }}" data-original-title="Edit Product"
-                                                    title="Edit Product">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <button rel="tooltip" type="button" class="btn btn-danger btn-link"
-                                                    data-original-title="Delete Product" title="Delete Product"
-                                                    onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">close</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                                </button>
-                                            </form>
+                                            <a rel="tooltip" class="btn btn-success btn-link"
+                                                data-original-title="Edit Product"
+                                                title="Edit Product">
+                                                <i class="material-icons">edit</i>
+                                                <div class="ripple-container"></div>
+                                            </a>
+                                            <button type="button" class="btn btn-danger btn-link"
+                                                    rel="tooltip" data-original-title="Delete Product" title="Delete Product">
+                                                <i class="material-icons">close</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
                                         </td>
                                     </tr>
-                                    @endforeach
-                                    @endif
                                 </tbody>
                             </table>
+                            <nav aria-label="Page navigation" ng-if="model.products.per_page" class="py-2">
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item"><a class="page-link" ng-click="model.prevPage()" href="#" tabindex="-1">Previous</a></li>
+                                    <li class="page-item" ng-if="model.products.current_page >= (model.products.current_page - 4) && (model.products.current_page - 4) > 0">
+                                        <a class="page-link" href="#">...</a>
+                                    </li>
+                                    <li class="page-item" ng-if="model.products.current_page >= (model.products.current_page - 3) && (model.products.current_page - 3) > 0"
+                                        ng-click="model.getPage(model.products.current_page - 3)">
+                                        <a class="page-link" href="#">@{{ model.products.current_page - 3 }}</a>
+                                    </li>
+                                    <li class="page-item" ng-if="model.products.current_page >= (model.products.current_page - 2) && (model.products.current_page - 2) > 0"
+                                        ng-click="model.getPage(model.products.current_page - 2)">
+                                        <a class="page-link" href="#">@{{ model.products.current_page - 2 }}</a>
+                                    </li>
+                                    <li class="page-item" ng-if="model.products.current_page >= (model.products.current_page - 1) && (model.products.current_page - 1) > 0"
+                                        ng-click="model.getPage(model.products.current_page - 1)">
+                                        <a class="page-link" href="#">@{{ model.products.current_page - 1 }}</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">@{{model.products.current_page}}</a></li>
+                                    <li class="page-item" ng-if="model.products.last_page >= (model.products.current_page + 1)"
+                                        ng-click="model.getPage(model.products.current_page + 1)">
+                                        <a class="page-link" href="#">@{{ model.products.current_page + 1 }}</a>
+                                    </li>
+                                    <li class="page-item" ng-if="model.products.last_page >= (model.products.current_page + 2)"
+                                        ng-click="model.getPage(model.products.current_page + 2)">
+                                        <a class="page-link" href="#">@{{ model.products.current_page + 2 }}</a>
+                                    </li>
+                                    <li class="page-item" ng-if="model.products.last_page >= (model.products.current_page + 3)"
+                                        ng-click="model.getPage(model.products.current_page + 3)">
+                                        <a class="page-link" href="#">@{{ model.products.current_page + 3 }}</a>
+                                    </li>
+                                    <li class="page-item" ng-if="model.products.last_page >= (model.products.current_page + 4)">
+                                        <a class="page-link" href="#">...</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#" ng-click="model.nextPage()">Next</a></li>
+                                </ul>
+                                <div class="d-flex align-items-center text-right pull-right">
+                                <span class="text-muted">
+                                    Displaying @{{ model.products.to ? model.products.to : '0' }} of @{{ model.products.total }} records</span>
+    
+                                </div>
+                            </nav>
                         </div>
-                        {{ $products->links()}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('footer_js')
+<script src="{{ asset('material') }}/js/custom/controllers/productController.js"></script>
 @endsection

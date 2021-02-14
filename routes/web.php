@@ -14,13 +14,19 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
 	// Get details
 	Route::get('dashboard-details', 'HomeController@getDetails');
-	Route::get('get-orderlist','HomeController@getOrderlist');
 	
 	Route::get('generateSku', 'ProductController@GenerateSku')->name('generate');
 	Route::post('handle-sku','ProductController@handle_sku');
 
 	// Order Management
-	Route::get('orders', 'ViewController@orders')->name('order.index');
+	Route::get('orders', 'OrderController@index')->name('order.index');
+	Route::get('get-order-list', 'OrderController@list');
+	Route::get('get-trashed-order-list', 'OrderController@trashedList');
+	Route::post('process-order', 'OrderController@processOrder');
+	Route::post('ship-order', 'OrderController@shipOrder');
+	Route::post('remove-order', 'OrderController@removeOrder');
+	Route::post('restore-order', 'OrderController@restoreDelete');
+	Route::post('delete-order', 'OrderController@forceDelete');
 	
 	// Order Management
 	Route::get('review', 'ViewController@review')->name('review');
@@ -69,6 +75,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
 	//Product Management//
 	Route::get('products', 'ProductController@index')->name('product.index');
+	Route::get('get-products', 'ProductController@list');
+	Route::get('get-trashed-products', 'ProductController@trashedList');
+	Route::post('remove-product', 'ProductController@removeOrder');
+	Route::post('restore-product', 'ProductController@restoreDelete');
+	Route::post('delete-product', 'ProductController@forceDelete');
+
+
 	Route::get('product/new', 'ProductController@create')->name('product.create');
 	Route::post('product/new', 'ProductController@store')->name('product.store');
 	Route::get('product/{product_id}/edit', 'ProductController@edit')->name('product.edit');
