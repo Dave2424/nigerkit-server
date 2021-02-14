@@ -110,6 +110,8 @@
             {{--</ul>--}}
           {{--</div>--}}
         {{--</div>--}}
+
+        @yield('modal')
         <!--   Core JS Files   -->
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
@@ -162,6 +164,6 @@
         @stack('product')
         @stack('post')
         @stack('banner')
-        @stack('orderlist')
+        @yield('footer_js')
     </body>
 </html>

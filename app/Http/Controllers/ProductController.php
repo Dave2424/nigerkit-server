@@ -227,4 +227,71 @@ class ProductController extends Controller{
         }
         return back();
     }
+
+
+    public function list(){
+        $this->__construct();
+        $data = request()->all();
+        // dd($data);
+        $limit = 10;
+        $order = "desc";
+        $orderBy = "created_at";
+        if(isset($data['limit'])){
+            $limit = $data['limit'];
+        }
+        if(isset($data['order'])){
+            $order = $data['order'];
+        }
+        if(isset($data['orderBy'])){
+            $orderBy = $data['orderBy'];
+        }
+
+        $query = Product::with(['productInventories']);
+
+        if(isset($data['search'])){
+            $query = $query->where('name', 'LIKE', '%' . $data['search'] . '%')
+                ->orWhere('Sku', 'LIKE', '%' . $data['search'] . '%')
+                ->orWhere($orderBy, 'LIKE', '%' . $data['search'] . '%');
+        }
+        
+        $products = $query->orderBy($orderBy, $order)->paginate($limit);
+
+        return response()->json([
+            'success'=>true,
+            'products'=>$products
+        ]);
+    }
+
+    public function trashedList(){
+        $this->__construct();
+        $data = request()->all();
+        // dd($data);
+        $limit = 10;
+        $order = "desc";
+        $orderBy = "created_at";
+        if(isset($data['limit'])){
+            $limit = $data['limit'];
+        }
+        if(isset($data['order'])){
+            $order = $data['order'];
+        }
+        if(isset($data['orderBy'])){
+            $orderBy = $data['orderBy'];
+        }
+
+        $query = Product::with(['productInventories'])->withTrashed();
+
+        if(isset($data['search'])){
+            $query = $query->where('name', 'LIKE', '%' . $data['search'] . '%')
+                ->orWhere('Sku', 'LIKE', '%' . $data['search'] . '%')
+                ->orWhere($orderBy, 'LIKE', '%' . $data['search'] . '%');
+        }
+        
+        $products = $query->where('deleted_at', '!=', null)->orderBy($orderBy, $order)->paginate($limit);
+
+        return response()->json([
+            'success'=>true,
+            'products'=>$products
+        ]);
+    }
 }

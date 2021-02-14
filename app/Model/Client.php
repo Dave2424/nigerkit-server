@@ -57,4 +57,8 @@ class Client extends Authenticatable implements JWTSubject, MustVerifyEmail{
     public function orders() {
         return $this->hasMany(Orderlist::class);
     }
+
+    public function cart() {
+        return $this->hasMany(UserCart::class, 'user_id');
+    }
 }

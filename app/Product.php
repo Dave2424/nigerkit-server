@@ -7,9 +7,11 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use App\Category;
 use App\Tag;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model implements Searchable
 {
+    use SoftDeletes;
     protected $guarded = ['id'];
 
     protected $casts = [
