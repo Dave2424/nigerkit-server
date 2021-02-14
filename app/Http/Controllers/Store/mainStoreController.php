@@ -130,6 +130,7 @@ class mainStoreController extends Controller
         $grandTotal = round($grandTotal);
         $identifier = 'NKT-' . HelperController::generateIdentifier(14); //unique order id
         $key = Setting::getValue('PAYSTACK_PUBLIC_LIVE');
+        // $key = Setting::getValue('PAYSTACK_PUBLIC_TEST');
         $details = [
             'deliveryFee' => $deliveryFee,
             'percentage' => $salePercentage,
