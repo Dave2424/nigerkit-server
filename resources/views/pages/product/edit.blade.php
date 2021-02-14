@@ -176,22 +176,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="row">
-                                        <div class="col-sm-10 ml-auto mr-auto">
-                                            <div class="form-group{{ $errors->has('quantity') ? ' has-danger' : '' }}">
-                                                <input
-                                                    class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}"
-                                                    name="quantity" id="input-quantity" type="text"
-                                                    placeholder="{{ __('Quantity') }}"
-                                                    value="{{ old('quantity', $product->quantity) }}" required="true"
-                                                    aria-required="true" />
-                                                @if ($errors->has('quantity'))
-                                                <span id="quantity-error" class="error text-danger"
-                                                    for="input-quantity">{{ $errors->first('quantity') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                     <div class="row">
                                         <div class="col-sm-10 ml-auto mr-auto">
                                             <div class="form-group">

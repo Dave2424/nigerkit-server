@@ -96,7 +96,6 @@ class ProductController extends Controller{
 
             $product->name = $request->get('name');
             $product->description = request('description');
-            $product->quantity = request('quantity');
             $product->brand = request('brand');
             $product->price = request('price');
             $product->Sku = request('Sku');
@@ -122,31 +121,6 @@ class ProductController extends Controller{
             $product->syncCategories($request['categories']);
 
             return redirect()->route('product.index')->withStatus(__('Product edited successfully'));
-        }
-        return back();
-    }
-
-    public function updateStatus($product_id){
-        $this->__construct();
-        if($this->user->hasPermissionTo("Update_Product_Status")){
-            $product = Product::findOrFail($product_id);
-            $product->update([
-                "status"=>$product->status == 1 ? 0: 1,
-            ]);
-
-            return redirect()->back()->withStatus(__('Product successfully updated.'));
-        }
-        return back();
-    }
-
-    public function destroy($id){
-        $this->__construct();
-        if($this->user->hasPermissionTo("Delete_Product")){
-            $product = Product::find($id);
-            if($product){
-                $product->delete();
-            }
-            return redirect()->back()->withStatus(__('Product details deleted successfully'));
         }
         return back();
     }
@@ -191,16 +165,20 @@ class ProductController extends Controller{
         return back();
     }
 
-    public function storeProductStockUp(Request $request, $product_id){
+    public function storeProductStockUp(){
         $this->__construct();
-        $this->validate($request, [
-            'invoice_amount' => ['required', 'numeric', 'min:0'],
-            'invoice_number' => ['required', 'string', 'max:50', 'unique:stock_inventories'],
-            'stock_added' => ['required', 'numeric', 'min:1'],
-        ]);
-
         if($this->user->hasPermissionTo("Stock_Product")){
-            $product = Product::findOrFail($product_id);
+            $data = request()->all();
+            $required = ['invoice_number', 'invoice_amount', 'stock_added'];
+            foreach($required as $req){
+                if(!isset($data[$req])){
+                    return response()->json([
+                        'success'=>false,
+                        'message'=> str_replace('_', ' ', $req) . " field is required"
+                    ]);
+                }
+            }
+            $product = Product::findOrFail($data['product_id']);
             if($product){
                 $activeInventory = $product->activeProductInventories();
                 if($activeInventory){
@@ -211,23 +189,33 @@ class ProductController extends Controller{
                     ]);
                 }
                 $product->productInventories()->create([
-                    'invoice_number'=> $request['invoice_number'],
-                    'invoice_amount'=> $request['invoice_amount'],
-                    'stock_added'=> $request['stock_added'],
-                    'opening_stock'=> ($product->stock + (int)$request['stock_added']),
+                    'invoice_number'=> $data['invoice_number'],
+                    'invoice_amount'=> $data['invoice_amount'],
+                    'stock_added'=> $data['stock_added'],
+                    'opening_stock'=> ($product->stock + (int)$data['stock_added']),
                     'stock_balance_bf'=> $product->stock,
                     'stock_added_date'=> Carbon::now(),
                 ]);
 
                 $product->update([
-                    'stock'=> ($product->stock + (int)$request['stock_added']),
+                    'stock'=> ($product->stock + (int)$data['stock_added']),
+                ]);
+
+                return response()->json([
+                    'success'=>true,
+                    'message'=>"Product stocked successfully"
                 ]);
             }
-            return redirect()->route('product.index')->withStatus(__('Product stocked successfully'));
+            return response()->json([
+                'success'=>false,
+                'message'=>"Product does not exist"
+            ]);
         }
-        return back();
+        return response()->json([
+            'success'=>false,
+            'message'=>"Sorry you don't have permission to stock-up product"
+        ]);
     }
-
 
     public function list(){
         $this->__construct();
@@ -256,9 +244,16 @@ class ProductController extends Controller{
         
         $products = $query->orderBy($orderBy, $order)->paginate($limit);
 
+        foreach($products as $product){
+            $product->tags = $product->tagsToSting();
+            $product->categories = $product->categoriesToSting();
+        }
+
+        $categories = Category::all();
         return response()->json([
             'success'=>true,
-            'products'=>$products
+            'products'=>$products,
+            'categories'=>$categories,
         ]);
     }
 
@@ -289,9 +284,121 @@ class ProductController extends Controller{
         
         $products = $query->where('deleted_at', '!=', null)->orderBy($orderBy, $order)->paginate($limit);
 
+        foreach($products as $product){
+            $product->tags = $product->tagsToSting();
+            $product->categories = $product->categoriesToSting();
+        }
+        
         return response()->json([
             'success'=>true,
             'products'=>$products
+        ]);
+    }
+
+    public function updateStatus(){
+        $this->__construct();
+        if($this->user->hasPermissionTo("Update_Product_Status")){
+            $data = request()->all();
+            $product = Product::findOrFail($data['product_id']);
+            $from = $product->status == 1 ? "active": "inactive";
+            $to = $product->status == 1 ? "inactive": "active";
+            $product->activities()->create([
+                'user_id'=>$this->user->id,
+                'title'=>"Product Status Update",
+                'detail'=>$this->user->name . " updated the status of an item with SKU: ".$product->Sku." from ".$from." to ".$to,
+            ]);
+            $product->update([
+                "status"=>$product->status == 1 ? 0: 1,
+            ]);
+            return response()->json([
+                'success'=>true,
+                'message'=>"Product successfully updated."
+            ]);
+        }
+        return response()->json([
+            'success'=>false,
+            'message'=>"Sorry you don't have permission to update product status"
+        ]);
+    }
+
+    public function removeProduct(){
+        $this->__construct();
+        $data = request()->all();
+        if($this->user->hasPermissionTo("Trash_Product")){
+            $product = Product::find($data['product_id']);
+            if($product){
+                $product->delete();
+
+                $product->activities()->create([
+                    'user_id'=>$this->user->id,
+                    'title'=>"New Product Trashed",
+                    'detail'=>$this->user->name . " trashed an item with SKU: ".$product->Sku,
+                ]);
+            }
+            return response()->json([
+                'success'=>true,
+            ]);
+        }
+        return response()->json([
+            'success'=>false,
+            'message'=>"Sorry you don't have permission to trash products"
+        ]);
+    }
+
+    public function restoreDelete(){
+        $this->__construct();
+        if($this->user->hasPermissionTo("Restore_Trashed_Product")){
+            $data = request()->all();
+            $product = Product::withTrashed()->find($data['product_id']);
+            if ($product && $product->trashed()) {
+                $product->restore();
+
+                $product->activities()->create([
+                    'user_id'=>$this->user->id,
+                    'title'=>"Product Restored",
+                    'detail'=>$this->user->name . " restored an product with SKU: ".$product->Sku." from trash",
+                ]);
+
+                return response()->json([
+                    'success'=>true,
+                ]);
+            }
+            return response()->json([
+                'success'=>false,
+                'message'=>"Sorry the product can't be found"
+            ]);
+        }
+        return response()->json([
+            'success'=>false,
+            'message'=>"Sorry you don't have permission to restore trashed products"
+        ]);
+    }
+
+    public function forceDelete(){
+        $this->__construct();
+        if($this->user->hasPermissionTo("Delete_Product")){
+            $data = request()->all();
+            $product = Product::withTrashed()->find($data['product_id']);
+            if ($product && $product->trashed()) {
+                $product->forceDelete();
+                $product->activities()->create([
+                    'user_id'=>$this->user->id,
+                    'title'=>"Product Removed",
+                    'detail'=>$this->user->name . " removed an product with SKU: ".$product->Sku." from trash",
+                ]);
+
+                return response()->json([
+                    'success'=>true,
+                ]);
+            }
+            return response()->json([
+                'success'=>false,
+                'message'=>"Sorry the product can't be found"
+            ]);
+        }
+        return response()->json([
+            'success'=>false,
+            'message'=>"Sorry you don't have permission to delete products"
         ]);
     }
 }

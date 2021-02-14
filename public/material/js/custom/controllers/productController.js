@@ -9,6 +9,7 @@ mainApp.controller('productController', ['$rootScope', '$scope', '$location', '$
         $scope.model.limit = "10";
         $scope.model.activeTab = 1;
         $scope.model.trash = false;
+        $scope.model.edit = false;
 
         $scope.model.getData = function () {
             $scope.model.trash = false
@@ -33,6 +34,7 @@ mainApp.controller('productController', ['$rootScope', '$scope', '$location', '$
             appService.fetchData(url,
                 function (resp) {
                     $scope.model.products = resp.data.products;
+                    $scope.model.categories = resp.data.categories;
                     $scope.model.loading_data = false
                 },
                 function (error) {
@@ -151,24 +153,28 @@ mainApp.controller('productController', ['$rootScope', '$scope', '$location', '$
             $('#'+modal).modal('hide');
         }
 
-        $scope.model.viewProduct = function(product){
+        $scope.model.viewProduct = function(product, isEdit = false){
+            $scope.model.edit = isEdit;
             $scope.model.activeProduct = product
+            console.log($scope.model.activeProduct)
             $('#view-product-details').modal('show');
         }
 
-        $scope.model.viewTransaction = function(product){
+        $scope.model.showStockProduct = function(product){
             $scope.model.activeProduct = product
-            $scope.model.transaction = product.transaction
-            $('#view-payment-details').modal('show');
+            $scope.model.stockUp = []
+            $('#product-stock-up').modal('show');
         }
 
-        $scope.model.processProduct = function(){
-            var url = "/admin/process-product"
-            
+        $scope.model.stockProduct = function(){
+            var url = "/admin/stock-up-product"
             var payload = {
-                'product_id': $scope.model.activeProduct.id
-            };
-
+                'product_id': $scope.model.activeProduct.id,
+                'invoice_number': $scope.model.stockUp.invoice_number,
+                'invoice_amount': $scope.model.stockUp.invoice_amount,
+                'stock_added': $scope.model.stockUp.stock_added,
+            }
+            
             appService.sendNormalData(url, payload,
                 function (resp) {
                     $scope.model.activeProduct = resp.data.product
@@ -177,17 +183,18 @@ mainApp.controller('productController', ['$rootScope', '$scope', '$location', '$
                     }else{
                         $scope.model.getData()
                     }
+                    $('#product-stock-up').modal('hide');
                 },
                 function (error) {
-                    console.log(error.statusText);
+                    $scope.model.stockUpError = error.data.message
                 });
         }
 
-        $scope.model.shipProduct = function(){
-            var url = "/admin/ship-product"
+        $scope.model.updateStatus = function(product){
+            var url = "/admin/update-product-status"
             
             var payload = {
-                'product_id': $scope.model.activeProduct.id
+                'product_id': product.id
             };
 
             appService.sendNormalData(url, payload,

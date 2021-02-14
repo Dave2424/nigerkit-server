@@ -77,7 +77,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::get('products', 'ProductController@index')->name('product.index');
 	Route::get('get-products', 'ProductController@list');
 	Route::get('get-trashed-products', 'ProductController@trashedList');
-	Route::post('remove-product', 'ProductController@removeOrder');
+	Route::post('stock-up-product', 'ProductController@storeProductStockUp');
+	Route::post('update-product-status', 'ProductController@updateStatus');
+	Route::post('remove-product', 'ProductController@removeProduct');
 	Route::post('restore-product', 'ProductController@restoreDelete');
 	Route::post('delete-product', 'ProductController@forceDelete');
 
@@ -86,10 +88,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::post('product/new', 'ProductController@store')->name('product.store');
 	Route::get('product/{product_id}/edit', 'ProductController@edit')->name('product.edit');
 	Route::post('product/{product_id}/update', 'ProductController@update')->name('product.update');
-	Route::post('product/{product_id}/update-status', 'ProductController@updateStatus')->name('product.update_status');
-	Route::post('product/{product_id}/delete', 'ProductController@destroy')->name('product.destroy');
-	Route::get('product/{product_id}/stock-up', 'ProductController@productStockUp')->name('product_stock_up');
-	Route::post('product/{product_id}/stock-up', 'ProductController@storeProductStockUp');
 
 	//Category Management
 	Route::get('categories', 'CategoryController@index')->name('category.index');

@@ -96,4 +96,8 @@ class Product extends Model implements Searchable
     public function activeProductInventories(){
         return $this->productInventories()->whereStatus(1)->first();
     }
+    
+    public function activities(){
+        return $this->morphMany('App\ActivityLog', 'actable');
+    }
 }

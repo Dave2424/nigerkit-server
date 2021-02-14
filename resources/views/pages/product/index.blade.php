@@ -107,7 +107,7 @@
                                         </td>
                                         <td class="text-center">
                                             @{{ product.stock }}
-                                            <button class="btn btn-sm" >Stock Up</button>
+                                            <button ng-if="!model.trash" class="btn btn-sm" ng-click="model.showStockProduct(product)">Stock Up</button>
                                         </td>
                                         <td class="text-center">
                                             @{{ product.brand }}
@@ -116,28 +116,42 @@
                                             @{{ product.price }}
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" rel="tooltip" data-original-title="@{{ product.status==1 ? "Deactivate" : "Activate" }} Product" title="@{{ product.status==1 ? "Deactivate" : "Activate" }} Product"
-                                                class="text-center btn bg-@{{ product.status==1 ? "success" : "danger" }}"
-                                                onclick="confirm('{{ __("Are you sure you want to update this product status?") }}') ? this.parentElement.submit() : ''">
+                                            <button type="button" rel="tooltip" data-original-title="@{{ product.status==1 ? 'Deactivate' : 'Activate' }} Product" title="@{{ product.status==1 ? 'Deactivate' : 'Activate' }} Product"
+                                                ng-click="model.updateStatus(product)"
+                                                class="text-center btn bg-@{{ product.status==1 ? 'success' : 'danger' }}">
                                                 @{{ product.status==1 ? "Active" : "Inactive" }}
                                             </button>
                                         </td>
                                         <td class="text-center" style="max-width: 150px;">
-                                            @{{ product.created_at }}
+                                            @{{ product.created_at | date:'mediumDate' }}
                                         </td>
-                                        <td class="td-actions text-right" style="max-width: 150px;">
-                                            <a rel="tooltip" class="btn btn-success btn-link"
-                                                data-original-title="Edit Product"
-                                                title="Edit Product">
+                                        <td>
+                                            <a ng-if="!model.trash" href="@{{'product/'+product.id+'/edit'}}" type="button"
+                                                rel="tooltip" data-original-title="Edit Product" 
+                                                title="View Product" class="btn btn-sm btn-success">
                                                 <i class="material-icons">edit</i>
+                                                Edit
                                                 <div class="ripple-container"></div>
                                             </a>
-                                            <button type="button" class="btn btn-danger btn-link"
-                                                    rel="tooltip" data-original-title="Delete Product" title="Delete Product">
-                                                <i class="material-icons">close</i>
+                                            <button  ng-if="model.trash" ng-click="model.viewProduct(product, true)" type="button"
+                                                rel="tooltip" data-original-title="Edit Product" 
+                                                title="View Product" class="btn btn-sm btn-success">
+                                                <i class="material-icons">edit</i>
+                                                View
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <button ng-click="model.deleteProduct(product)"
+                                                type="button"
+                                                rel="tooltip" data-original-title="Delete Product" title="Delete Product"
+                                                class="btn btn-sm btn-danger">
+                                                <i class="material-icons">delete</i>
+                                                Delete
                                                 <div class="ripple-container"></div>
                                             </button>
                                         </td>
+                                    </tr>
+                                    <tr ng-if="model.products.data == 0">
+                                        <td colspan="10" class="text-center">Empty Record</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -185,6 +199,162 @@
                             </nav>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="view-product-details" tabindex="-1" role="dialog"
+        data-backdrop="static"
+        aria-labelledby="productDetailTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productDetailTitle">Edit Product Detail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="row">
+                            <div class="col-sm-10 ml-auto mr-auto">
+                                <div class="form-group">
+                                    <label for="name">Product name</label>
+                                    <input class="form-control" ng-model="model.activeProduct.name" 
+                                        id="name" type="text" required="true"
+                                        aria-required="true" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 ml-auto mr-auto">
+                                <div class="form-group">
+                                    <label for="description">Describe the product</label>
+                                    <textarea id="description" class="form-control"
+                                        rows="2" ng-model="model.activeProduct.description"
+                                        required="true" aria-required="true"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 ml-auto mr-auto">
+                                <div class="form-group">
+                                    <label for="brand">Product Brand</label>
+                                    <input class="form-control"
+                                        ng-model="model.activeProduct.brand" id="brand" type="text"
+                                        required="true" aria-required="true" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 ml-auto mr-auto">
+                                <div class="form-group">
+                                    <label for="brand">Product SKU</label>
+                                    <input class="form-control"
+                                        ng-model="model.activeProduct.Sku" id="brand" type="text"
+                                        required="true" aria-required="true" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button ng-if="model.trash" type="button" ng-click="model.restoreProduct()" class="btn btn-success">Restore</button>
+                    <button type="button" ng-click="model.close('view-product-details')" class="btn btn-primary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="product-stock-up" tabindex="-1" role="dialog"
+        data-backdrop="static"
+        aria-labelledby="productDetailTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productDetailTitle">Stock Up Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row  ml-auto mr-auto justify-content-center">
+                        <div class="col-sm-12 col-md-9">
+                            <div class="row">
+                                <div class="col-sm-12 ml-auto mr-auto">
+                                    <label for="input-name">{{ __('Product name') }}</label>
+                                    <div class="form-group">
+                                        <input class="form-control"
+                                            ng-model="model.activeProduct.name" id="input-name" type="text"
+                                            placeholder="{{ __('Product name') }}"readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-9">
+                            <div class="row">
+                                <div class="col-sm-12 ml-auto mr-auto">
+                                    <label>{{ __('Invoice Number') }}</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="model.stockUp.invoice_number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-9">
+                            <div class="row">
+                                <div class="col-sm-12 ml-auto mr-auto">
+                                    <label>{{ __('Invoice Amount') }}</label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" ng-model="model.stockUp.invoice_amount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-9">
+                            <div class="row">
+                                <div class="col-sm-12 ml-auto mr-auto">
+                                    <label>{{ __('Stock Added') }}</label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" ng-model="model.stockUp.stock_added">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="model.stockUpError" class="col-md-12 text-center text-danger text-uppercase">
+                            @{{model.stockUpError}}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="model.stockProduct()" class="btn btn-success">Stock Up</button>
+                    <button type="button" ng-click="model.close('product-stock-up')" class="btn btn-primary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delete-product-details" tabindex="-1" role="dialog"
+        data-backdrop="static"
+        aria-labelledby="deleteRecordTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteRecordTitle">Delete Product Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">
+                        Are you sure you want to delete this record?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="model.close('delete-product-details')" class="btn btn-success">No</button>
+                    <button type="button" ng-click="model.removeItem()" class="btn btn-danger">Yes</button>
                 </div>
             </div>
         </div>

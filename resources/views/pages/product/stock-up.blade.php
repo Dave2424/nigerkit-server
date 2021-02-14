@@ -33,25 +33,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-sm-12 col-md-9">
-                                    <div class="row">
-                                        <div class="col-sm-12 ml-auto mr-auto">
-                                            <label for="input-name">{{ __('Product Suplier') }}</label>
-                                            <div class="form-group">
-                                                <select name="type" class="form-control selectpicker"
-                                                    data-style="btn btn-link">
-                                                    <option value="">Select product type</option>
-                                                    <option value="special"
-                                                        {{(old('type', $product->type)== "special")? "selected" : "" }}>
-                                                        special</option>
-                                                    <option value="bestSeller"
-                                                        {{(old('type', $product->type)== "bestSeller")? "selected" : "" }}>
-                                                        Best Seller</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 <div class="col-sm-12 col-md-9">
                                     <div class="row">
                                         <div class="col-sm-12 ml-auto mr-auto">
