@@ -165,7 +165,7 @@ class mainStoreController extends Controller
         // dd($payStackChargeVerify);
         // || $payStackChargeVerify['data']['status'] != 'success'
         if (!isset($payStackChargeVerify['data']['status']))
-            return response()->json(['error' => true, 'message' => 'Payment Was not successful']);
+            return response()->json(['error' => true, 'message' => 'Payment was not successful']);
         $payStackCharge = (new PayStackVerifyTransaction)->verify($data['transaction_ref'], 0);
 
         $recipients['buyer'] = ['email' => $data['email'], 'name' => $data['name']];
